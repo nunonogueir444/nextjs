@@ -9,9 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.0.3",
+    "eslint-config-next": "^15.0.4",
+    "next": "^15.0.4",
     "nextjs": "file:",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
-  }
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
