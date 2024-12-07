@@ -293,3 +293,43 @@ a.secondary {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+/* Add this to your page.module.css */
+
+.filters input[type="date"] {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dateFilters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dateFilters label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dateFilters input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.resetButton {
+  padding: 0.5rem 1rem;
+  margin-top: 1.5rem;
+  background-color: rgb(0, 72, 36);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  background-color: rgb(0, 46, 23);
+}

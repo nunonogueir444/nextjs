@@ -22,9 +22,6 @@ export default function Home() {
     column3: '',
   });
 
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-
   const column2Values = [
     '0 Generic Op.',
     '1 Low Op.',
@@ -175,19 +172,6 @@ export default function Home() {
     }));
   };
 
-  const handleDateChange = (type, value) => {
-    if (type === 'start') {
-      setStartDate(value);
-    } else {
-      setEndDate(value);
-    }
-  };
-
-  const handleResetDateFilter = () => {
-    setStartDate('');
-    setEndDate('');
-  };
-
   const filteredContent = currentPageContent
     .split('\n')
     .filter(line => line.trim() !== '')
@@ -200,7 +184,8 @@ export default function Home() {
           if (valueIndex === 0) {
             const epoch = parseInt(trimmedValue, 10);
             if (!isNaN(epoch)) {
-              return new Date(epoch * 1000);
+              const date = new Date(epoch * 1000);
+              return date.toLocaleString();
             }
           }
           if (valueIndex === 1 ) {
@@ -289,13 +274,8 @@ export default function Home() {
     })
     .filter((row) => row !== null)
     .filter((row) => {
-      const rowDate = row[0];
-      const isWithinDateRange = 
-        (!startDate || rowDate >= new Date(startDate)) &&
-        (!endDate || rowDate <= new Date(endDate));
-
       return (
-        isWithinDateRange &&
+        (filters.column1 === '' || row[0].includes(filters.column1)) &&
         (filters.column2 === '' || row[1].includes(filters.column2)) &&
         (filters.column3 === '' || row[2].includes(filters.column3))
       );
@@ -326,31 +306,17 @@ export default function Home() {
         {/* Filter section moved above the table */}
         <h2>Filter:</h2>
         <div className={styles.filters}>
-          {/* Date Range Filters */}
-          <div className={styles.dateFilters}>
-            <label>
-              Start Date:
-              <input
-                type="date"
-                value={startDate}
-                onChange={(e) => handleDateChange('start', e.target.value)}
-              />
-            </label>
-            <label>
-              End Date:
-              <input
-                type="date"
-                value={endDate}
-                onChange={(e) => handleDateChange('end', e.target.value)}
-              />
-            </label>
-            <button 
-              className={styles.resetButton}
-              onClick={handleResetDateFilter}
-            >
-              Reset Dates
-            </button>
-          </div>
+          <select
+            value={filters.column1}
+            onChange={(e) => handleFilterChange('column1', e.target.value)}
+          >
+            <option value="">All Dates</option>
+            {filteredContent.map((row, index) => (
+              <option key={index} value={row[0]}>
+                {row[0]}
+              </option>
+            ))}
+          </select>
 
           <select
             value={filters.column2}
@@ -401,14 +367,9 @@ export default function Home() {
               <tbody>
                 {filteredContent.map((row, index) => (
                   <tr key={index}>
-                    <td>{row[0] instanceof Date ? row[0].toLocaleString() : row[0]}</td>
-                    <td>{row[1]}</td>
-                    <td>{row[2]}</td>
-                    <td>{row[3]}</td>
-                    <td>{row[4]}</td>
-                    <td>{row[5]}</td>
-                    <td>{row[6]}</td>
-                    {/* Add remaining cells as needed */}
+                    {row.map((cell, cellIndex) => (
+                      <td key={cellIndex}>{cell}</td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
