@@ -20,11 +20,10 @@ export default function Home() {
     column1: '',
     column2: '',
     column3: '',
-    column4: '',
-    column5: '',
-    column6: '',
-    column7: ''
   });
+
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   const column2Values = [
     '0 Generic Op.',
@@ -115,35 +114,43 @@ export default function Home() {
       reader.onload = () => {
         const content = reader.result;
         const lines = content.split('\n');
-        
+
         let filePages = [];
         let currentChunk = '';
         let currentSize = 0;
-        
-        const header = lines[0];
-        
-        let dataLines = lines.slice(1); 
 
+        // Preserve header
+        const header = lines[0];
+
+        // Process lines sequentially without sorting
+        let dataLines = lines.slice(1);
+
+        // Chunk the data while preserving order
         dataLines.forEach(line => {
+          if (!line.trim()) return; // Skip empty lines
+
           const lineSize = new Blob([line]).size;
 
           if (currentSize + lineSize > chunkSize) {
+            // Store chunk and start new one
             filePages.push(currentChunk);
             currentChunk = line + '\n';
             currentSize = lineSize;
           } else {
+            // Add to current chunk
             currentChunk += line + '\n';
             currentSize += lineSize;
           }
         });
 
+        // Add final chunk if exists
         if (currentChunk) {
           filePages.push(currentChunk);
         }
 
         setPages(filePages);
-        setIsLoading(false);
         setFileContent(content);
+        setIsLoading(false);
       };
 
       reader.onerror = () => {
@@ -172,10 +179,111 @@ export default function Home() {
   const handleFilterChange = (column, value) => {
     setFilters(prevFilters => ({
       ...prevFilters,
-      [column]: value.toLowerCase()
+      [column]: value
     }));
   };
 
+  const handleDateChange = (type, value) => {
+    if (type === 'start') {
+      setStartDate(value);
+    } else {
+      setEndDate(value);
+    }
+  };
+
+  const handleResetDateFilter = () => {
+    setStartDate('');
+    setEndDate('');
+  };
+
+  // Add new state for sort direction
+  const [sortDirection, setSortDirection] = useState('asc');
+
+  // Update formatDate function
+  const formatDate = (date) => {
+    if (!(date instanceof Date)) return date;
+    
+    const pad = (num) => String(num).padStart(2, '0');
+    
+    const day = pad(date.getDate());
+    const month = pad(date.getMonth() + 1);
+    const year = date.getFullYear();
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
+    const seconds = pad(date.getSeconds());
+    
+    return `${day}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
+  };
+
+  // Update sort handler
+  const handleSort = () => {
+    const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+    setSortDirection(newDirection);
+    
+    // Combine all pages
+    const allContent = pages
+      .join('\n')
+      .split('\n')
+      .filter(line => line.trim() !== '')
+      .map((line) => {
+        const values = line.split(';');
+        if (values.length === 7) {
+          const updatedValues = values.map((value, valueIndex) => {
+            const trimmedValue = value.trim();
+            if (valueIndex === 0) {
+              const epoch = parseInt(trimmedValue, 10);
+              if (!isNaN(epoch)) {
+                // Multiply by 1000 to convert seconds to milliseconds
+                return new Date(epoch * 1000);
+              }
+            }
+            return value;
+          });
+          return updatedValues;
+        }
+        return null;
+      })
+      .filter(row => row !== null)
+      .sort((a, b) => {
+        const dateA = a[0] instanceof Date ? a[0].getTime() : 0;
+        const dateB = b[0] instanceof Date ? b[0].getTime() : 0;
+        return newDirection === 'asc' ? dateA - dateB : dateB - dateA;
+      });
+
+    // Re-chunk the sorted data
+    const newPages = [];
+    let currentChunk = '';
+    let currentSize = 0;
+
+    allContent.forEach(row => {
+      // Keep original epoch timestamp when storing back
+      const displayRow = [...row];
+      if (displayRow[0] instanceof Date) {
+        displayRow[0] = Math.floor(displayRow[0].getTime() / 1000); // Convert back to epoch seconds
+      }
+      
+      const line = displayRow.join(';') + '\n';
+      const lineSize = new Blob([line]).size;
+
+      if (currentSize + lineSize > chunkSize) {
+        newPages.push(currentChunk);
+        currentChunk = line;
+        currentSize = lineSize;
+      } else {
+        currentChunk += line;
+        currentSize += lineSize;
+      }
+    });
+
+    if (currentChunk) {
+      newPages.push(currentChunk);
+    }
+
+    setPages(newPages);
+    setCurrentPage(0);
+  };
+
+  // Modify filteredContent to include sorting
   const filteredContent = currentPageContent
     .split('\n')
     .filter(line => line.trim() !== '')
@@ -188,8 +296,7 @@ export default function Home() {
           if (valueIndex === 0) {
             const epoch = parseInt(trimmedValue, 10);
             if (!isNaN(epoch)) {
-              const date = new Date(epoch * 1000);
-              return date.toLocaleString();
+              return new Date(epoch * 1000);
             }
           }
           if (valueIndex === 1 ) {
@@ -274,19 +381,26 @@ export default function Home() {
 
         return updatedValues;
       }
-      return null; 
+      return null;
     })
     .filter((row) => row !== null)
     .filter((row) => {
+      const rowDate = row[0];
+      const isWithinDateRange = 
+        (!startDate || rowDate >= new Date(startDate)) &&
+        (!endDate || rowDate <= new Date(endDate));
+
       return (
-        (filters.column1 === '' || row[0].toLowerCase().includes(filters.column1)) &&
-        (filters.column2 === '' || row[1].toLowerCase().includes(filters.column2)) &&
-        (filters.column3 === '' || row[2].toLowerCase().includes(filters.column3)) &&
-        (filters.column4 === '' || row[3].toLowerCase().includes(filters.column4)) &&
-        (filters.column5 === '' || row[4].toLowerCase().includes(filters.column5)) &&
-        (filters.column6 === '' || row[5].toLowerCase().includes(filters.column6)) &&
-        (filters.column7 === '' || row[6].toLowerCase().includes(filters.column7))
+        isWithinDateRange &&
+        (filters.column2 === '' || row[1].includes(filters.column2)) &&
+        (filters.column3 === '' || row[2].includes(filters.column3))
       );
+    })
+    .sort((a, b) => {
+      if (sortDirection === 'asc') {
+        return a[0] - b[0];
+      }
+      return b[0] - a[0];
     });
 
   const headerColumns = fileContent ? fileContent.split('\n')[0].split(';') : [];
@@ -314,17 +428,31 @@ export default function Home() {
         {/* Filter section moved above the table */}
         <h2>Filter:</h2>
         <div className={styles.filters}>
-          <select
-            value={filters.column1}
-            onChange={(e) => handleFilterChange('column1', e.target.value)}
-          >
-            <option value="">All Dates</option>
-            {filteredContent.map((row, index) => (
-              <option key={index} value={row[0]}>
-                {row[0]}
-              </option>
-            ))}
-          </select>
+          {/* Date Range Filters */}
+          <div className={styles.dateFilters}>
+            <label>
+              Start Date:
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => handleDateChange('start', e.target.value)}
+              />
+            </label>
+            <label>
+              End Date:
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => handleDateChange('end', e.target.value)}
+              />
+            </label>
+            <button 
+              className={styles.resetButton}
+              onClick={handleResetDateFilter}
+            >
+              Reset Dates
+            </button>
+          </div>
 
           <select
             value={filters.column2}
@@ -367,7 +495,16 @@ export default function Home() {
             <table border="1" className={styles.table}>
               <thead>
                 <tr>
-                  {headerColumns.map((column, index) => (
+                  <th>
+                    Date
+                    <button 
+                      className={styles.sortButton}
+                      onClick={handleSort}
+                    >
+                      {sortDirection === 'asc' ? '↑' : '↓'}
+                    </button>
+                  </th>
+                  {headerColumns.slice(1).map((column, index) => (
                     <th key={index}>{column}</th>
                   ))}
                 </tr>
@@ -375,9 +512,14 @@ export default function Home() {
               <tbody>
                 {filteredContent.map((row, index) => (
                   <tr key={index}>
-                    {row.map((cell, cellIndex) => (
-                      <td key={cellIndex}>{cell}</td>
-                    ))}
+                    <td>{row[0] instanceof Date ? row[0].toLocaleString() : row[0]}</td>
+                    <td>{row[1]}</td>
+                    <td>{row[2]}</td>
+                    <td>{row[3]}</td>
+                    <td>{row[4]}</td>
+                    <td>{row[5]}</td>
+                    <td>{row[6]}</td>
+                    {/* Add remaining cells as needed */}
                   </tr>
                 ))}
               </tbody>
