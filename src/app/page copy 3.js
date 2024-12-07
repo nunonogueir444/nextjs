@@ -20,6 +20,10 @@ export default function Home() {
     column1: '',
     column2: '',
     column3: '',
+    column4: '',
+    column5: '',
+    column6: '',
+    column7: ''
   });
 
   const column2Values = [
@@ -277,11 +281,11 @@ export default function Home() {
       return (
         (filters.column1 === '' || row[0].toLowerCase().includes(filters.column1)) &&
         (filters.column2 === '' || row[1].toLowerCase().includes(filters.column2)) &&
-        (filters.column3 === '' || row[2].toLowerCase().includes(filters.column3))
-        //(filters.column4 === '' || row[3].toLowerCase().includes(filters.column4)) &&
-       // (filters.column5 === '' || row[4].toLowerCase().includes(filters.column5)) &&
-       // (filters.column6 === '' || row[5].toLowerCase().includes(filters.column6)) &&
-        //(filters.column7 === '' || row[6].toLowerCase().includes(filters.column7))
+        (filters.column3 === '' || row[2].toLowerCase().includes(filters.column3)) &&
+        (filters.column4 === '' || row[3].toLowerCase().includes(filters.column4)) &&
+        (filters.column5 === '' || row[4].toLowerCase().includes(filters.column5)) &&
+        (filters.column6 === '' || row[5].toLowerCase().includes(filters.column6)) &&
+        (filters.column7 === '' || row[6].toLowerCase().includes(filters.column7))
       );
     });
 
