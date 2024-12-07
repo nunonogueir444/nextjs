@@ -108,7 +108,7 @@ export default function Home() {
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
-    if (file && file.type === 'text/plain') {
+    if (file && (file.type === 'text/plain' || file.name.endsWith('.log'))) {
       const reader = new FileReader();
       reader.readAsText(file);
 
@@ -146,9 +146,14 @@ export default function Home() {
         setFileContent(content);
       };
 
+      reader.onerror = () => {
+        alert('Error reading file. Please try again.');
+        setIsLoading(false);
+      };
+
       setIsLoading(true);
     } else {
-      alert('Please upload a valid .txt file');
+      alert('Please upload a valid .log file');
     }
   };
 
@@ -188,14 +193,14 @@ export default function Home() {
             }
           }
           if (valueIndex === 1 ) {
-            if (trimmedValue === '0') return 'Generic Op.';
-            if (trimmedValue === '1') return '11';
-            if (trimmedValue === '2') return '22';
-            if (trimmedValue === '3') return '33';
-            if (trimmedValue === '4') return '44';
-            if (trimmedValue === '5') return '55';
-            if (trimmedValue === '6') return '66';
-            if (trimmedValue === '7') return '77';
+            if (trimmedValue === '0') return '0 Generic Op.';
+            if (trimmedValue === '1') return '1 Low Op.';
+            if (trimmedValue === '2') return '2 Standard Op.';
+            if (trimmedValue === '3') return '3 igh Op.';
+            if (trimmedValue === '4') return '4 Service Op.';
+            if (trimmedValue === '5') return '5 Manager Op.';
+            if (trimmedValue === '6') return '6 Dealer Op.';
+            if (trimmedValue === '7') return '7 Combilift Op.';
             if (trimmedValue === '8') return 'Developer Op.';
           }
           if (valueIndex === 2) {
@@ -203,30 +208,30 @@ export default function Home() {
             if (trimmedValue === '102') return 'standard service reset ';
             if (trimmedValue === '103') return 'full service reset';
             if (trimmedValue === '104') return 'first service interval is changed';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
-            if (trimmedValue === '') return '';
+            if (trimmedValue === '105') return 'standard service interval is changed';
+            if (trimmedValue === '106') return 'full service interval is changed';
+            if (trimmedValue === '107') return 'confirm button is pressed';
+            if (trimmedValue === '204') return 'Time/Date updated';
+            if (trimmedValue === '206') return 'Export Logs';
+            if (trimmedValue === '207') return 'Import new Parameters';
+            if (trimmedValue === '208') return 'Export Parameters';
+            if (trimmedValue === '209') return 'MOCAS_HI_LEVEL_SUCCESS';
+            if (trimmedValue === '210') return 'MOCAS_HI_LEVEL_FAIL';
+            if (trimmedValue === '211') return 'MOCAS_HOURMETER_SUCCESS';
+            if (trimmedValue === '212') return 'MOCAS_HOURMETER_FAIL';
+            if (trimmedValue === '213') return 'MOCAS_OTHER_MODULE_SUCCESS';
+            if (trimmedValue === '214') return 'MOCAS_OTHER_MODULE_FAIL';
+            if (trimmedValue === '215') return 'Read new Text List';
+            if (trimmedValue === '216') return 'Export Text Lists';
+            if (trimmedValue === '217') return 'Export Backup Files';
+            if (trimmedValue === '220') return 'Hourmeters Mismatch Popup Screen';
+            if (trimmedValue === '221') return 'Hourmeters Mismatch Popup Pump';
+            if (trimmedValue === '222') return 'Hourmeters Mismatch Sync Screen';
+            if (trimmedValue === '229') return 'OS Screen version';
+            if (trimmedValue === '230') return 'PLC App version';
+            if (trimmedValue === '231') return 'PLC RTS version';
+            if (trimmedValue === '232') return 'Screen version';
+            if (trimmedValue === '233') return 'Pump VCL App Version';
             if (trimmedValue === '') return '';
             if (trimmedValue === '') return '';
             if (trimmedValue === '') return '';
@@ -283,17 +288,21 @@ export default function Home() {
 
   const headerColumns = fileContent ? fileContent.split('\n')[0].split(';') : [];
 
+//##############################################################################
+//##############################################################################
+//##############################################################################
+
   return (
     <main className={styles.main}>
       <div>
-        <a href="/demoFile.txt" download="demoFile.txt">
+        <a href="/demoFile.log" download="demoFile.log">
           &nbsp;&nbsp;&nbsp;&nbsp; Download Demo File
         </a>
       </div>
 
       <div>
         <h1>Upload Activity File</h1>
-        <input type="file" accept=".txt" onChange={handleFileChange} />
+        <input type="file" accept=".log" onChange={handleFileChange} />
 
         {isLoading && <LoadingMessage />} {/* Use the loading message */}
 
@@ -341,6 +350,7 @@ export default function Home() {
 
         {pages.length > 0 && (
           <>
+            <h2>Activity Logs</h2>
             <div className={styles.pageNavigation}>
               <button onClick={() => handlePageChange(-1)} disabled={currentPage === 0}>
                 Previous
@@ -351,7 +361,6 @@ export default function Home() {
               </button>
             </div>
 
-            <h2>Activity Logs</h2>
             <table border="1" className={styles.table}>
               <thead>
                 <tr>
@@ -370,6 +379,16 @@ export default function Home() {
                 ))}
               </tbody>
             </table>
+
+            <div className={styles.pageNavigation}>
+              <button onClick={() => handlePageChange(-1)} disabled={currentPage === 0}>
+                Previous
+              </button>
+              <span>Page {currentPage + 1} of {pages.length}</span>
+              <button onClick={() => handlePageChange(1)} disabled={currentPage === pages.length - 1}>
+                Next
+              </button>
+            </div>
           </>
         )}
       </div>
