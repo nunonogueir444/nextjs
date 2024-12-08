@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
-// Loading Spinner Component
 const LoadingMessage = () => (
   <div className={styles.loadingMessage}>
     Loading file, please wait...
@@ -11,21 +11,23 @@ const LoadingMessage = () => (
 );
 
 export default function Home() {
+
+  const router = useRouter();
   const [fileContent, setFileContent] = useState('');
   const [pages, setPages] = useState([]);
-  const [originalPages, setOriginalPages] = useState([]); // Store original order
+  const [originalPages, setOriginalPages] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [filters, setFilters] = useState({
     column1: '',
     column2: '',
     column3: '',
+    column4: '',
   });
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  // **Define column2Values and column3Values here**
   const column2Values = [
     '0 Generic Op.',
     '1 Low Op.',
@@ -39,6 +41,7 @@ export default function Home() {
   ];
 
   const column3Values = [
+    'FAULT',
     'first service reset ',
     'standard service reset ',
     'full service reset',
@@ -56,13 +59,13 @@ export default function Home() {
     'MOCAS_HOURMETER_FAIL',
     'MOCAS_OTHER_MODULE_SUCCESS',
     'MOCAS_OTHER_MODULE_FAIL',
-    'Retrieving data. Wait a few seconds and try to cut or copy again.',
+    'Read new Text List',
     'Export Text Lists',
     'Export Backup Files',
     'Hourmeters Mismatch Popup Screen',
     'Hourmeters Mismatch Popup Pump',
     'Hourmeters Mismatch Sync Screen',
-    'Retrieving data. Wait a few seconds and try to cut or copy again.',
+    'OS Screen version',
     'PLC App version',
     'PLC RTS version',
     'Screen version',
@@ -103,6 +106,18 @@ export default function Home() {
     'Save Current PAR to Defaults',
     'Load PAR Defaults',
     'Load PAR Factory'
+  ];
+
+  const column4Values = [
+    'PLC',
+    'TRR',
+    'TRL',
+    'TFR',
+    'TFL',
+    'SRR',
+    'SRL',
+    'SFR',
+    'SFL'
   ];
 
   const chunkSize = 256 * 1024;
@@ -214,16 +229,13 @@ export default function Home() {
   // Format Date function
   const formatDate = (date) => {
     if (!(date instanceof Date)) return date;
-    
     const pad = (num) => String(num).padStart(2, '0');
-    
     const day = pad(date.getDate());
     const month = pad(date.getMonth() + 1);
     const year = date.getFullYear();
     const hours = pad(date.getHours());
     const minutes = pad(date.getMinutes());
     const seconds = pad(date.getSeconds());
-    
     return `${day}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
   };
 
@@ -231,7 +243,7 @@ export default function Home() {
   const handleSort = () => {
     const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
     setSortDirection(newDirection);
-    
+
     // Combine all pages into a single array of rows
     const allContent = pages
       .join('\n')
@@ -331,6 +343,7 @@ export default function Home() {
             if (trimmedValue === '8') return '8 Developer Op.';
           }
           if (valueIndex === 2) {
+            if (trimmedValue === '601') return 'FAULT';
             if (trimmedValue === '101') return 'first service reset';
             if (trimmedValue === '102') return 'standard service reset ';
             if (trimmedValue === '103') return 'full service reset';
@@ -393,8 +406,19 @@ export default function Home() {
             if (trimmedValue === '701') return 'Download PAR from the Controllers';
             if (trimmedValue === '702') return 'Upload PAR to the Controllers';
             if (trimmedValue === '703') return 'Save Current PAR to Defaults';
-            if (trimmedValue === '704') return 'Retrieving data. Wait a few seconds and try to cut or copy again.';
+            if (trimmedValue === '704') return 'Load PAR Defaults';
             if (trimmedValue === '705') return 'Load PAR Defaults';
+          }
+          if (valueIndex === 3 ) {
+            if (trimmedValue === '50') return 'PLC';
+            if (trimmedValue === '2') return 'SRR';
+            if (trimmedValue === '3') return 'SRL';
+            if (trimmedValue === '4') return 'SFR';
+            if (trimmedValue === '5') return 'SFL';
+            if (trimmedValue === '36') return 'TRR';
+            if (trimmedValue === '37') return 'TRL';
+            if (trimmedValue === '38') return 'TFR';
+            if (trimmedValue === '39') return 'TFL';
           }
           return value;
         });
@@ -413,22 +437,37 @@ export default function Home() {
     return (
       isWithinDateRange &&
       (filters.column2 === '' || row[1].includes(filters.column2)) &&
-      (filters.column3 === '' || row[2].includes(filters.column3))
+      (filters.column3 === '' || row[2].includes(filters.column3)) &&
+      (filters.column4 === '' || row[3].includes(filters.column4))
     );
   }); // Removed .sort() from here
 
   const headerColumns = fileContent ? fileContent.split('\n')[0].split(';') : [];
 
-  return (
+//##############################################################################
+//##############################################################################
+//##############################################################################
+
+    return (
     <main className={styles.main}>
+
       <div>
         <a href="/demoFile.log" download="demoFile.log">
           &nbsp;&nbsp;&nbsp;&nbsp; Download Demo File
         </a>
       </div>
 
+      <div className={styles.newPageButtonContainer}>
+            <button 
+              className={styles.button}
+              onClick={() => router.push('/page_files')}
+            >
+              Create Demo File
+            </button>
+          </div>
+
       <div>
-        <h1>Upload Activity File</h1>
+        <h1>Upload File</h1>
         <input type="file" accept=".log" onChange={handleFileChange} />
 
         {isLoading && <LoadingMessage />} {/* Use the loading message */}
@@ -456,7 +495,7 @@ export default function Home() {
                 onChange={(e) => handleDateChange('end', e.target.value)}
               />
             </label>
-            <button 
+            <button
               className={styles.resetButton}
               onClick={handleResetDateFilter}
             >
@@ -487,12 +526,24 @@ export default function Home() {
               </option>
             ))}
           </select>
+
+          <select
+            value={filters.column4}
+            onChange={(e) => handleFilterChange('column4', e.target.value)}
+          >
+            <option value="">All Values</option>
+            {column4Values.map((value, index) => (
+              <option key={index} value={value}>
+                {value}
+              </option>
+            ))}
+          </select>
         </div>
 
         {pages.length > 0 && (
           <>
             <h2>Activity Logs</h2>
-            
+
             {/* Updated Pagination Controls */}
             <div className={styles.pageNavigation}>
               <button onClick={handleFirstPage} disabled={currentPage === 0}>
@@ -572,4 +623,5 @@ export default function Home() {
       </div>
     </main>
   );
+
 }
