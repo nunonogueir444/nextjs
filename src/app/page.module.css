@@ -348,3 +348,9 @@ a.secondary {
 .sortButton:hover {
   background-color: #004e31;
 }
+
+.navigation {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}

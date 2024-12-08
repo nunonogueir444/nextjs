@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from './page.module.css';
+import styles from '../page.module.css';
 
 export default function PageFiles() {
   const router = useRouter();
@@ -10,12 +10,10 @@ export default function PageFiles() {
   const [error, setError] = useState('');
   const [fileType, setFileType] = useState('type1');
 
-  // Function to generate a random integer between min and max (inclusive)
   const getRandomNumber = (min = 1, max = 1000) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  // Function to generate a random epoch time between Jan 1, 2020 and now
   const getRandomEpochTime = () => {
     const start = Math.floor(new Date('2020-01-01T00:00:00Z').getTime() / 1000);
     const end = Math.floor(Date.now() / 1000);
@@ -42,6 +40,26 @@ export default function PageFiles() {
     return Math.floor(Math.random() * (selectedRange.max - selectedRange.min + 1)) + selectedRange.min;
   };
 
+  const getRandomGroupEventFaultsMajor = () => {
+    const ranges = [
+      { min: 0,    max: 64 }, //PLC
+      { min: 100,  max: 100 }, //CAN
+      { min: 8449, max: 10387 }, //FSeries
+      { min: 11,   max: 75 }, //SE Series
+    ];
+    const selectedRange = ranges[Math.floor(Math.random() * ranges.length)];
+    return Math.floor(Math.random() * (selectedRange.max - selectedRange.min + 1)) + selectedRange.min;
+  };
+
+  const getRandomGroupEventFaultsMinor = () => {
+    const ranges = [
+      { min: 1, max: 5 },
+
+    ];
+    const selectedRange = ranges[Math.floor(Math.random() * ranges.length)];
+    return Math.floor(Math.random() * (selectedRange.max - selectedRange.min + 1)) + selectedRange.min;
+  };
+
   const getRandomGroupEventActivities = () => {
     const ranges = [
       { min: 101, max: 107 },
@@ -57,11 +75,9 @@ export default function PageFiles() {
     return Math.floor(Math.random() * (selectedRange.max - selectedRange.min + 1)) + selectedRange.min;
   };
 
-  // Handler for generating and downloading the file
   const handleGenerateFile = () => {
     const count = parseInt(lineCount, 10);
 
-    // Validate the input
     if (isNaN(count) || count <= 0) {
       setError('Please enter a valid positive number.');
       return;
@@ -69,25 +85,24 @@ export default function PageFiles() {
 
     setError('');
 
-    // Generate an array of lines
     const lines = [];
     for (let i = 0; i < count; i++) {
       let numbers;
       if (fileType === 'type1') {
         numbers = [
-          getRandomNumber(0, 8),       // User Level between 0 and 8
-          getRandomGroupEventFaults(),       // Group Event between 101-107 or 201-260
+          getRandomNumber(0, 8), 
+          getRandomGroupEventFaults(),
           getRandomGroupEventNodes(),
-          getRandomNumber(),
-          getRandomNumber(),
+          getRandomGroupEventFaultsMajor(),
+          getRandomGroupEventFaultsMinor(),
           getRandomNumber(0, 0),
         ];
       } else if (fileType === 'type2') {
-        // Define separate random values for type2
+
         numbers = [
-          getRandomNumber(0, 8),       // User Level between 0 and 8
-          getRandomGroupEventActivities(),       // Group Event between 101-107 or 201-260
-          getRandomNumber(0, 2147483647),    // Example different range
+          getRandomNumber(0, 8),
+          getRandomGroupEventActivities(),
+          getRandomNumber(0, 2147483647),
           getRandomNumber(0, 2147483647),
           getRandomNumber(0, 2147483647),
           getRandomNumber(0, 2147483647),
@@ -100,20 +115,16 @@ export default function PageFiles() {
       });
     }
 
-    // Sort lines in reverse order based on epoch time (newest first)
     lines.sort((a, b) => b.epoch - a.epoch);
 
-    // Build the file content
     let content = 'Timestamp;User Level;Group Event;Value1;Value2;Value3;Value4\n';
     lines.forEach(line => {
       const formattedLine = [line.epoch, ...line.numbers].join(';');
       content += formattedLine + '\n';
     });
 
-    // Create a Blob from the content
     const blob = new Blob([content], { type: 'text/plain' });
 
-    // Create a link to download the Blob
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -121,21 +132,40 @@ export default function PageFiles() {
     document.body.appendChild(link);
     link.click();
 
-    // Clean up
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
 
+//##############################################################################
+//##############################################################################
+//##############################################################################
+
   return (
     <main className={styles.main}>
-      {/* Go Back Button */}
-      <button className={styles.button} onClick={() => router.back()}>
-        Go Back
-      </button>
+
+      <div className={styles.navigation}>
+        <button
+          className={styles.button}
+          onClick={() => router.push('/')}
+        >
+          Activities
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => router.push('/faults')}
+        >
+          Faults
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => router.push('/page_files')}
+        >
+          Demo File
+        </button>
+      </div>
 
       <h1>Create File</h1>
 
-      {/* Input Section */}
       <div className={styles.inputContainer}>
         <label htmlFor="lineCount">Number of Lines:</label>
         <input
@@ -149,7 +179,6 @@ export default function PageFiles() {
         />
       </div>
 
-      {/* File Type Selection */}
       <div className={styles.inputContainer}>
         <label htmlFor="fileType">Select File Type:</label>
         <select
@@ -162,10 +191,8 @@ export default function PageFiles() {
         </select>
       </div>
 
-      {/* Error Message */}
       {error && <p className={styles.error}>{error}</p>}
 
-      {/* Generate File Button */}
       <button className={styles.button} onClick={handleGenerateFile}>
         Generate and Download File
       </button>

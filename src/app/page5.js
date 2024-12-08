@@ -136,31 +136,38 @@ export default function Home() {
         let currentChunk = '';
         let currentSize = 0;
 
+        // Preserve header
         const header = lines[0];
 
+        // Process lines sequentially without any sorting
         let dataLines = lines.slice(1);
 
+        // Chunk the data while preserving original order
         dataLines.forEach(line => {
-          if (!line.trim()) return;
+          if (!line.trim()) return; // Skip empty lines
 
           const lineSize = new Blob([line]).size;
 
           if (currentSize + lineSize > chunkSize) {
+            // Store chunk and start new one
             filePages.push(currentChunk);
             currentChunk = line + '\n';
             currentSize = lineSize;
           } else {
+            // Add to current chunk
             currentChunk += line + '\n';
             currentSize += lineSize;
           }
         });
 
+        // Add final chunk if exists
         if (currentChunk) {
           filePages.push(currentChunk);
         }
 
+        // Set state with unsorted chunks
         setPages(filePages);
-        setOriginalPages(filePages);
+        setOriginalPages(filePages); // Store original order
         setFileContent(content);
         setIsLoading(false);
       };
@@ -216,8 +223,10 @@ export default function Home() {
     setEndDate('');
   };
 
+  // Sort state
   const [sortDirection, setSortDirection] = useState('desc');
 
+  // Format Date function
   const formatDate = (date) => {
     if (!(date instanceof Date)) return date;
     const pad = (num) => String(num).padStart(2, '0');
@@ -230,10 +239,12 @@ export default function Home() {
     return `${day}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
   };
 
+  // Sort handler
   const handleSort = () => {
     const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
     setSortDirection(newDirection);
 
+    // Combine all pages into a single array of rows
     const allContent = pages
       .join('\n')
       .split('\n')
@@ -246,7 +257,7 @@ export default function Home() {
             if (valueIndex === 0) {
               const epoch = parseInt(trimmedValue, 10);
               if (!isNaN(epoch)) {
-                return new Date(epoch * 1000);
+                return new Date(epoch * 1000); // Convert to Date object
               }
             }
             return value;
@@ -256,21 +267,24 @@ export default function Home() {
         return null;
       })
       .filter(row => row !== null);
-
+    
+    // Sort the entire dataset based on the first column (Date)
     allContent.sort((a, b) => {
       const dateA = a[0] instanceof Date ? a[0].getTime() : 0;
       const dateB = b[0] instanceof Date ? b[0].getTime() : 0;
       return newDirection === 'asc' ? dateA - dateB : dateB - dateA;
     });
-
+    
+    // Re-chunk the sorted data
     const newPages = [];
     let currentChunk = '';
     let currentSize = 0;
 
     allContent.forEach(row => {
+      // Convert Date object back to epoch seconds for storage
       const displayRow = [...row];
       if (displayRow[0] instanceof Date) {
-        displayRow[0] = Math.floor(displayRow[0].getTime() / 1000);
+        displayRow[0] = Math.floor(displayRow[0].getTime() / 1000); // Convert back to epoch seconds
       }
 
       const line = displayRow.join(';') + '\n';
@@ -294,12 +308,14 @@ export default function Home() {
     setCurrentPage(0);
   };
 
+  // Reset Sort Handler
   const handleResetSort = () => {
     setPages(originalPages);
-    setSortDirection('desc');
+    setSortDirection('desc'); // Reset to default direction
     setCurrentPage(0);
   };
 
+  // Modify filteredContent to exclude sorting
   const filteredContent = currentPageContent
     .split('\n')
     .filter(line => line.trim() !== '')
@@ -424,7 +440,7 @@ export default function Home() {
       (filters.column3 === '' || row[2].includes(filters.column3)) &&
       (filters.column4 === '' || row[3].includes(filters.column4))
     );
-  });
+  }); // Removed .sort() from here
 
   const headerColumns = fileContent ? fileContent.split('\n')[0].split(';') : [];
 
@@ -435,27 +451,6 @@ export default function Home() {
     return (
     <main className={styles.main}>
 
-      <div className={styles.navigation}>
-        <button
-          className={styles.button}
-          onClick={() => router.push('/')}
-        >
-          Activities
-        </button>
-        <button
-          className={styles.button}
-          onClick={() => router.push('/faults')}
-        >
-          Faults
-        </button>
-        <button
-          className={styles.button}
-          onClick={() => router.push('/page_files')}
-        >
-          Demo File
-        </button>
-      </div>
-
       <div>
         <a href="/demoFile.log" download="demoFile.log">
           &nbsp;&nbsp;&nbsp;&nbsp; Download Demo File
@@ -463,33 +458,26 @@ export default function Home() {
       </div>
 
       <div className={styles.newPageButtonContainer}>
-        <button
-          className={styles.button}
-          onClick={() => router.push('/page_files')}
-        >
-          Create Demo File
-        </button>
-      </div>
-
-      <div className={styles.newPageButtonContainer}>
-        <button
-          className={styles.button}
-          onClick={() => router.push('/faults')}
-        >
-          Faults Page
-        </button>
-      </div>
+            <button 
+              className={styles.button}
+              onClick={() => router.push('/page_files')}
+            >
+              Create Demo File
+            </button>
+          </div>
 
       <div>
-        <h1>Upload Activities File</h1>
+        <h1>Upload File</h1>
         <input type="file" accept=".log" onChange={handleFileChange} />
 
-        {isLoading && <LoadingMessage />}
+        {isLoading && <LoadingMessage />} {/* Use the loading message */}
 
         <div><br></br></div>
 
+        {/* Filter section moved above the table */}
         <h2>Filter:</h2>
         <div className={styles.filters}>
+          {/* Date Range Filters */}
           <div className={styles.dateFilters}>
             <label>
               Start Date:
@@ -538,12 +526,25 @@ export default function Home() {
               </option>
             ))}
           </select>
+
+          <select
+            value={filters.column4}
+            onChange={(e) => handleFilterChange('column4', e.target.value)}
+          >
+            <option value="">All Values</option>
+            {column4Values.map((value, index) => (
+              <option key={index} value={value}>
+                {value}
+              </option>
+            ))}
+          </select>
         </div>
 
         {pages.length > 0 && (
           <>
             <h2>Activity Logs</h2>
 
+            {/* Updated Pagination Controls */}
             <div className={styles.pageNavigation}>
               <button onClick={handleFirstPage} disabled={currentPage === 0}>
                 First
@@ -565,14 +566,14 @@ export default function Home() {
                 <tr>
                   <th>
                     Date
-                    <button
+                    <button 
                       className={styles.sortButton}
                       onClick={handleSort}
                     >
                       {sortDirection === 'asc' ? '↑' : '↓'}
                     </button>
-
-                    <button
+                    {/* Reset Sort Button Beside Sort Button */}
+                    <button 
                       className={styles.resetSortButton}
                       onClick={handleResetSort}
                       style={{ marginLeft: '5px' }}
@@ -595,11 +596,13 @@ export default function Home() {
                     <td>{row[4]}</td>
                     <td>{row[5]}</td>
                     <td>{row[6]}</td>
+                    {/* Add remaining cells as needed */}
                   </tr>
                 ))}
               </tbody>
             </table>
 
+            {/* Pagination Controls Below the Table */}
             <div className={styles.pageNavigation}>
               <button onClick={handleFirstPage} disabled={currentPage === 0}>
                 First
