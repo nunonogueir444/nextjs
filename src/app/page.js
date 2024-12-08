@@ -562,7 +562,13 @@ export default function Home() {
                       Reset Sort
                     </button>
                   </th>
-                  {headerColumns.slice(1).map((column, index) => (
+                  <th>User Level</th>
+                  <th>Group Event</th>
+                  <th>Value1</th>
+                  <th>Value2</th>
+                  <th>Value3</th>
+                  <th>Value4</th>
+                  {headerColumns.slice(7).map((column, index) => (
                     <th key={index}>{column}</th>
                   ))}
                 </tr>

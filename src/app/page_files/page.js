@@ -128,7 +128,7 @@ export default function PageFiles() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = fileType === 'type1' ? 'generatedFile1.log' : 'generatedFile2.log';
+    link.download = fileType === 'type1' ? 'demoFaults.log' : 'demoActivities.log';
     document.body.appendChild(link);
     link.click();
 
