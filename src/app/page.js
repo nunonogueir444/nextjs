@@ -10,6 +10,10 @@ const LoadingMessage = () => (
   </div>
 );
 
+function startFileUpload() {
+  alert('Uploading a file can take a few seconds, please be patient...');
+}
+
 export default function Home() {
 
   const router = useRouter();
@@ -125,6 +129,8 @@ export default function Home() {
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file && (file.type === 'text/plain' || file.name.endsWith('.log'))) {
+      startFileUpload();
+
       const reader = new FileReader();
       reader.readAsText(file);
 
