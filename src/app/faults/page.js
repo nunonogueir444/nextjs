@@ -678,21 +678,6 @@ export default function Home() {
       </div>
 
       <div>
-        <a href="/demoFile.log" download="demoFile.log">
-          &nbsp;&nbsp;&nbsp;&nbsp; Download Demo File
-        </a>
-      </div>
-
-      <div className={styles.newPageButtonContainer}>
-        <button 
-          className={styles.button}
-          onClick={() => router.push('/page_files')}
-        >
-          Create Demo File
-        </button>
-      </div>
-
-      <div>
         <h1>Upload Faults File</h1>
         <input type="file" accept=".log" onChange={handleFileChange} />
 
