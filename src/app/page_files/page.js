@@ -90,7 +90,8 @@ export default function PageFiles() {
       let numbers;
       if (fileType === 'type1') {
         numbers = [
-          getRandomNumber(0, 8), 
+          getRandomNumber(0, 8),
+          getRandomNumber(0, 0),
           getRandomGroupEventFaults(),
           getRandomGroupEventNodes(),
           getRandomGroupEventFaultsMajor(),
@@ -101,6 +102,7 @@ export default function PageFiles() {
 
         numbers = [
           getRandomNumber(0, 8),
+          getRandomNumber(0, 0),
           getRandomGroupEventActivities(),
           getRandomNumber(0, 2147483647),
           getRandomNumber(0, 2147483647),
@@ -120,7 +122,7 @@ export default function PageFiles() {
     let content = 'Timestamp;User Level;Group Event;Value1;Value2;Value3;Value4\n';
     lines.forEach(line => {
       const formattedLine = [line.epoch, ...line.numbers].join(';');
-      content += formattedLine + '\n';
+      content += formattedLine + ';' + '\n';
     });
 
     const blob = new Blob([content], { type: 'text/plain' });

@@ -10,9 +10,11 @@ const LoadingMessage = () => (
   </div>
 );
 
+/*
 function startFileUpload() {
   alert('Uploading a file can take a few seconds, please be patient...');
 }
+*/
 
 export default function Home() {
 
@@ -27,6 +29,10 @@ export default function Home() {
     column2: '',
     column3: '',
     column4: '',
+    column5: '',
+    column6: '',
+    column7: '',
+    column8: '',
   });
 
   const [startDate, setStartDate] = useState('');
@@ -44,7 +50,7 @@ export default function Home() {
     '8 Developer Op.'
   ];
 
-  const column3Values = [
+  const column4Values = [
     'FAULT',
     'first service reset ',
     'standard service reset ',
@@ -112,24 +118,12 @@ export default function Home() {
     'Load PAR Factory'
   ];
 
-  const column4Values = [
-    'PLC',
-    'TRR',
-    'TRL',
-    'TFR',
-    'TFL',
-    'SRR',
-    'SRL',
-    'SFR',
-    'SFL'
-  ];
-
   const chunkSize = 256 * 1024;
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file && (file.type === 'text/plain' || file.name.endsWith('.log'))) {
-      startFileUpload();
+      //startFileUpload();
 
       const reader = new FileReader();
       reader.readAsText(file);
@@ -141,8 +135,6 @@ export default function Home() {
         let filePages = [];
         let currentChunk = '';
         let currentSize = 0;
-
-        const header = lines[0];
 
         let dataLines = lines.slice(1);
 
@@ -245,8 +237,11 @@ export default function Home() {
       .split('\n')
       .filter(line => line.trim() !== '')
       .map((line) => {
-        const values = line.split(';');
-        if (values.length === 7) {
+        //const values = line.split(';');
+        const trimmedLine = line.replace(/;$/, ''); // Remove trailing semicolon
+        const values = trimmedLine.split(';');
+
+        if (values.length === 8) {
           const updatedValues = values.map((value, valueIndex) => {
             const trimmedValue = value.trim();
             if (valueIndex === 0) {
@@ -310,9 +305,11 @@ export default function Home() {
     .split('\n')
     .filter(line => line.trim() !== '')
     .map((line) => {
-      const values = line.split(';');
+      //const values = line.split(';');
+      const trimmedLine = line.replace(/;$/, ''); // Remove trailing semicolon
+      const values = trimmedLine.split(';');
 
-      if (values.length === 7) {
+      if (values.length === 8) {
         const updatedValues = values.map((value, valueIndex) => {
           const trimmedValue = value.trim();
           if (valueIndex === 0) {
@@ -332,7 +329,7 @@ export default function Home() {
             if (trimmedValue === '7') return '7 Combilift Op.';
             if (trimmedValue === '8') return '8 Developer Op.';
           }
-          if (valueIndex === 2) {
+          if (valueIndex === 3) {
             if (trimmedValue === '601') return 'FAULT';
             if (trimmedValue === '101') return 'first service reset';
             if (trimmedValue === '102') return 'standard service reset ';
@@ -399,17 +396,6 @@ export default function Home() {
             if (trimmedValue === '704') return 'Load PAR Defaults';
             if (trimmedValue === '705') return 'Load PAR Defaults';
           }
-          if (valueIndex === 3 ) {
-            if (trimmedValue === '50') return 'PLC';
-            if (trimmedValue === '2') return 'SRR';
-            if (trimmedValue === '3') return 'SRL';
-            if (trimmedValue === '4') return 'SFR';
-            if (trimmedValue === '5') return 'SFL';
-            if (trimmedValue === '36') return 'TRR';
-            if (trimmedValue === '37') return 'TRL';
-            if (trimmedValue === '38') return 'TFR';
-            if (trimmedValue === '39') return 'TFL';
-          }
           return value;
         });
 
@@ -427,7 +413,6 @@ export default function Home() {
     return (
       isWithinDateRange &&
       (filters.column2 === '' || row[1].includes(filters.column2)) &&
-      (filters.column3 === '' || row[2].includes(filters.column3)) &&
       (filters.column4 === '' || row[3].includes(filters.column4))
     );
   });
@@ -510,11 +495,11 @@ export default function Home() {
           </select>
 
           <select
-            value={filters.column3}
-            onChange={(e) => handleFilterChange('column3', e.target.value)}
+            value={filters.column4}
+            onChange={(e) => handleFilterChange('column4', e.target.value)}
           >
             <option value="">All Values</option>
-            {column3Values.map((value, index) => (
+            {column4Values.map((value, index) => (
               <option key={index} value={value}>
                 {value}
               </option>
@@ -563,12 +548,13 @@ export default function Home() {
                     </button>
                   </th>
                   <th>User Level</th>
+                  <th>Ind. User</th>
                   <th>Group Event</th>
                   <th>Value1</th>
                   <th>Value2</th>
                   <th>Value3</th>
                   <th>Value4</th>
-                  {headerColumns.slice(7).map((column, index) => (
+                  {headerColumns.slice(8).map((column, index) => (
                     <th key={index}>{column}</th>
                   ))}
                 </tr>
@@ -583,6 +569,7 @@ export default function Home() {
                     <td>{row[4]}</td>
                     <td>{row[5]}</td>
                     <td>{row[6]}</td>
+                    <td>{row[7]}</td>
                   </tr>
                 ))}
               </tbody>
