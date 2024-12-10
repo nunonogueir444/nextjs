@@ -1,1 +1,1 @@
-Next.js React framework TESTING
+Next.js test
