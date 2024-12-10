@@ -818,7 +818,7 @@ export default function Home() {
 
         {pages.length > 0 && (
           <>
-            <h2>Activity Logs</h2>
+            <h2>Fault Logs</h2>
 
             <div className={styles.pageNavigation}>
               <button onClick={handleFirstPage} disabled={currentPage === 0}>
