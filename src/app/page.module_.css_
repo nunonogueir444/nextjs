@@ -108,7 +108,6 @@ a.secondary {
   flex-shrink: 0;
 }
 
-/* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
     background: var(--button-primary-hover);
@@ -166,57 +165,14 @@ a.secondary {
     filter: invert();
   }
 }
-/*############################################################################*/
-.floatingText {
-  position: absolute;
-  top: 300px;
-  left: 200px;
-  font-size: 30px;
-  color: rgb(101, 139, 255);
-  background-color: rgba(0, 47, 35, 0.8);
-  padding: 25px;
-  border-radius: 10px;
-}
-/*############################################################################*/
-.navigationButtons {
-  padding: 10px 10px;
-  margin-top: 1px;
-  background-color: rgb(0, 20, 10);
-  border: 1px solid #ccc;
-  border-radius: 1px;
-  cursor: pointer;
-  display: flex;
-  gap: 10px;
-  margin-bottom: 1px;
-}
-.navigationButtons button{
-  transition: background-color 0.3s ease;
-}
-/*############################################################################*/
-.navigationButton {
-  padding: 8px 50px;
-  margin-top: 1px;
-  background-color: rgb(0, 72, 36);
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  cursor: pointer;
-  gap: 1px;
-  margin-bottom: 1px;
-  color: white;
-}
-.navigationButton:hover {
-  background-color: rgb(0, 46, 23);
-}
-.navigationButton.hovered {
-  background-color: #ddd;
-}
-/*############################################################################*/
+
 .table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   border: 1px solid #dddddd;
 }
+
 .table th {
   background-color: #3498db;
   color: white;
@@ -226,16 +182,18 @@ a.secondary {
   font-weight: bold;
   border: 1px solid #ddd;
 }
+
 .table td {
   padding: 10px;
   text-align: left;
   font-size: 14px;
   border: 1px solid #ddd;
 }
+
 .table tr:hover {
   background-color: #353535;
 }
-/*############################################################################*/
+
 .pageNavigation {
   display: flex;
   justify-content: center;
@@ -256,68 +214,156 @@ a.secondary {
 }
 
 .pageNavigation button:hover {
-  background-color: #072e48;
+  background-color: #2980b9;
 }
 
 .pageNavigation button:disabled {
   background-color: #bdc3c7;
   cursor: not-allowed;
 }
-/*############################################################################*/
+
+.spinner {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 100px;
+  margin-bottom: 20px;
+  width:min-content;
+}
+.filters button {
+  padding: 15px 30px; /* Increase padding */
+  font-size: 14px; /* Increase font size */
+  width: 100px; /* Increase width */
+}
+
+
+.filters select {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 150px;
+  background-color: rgb(0, 72, 36);
+}
+
+.filters select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.loadingMessage {
+  font-size: 16px;
+  color: #3498db;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.filterContainer {
+  margin: 20px 0;
+}
+
+.filterItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterItem label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.filterItem select,
+.filterItem input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filters input[type="date"] {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .dateFilters {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .dateFilters label {
-  height: 30px;
   display: flex;
-  gap: 10px;
-  align-items: center;
-  background-color: rgb(0, 72, 36);
-  color: white;
-  font-size: 14px;
-
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .dateFilters input {
-  height: 30px;
-  padding: 2px;
-  border-radius: 10px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.dateFilters button {
-  height: 30px;
-  padding: 2px;
-  border-radius: 10px;
+.resetButton {
+  padding: 0.5rem 1rem;
+  margin-top: 1.5rem;
   background-color: rgb(0, 72, 36);
-  color: white;
-}
-.dateFilters button:hover {
-  background-color: #072e48;
-}
-
-.dateFilters select {
-  margin-left: 50px;
-  height: 30px;
-  padding: 2px;
-  border-radius: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.dateFilters select {
-  margin-left: 50px;
-  height: 30px;
-  padding: 2px;
-  border-radius: 10px;
+.resetButton:hover {
+  background-color: rgb(0, 46, 23);
+}
+
+.sortButton {
+  margin-left: 8px;
+  padding: 2px 6px;
+  background: transparent;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.sortButton:hover {
+  background-color: #004e31;
+}
+
+
+.navigation {
+  padding: 10px 10px;
+  margin-top: 1px;
+  background-color: rgb(0, 20, 10);
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1px;
+}
+
+.button {
+  padding: 8px 50px;
+  margin-top: 1px;
   background-color: rgb(0, 72, 36);
-  color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  gap: 1px;
+  margin-bottom: 1px;
 }
 
-/*############################################################################*/
+.button:hover {
+  background-color: rgb(0, 46, 23);
+}
 
-/*############################################################################*/
-
-/*############################################################################*/
+.button.hovered {
+  background-color: #ddd;
+}

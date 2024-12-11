@@ -57,7 +57,8 @@ export default function Home() {
     'SRR',
     'SRL',
     'SFR',
-    'SFL'
+    'SFL',
+    'Pump'
   ];
 
   const column6Values = [
@@ -456,6 +457,7 @@ export default function Home() {
             if (trimmedValue === '37') return 'TRL';
             if (trimmedValue === '38') return 'TFR';
             if (trimmedValue === '39') return 'TFL';
+            if (trimmedValue === '40') return 'Pump';
             if (trimmedValue === '50') return 'PLC';
           }
           if (valueIndex === 5 ) {

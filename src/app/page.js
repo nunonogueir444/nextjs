@@ -5,9 +5,10 @@ import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
 const LoadingMessage = () => (
-  <div className={styles.loadingMessage}>
-    Loading file, please wait...
+  <div className={styles.floatingText} style={{ position: 'center', height: '100px' }}> {/* Ensure the container has relative positioning */}
+    <div className="floatingText">Loading file, please wait...</div>
   </div>
+  
 );
 
 /*
@@ -425,39 +426,41 @@ export default function Home() {
 
     return (
     <main className={styles.main}>
-
-      <div className={styles.navigation}>
+{/*##########################################################################*/}
+      <div className={styles.navigationButtons}>
         <button
-          className={styles.button}
+        className={styles.navigationButton}
           onClick={() => router.push('/')}
         >
           Activities
         </button>
         <button
-          className={styles.button}
+          className={styles.navigationButton}
           onClick={() => router.push('/faults')}
         >
           Faults
         </button>
         <button
-          className={styles.button}
+          className={styles.navigationButton}
           onClick={() => router.push('/page_files')}
         >
           Demo File
         </button>
+        <div><h5>Next.js test v0.01 nunonogueir444</h5></div>
       </div>
-
+{/*##########################################################################*/}
+      <h1>Activity Logs</h1>
+{/*##########################################################################*/}
       <div>
-        <h1>Upload Activities File</h1>
+        <h3>Upload Activities File</h3>
         <input type="file" accept=".log" onChange={handleFileChange} />
-
         {isLoading && <LoadingMessage />}
-
-        <div><br></br></div>
-
-        <h2>Filter:</h2>
-        <div className={styles.filters}>
-          <div className={styles.dateFilters}>
+      </div>
+{/*##########################################################################*/}
+      <div>
+        <h3>Filters:</h3>
+        <div className={styles.dateFilters}>
+          <div>
             <label>
               Start Date:
               <input
@@ -466,6 +469,9 @@ export default function Home() {
                 onChange={(e) => handleDateChange('start', e.target.value)}
               />
             </label>
+          </div>
+
+          <div>
             <label>
               End Date:
               <input
@@ -474,43 +480,47 @@ export default function Home() {
                 onChange={(e) => handleDateChange('end', e.target.value)}
               />
             </label>
+          </div>
+
+          <div>
             <button
-              className={styles.resetButton}
               onClick={handleResetDateFilter}
             >
               Reset Dates
             </button>
           </div>
+{/*##########################################################################*/}
+          <div>
+            <select
+              value={filters.column2}
+              onChange={(e) => handleFilterChange('column2', e.target.value)}
+            >
+              <option value="">All User Levels</option>
+              {column2Values.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
 
-          <select
-            value={filters.column2}
-            onChange={(e) => handleFilterChange('column2', e.target.value)}
-          >
-            <option value="">All Values</option>
-            {column2Values.map((value, index) => (
-              <option key={index} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-
-          <select
-            value={filters.column4}
-            onChange={(e) => handleFilterChange('column4', e.target.value)}
-          >
-            <option value="">All Values</option>
-            {column4Values.map((value, index) => (
-              <option key={index} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
+          <div>
+            <select
+              value={filters.column4}
+              onChange={(e) => handleFilterChange('column4', e.target.value)}
+            >
+              <option value="">All Activities</option>
+              {column4Values.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-
+{/*##########################################################################*/}
         {pages.length > 0 && (
           <>
-            <h2>Activity Logs</h2>
-
             <div className={styles.pageNavigation}>
               <button onClick={handleFirstPage} disabled={currentPage === 0}>
                 First
@@ -533,14 +543,12 @@ export default function Home() {
                   <th>
                     Date
                     <button
-                      className={styles.sortButton}
                       onClick={handleSort}
                     >
                       {sortDirection === 'asc' ? '↑' : '↓'}
                     </button>
 
                     <button
-                      className={styles.resetSortButton}
                       onClick={handleResetSort}
                       style={{ marginLeft: '5px' }}
                     >
@@ -549,7 +557,7 @@ export default function Home() {
                   </th>
                   <th>User Level</th>
                   <th>Ind. User</th>
-                  <th>Group Event</th>
+                  <th>Activity Description</th>
                   <th>Value1</th>
                   <th>Value2</th>
                   <th>Value3</th>
@@ -590,9 +598,11 @@ export default function Home() {
                 Last
               </button>
             </div>
+            <br></br>
           </>
         )}
       </div>
+{/*##########################################################################*/}
     </main>
   );
 
