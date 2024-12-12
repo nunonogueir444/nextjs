@@ -718,41 +718,41 @@ export default function Home() {
 
     return (
     <main className={styles.main}>
-
-      <div className={styles.navigation}>
+{/*##########################################################################*/}
+      <div className={styles.navigationButtons}>
         <button
-          className={styles.button}
+        className={styles.navigationButton}
           onClick={() => router.push('/')}
         >
           Activities
         </button>
         <button
-          className={styles.button}
+          className={styles.navigationButton}
           onClick={() => router.push('/faults')}
         >
           Faults
         </button>
         <button
-          className={styles.button}
+          className={styles.navigationButton}
           onClick={() => router.push('/page_files')}
         >
           Demo File
         </button>
+        <div><h5>Next.js test v0.01 nunonogueir444</h5></div>
       </div>
-
+{/*##########################################################################*/}
+<h1>Fault Logs</h1>
+{/*##########################################################################*/}
       <div>
-        <h1>Upload Faults File</h1>
+        <h3>Upload Faults File</h3>
         <input type="file" accept=".log" onChange={handleFileChange} />
-
-        {isLoading && <LoadingMessage />} {/* Use the loading message */}
-
-        <div><br></br></div>
-
-        {/* Filter section moved above the table */}
-        <h2>Filter:</h2>
-        <div className={styles.filters}>
-          {/* Date Range Filters */}
+        {isLoading && <LoadingMessage />}
+      </div>
+{/*##########################################################################*/}
+      <div>
+        <h3>Filters:</h3>
           <div className={styles.dateFilters}>
+          <div>
             <label>
               Start Date:
               <input
@@ -761,6 +761,9 @@ export default function Home() {
                 onChange={(e) => handleDateChange('start', e.target.value)}
               />
             </label>
+          </div>
+
+          <div>
             <label>
               End Date:
               <input
@@ -769,59 +772,64 @@ export default function Home() {
                 onChange={(e) => handleDateChange('end', e.target.value)}
               />
             </label>
+          </div>
+
+          <div>
             <button
-              className={styles.resetButton}
               onClick={handleResetDateFilter}
             >
               Reset Dates
             </button>
           </div>
+{/*##########################################################################*/}
+          <div>
+            <select
+              className="filters-select"
+              value={filters.column2}
+              onChange={(e) => handleFilterChange('column2', e.target.value)}
+            >
+              <option value="">User Level - All Values</option>
+              {column2Values.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
 
-          <select
-            className="filters-select"
-            value={filters.column2}
-            onChange={(e) => handleFilterChange('column2', e.target.value)}
-          >
-            <option value="">User Level - All Values</option>
-            {column2Values.map((value, index) => (
-              <option key={index} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
+          <div>
+            <select
+              className="filters-select"
+              value={filters.column5}
+              onChange={(e) => handleFilterChange('column5', e.target.value)}
+            >
+              <option value="">Controllers - All Values</option>
+              {column5Values.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
 
-          <select
-            className="filters-select"
-            value={filters.column5}
-            onChange={(e) => handleFilterChange('column5', e.target.value)}
-          >
-            <option value="">Controllers - All Values</option>
-            {column5Values.map((value, index) => (
-              <option key={index} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-
-          <select
-            className="filters-select"
-            value={filters.column6}
-            onChange={(e) => handleFilterChange('column6', e.target.value)}
-          >
-            <option value="">F Series - All Values</option>
-            {column6Values.map((value, index) => (
-              <option key={index} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-
+          <div>
+            <select
+              className="filters-select"
+              value={filters.column6}
+              onChange={(e) => handleFilterChange('column6', e.target.value)}
+            >
+              <option value="">F Series - All Values</option>
+              {column6Values.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-
+{/*##########################################################################*/}
         {pages.length > 0 && (
           <>
-            <h2>Fault Logs</h2>
-
             <div className={styles.pageNavigation}>
               <button onClick={handleFirstPage} disabled={currentPage === 0}>
                 First
@@ -901,9 +909,11 @@ export default function Home() {
                 Last
               </button>
             </div>
+            <br></br>
           </>
         )}
       </div>
+{/*##########################################################################*/}
     </main>
   );
 

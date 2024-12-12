@@ -144,29 +144,31 @@ export default function PageFiles() {
 
   return (
     <main className={styles.main}>
-
-      <div className={styles.navigation}>
+{/*##########################################################################*/}
+<div className={styles.navigationButtons}>
         <button
-          className={styles.button}
+        className={styles.navigationButton}
           onClick={() => router.push('/')}
         >
           Activities
         </button>
         <button
-          className={styles.button}
+          className={styles.navigationButton}
           onClick={() => router.push('/faults')}
         >
           Faults
         </button>
         <button
-          className={styles.button}
+          className={styles.navigationButton}
           onClick={() => router.push('/page_files')}
         >
           Demo File
         </button>
+        <div><h5>Next.js test v0.01 nunonogueir444</h5></div>
       </div>
-
-      <h1>Create File</h1>
+{/*##########################################################################*/}
+      <h1>Create Demo File</h1>
+{/*##########################################################################*/}
 
       <div className={styles.inputContainer}>
         <label htmlFor="lineCount">Number of Lines:</label>
