@@ -437,11 +437,31 @@ export default function Home() {
   const currentPageContent = pages[currentPage] || '';
 
   const handleFilterChange = (column, value) => {
-    setFilters({
-      ...filters,
-      [column]: value
-    });
+    if (value === 'Traction - All') {
+      setFilters({
+        ...filters,
+        [column]: ['TRR', 'TRL', 'TFR', 'TFL']
+      });
+    } else if (value === 'Steer - All') {
+      setFilters({
+        ...filters,
+        [column]: ['SRR', 'SRL', 'SFR', 'SFL']
+      });
+    } else {
+      setFilters({
+        ...filters,
+        [column]: value
+      });
+    }
   };
+
+  /*
+  const handleFilterChange = (column, value) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      [column]: value
+    }));
+  };*/
 
   const handleDateChange = (type, value) => {
     if (type === 'start') {
@@ -547,6 +567,7 @@ export default function Home() {
     .split('\n')
     .filter(line => line.trim() !== '')
     .map((line) => {
+      //const values = line.split(';');
       const trimmedLine = line.replace(/;$/, '');
       const values = trimmedLine.split(';');
 
@@ -886,14 +907,16 @@ export default function Home() {
           if (values[5] === '64') updatedValues[7] = '64 - Fault 64';
         }
 
-        if (updatedValues[7] == 0) {
-          if (values[4] >= 2 && values[4] <= 5) {
-            updatedValues[7] = values[5] + '-' + values[6] + ' - Generic Fault1';
+        if (updatedValues[7] === '0') {
+          if (values[4] >= '2' && values[4] <= '5') {
+            updatedValues[7] = values[5] + '-' + values[6] + ' - Generic Fault';
           }
 
-          if ((values[4] >= 36 && values[4] <= 40) || (values[4] == 50)){
-            updatedValues[7] = values[5] + ' - Generic Fault2';
+          if ((values[4] >= '36' && values[4] <= '40') || (values[4] === '50')){
+            updatedValues[7] = values[5] + ' - Generic Fault';
           }
+
+
         }
 
       return updatedValues;
@@ -915,20 +938,13 @@ export default function Home() {
         return true;
       }
 
-      if (column === 'column5') {
-        if (filterValue === 'Traction - All') {
-          const tractionValues = ['TRR', 'TRL', 'TFR', 'TFL'];
-          return tractionValues.includes(rowValue);
-        } else if (filterValue === 'Steer - All') {
-          const steerValues = ['SRR', 'SRL', 'SFR', 'SFL'];
-          return steerValues.includes(rowValue);
-        } else {
-          return rowValue === filterValue;
-        }
+      if (Array.isArray(filterValue)) {
+        return filterValue.includes(rowValue);
       } else {
-        return rowValue === filterValue;
+        return rowValue.includes(filterValue);
       }
     });
+
     return isWithinDateRange && passesFilters;
   });
 
@@ -939,7 +955,7 @@ export default function Home() {
 //##############################################################################
 
     return (
-    <main className={styles.main} style={{ overflowX: 'auto' }}>
+    <main className={styles.main}>
 {/*##########################################################################*/}
       <div className={styles.navigationButtons}>
         <button
@@ -948,52 +964,25 @@ export default function Home() {
         >
           Activities
         </button>
-
         <button
           className={styles.navigationButton}
           onClick={() => router.push('/faults')}
         >
           Faults
         </button>
-
         <button
           className={styles.navigationButton}
           onClick={() => router.push('/page_files')}
         >
           Demo File
         </button>
-        <div className={styles.brandingContainer}>
-          <h5>v0.7 @nunonogueir444</h5>
-          <div className={styles.poweredBy}>
-            <span>Powered by&nbsp;&nbsp;</span>
-            <img 
-              src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png"
-              alt="Next.js Logo" 
-              className={`${styles.techLogo} ${styles.nextLogo} ${styles.glow}`}
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-              alt="React Logo"
-              className={`${styles.techLogo} ${styles.reactLogo}`}
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
-              alt="JavaScript Logo"
-              className={`${styles.techLogo} ${styles.jsLogo}`}
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"
-              alt="CSS Logo"
-              className={`${styles.techLogo} ${styles.cssLogo}`}
-            />
-          </div>
-        </div>
+        <div><h5>Next.js test v0.01 nunonogueir444</h5></div>
       </div>
 {/*##########################################################################*/}
 <h1>Fault Logs</h1>
 {/*##########################################################################*/}
       <div>
-        Load Faults File:
+        <h3>Upload Faults File</h3>
         <input type="file" accept=".log" onChange={handleFileChange} />
         {isLoading && <LoadingMessage />}
       </div>
@@ -1105,6 +1094,7 @@ export default function Home() {
               ))}
             </select>
           </div>
+
         </div>
 {/*##########################################################################*/}
         {pages.length > 0 && (
@@ -1195,4 +1185,5 @@ export default function Home() {
 {/*##########################################################################*/}
     </main>
   );
+
 }

@@ -145,7 +145,7 @@ export default function PageFiles() {
 //##############################################################################
 
   return (
-    <main className={styles.main}>
+    <main className={styles.main} style={{ overflowX: 'auto' }}>
 {/*##########################################################################*/}
 <div className={styles.navigationButtons}>
         <button
@@ -166,7 +166,32 @@ export default function PageFiles() {
         >
           Demo File
         </button>
-        <div><h5>Next.js test v0.01 nunonogueir444</h5></div>
+        <div className={styles.brandingContainer}>
+          <h5>v0.7 @nunonogueir444</h5>
+          <div className={styles.poweredBy}>
+            <span>Powered by&nbsp;&nbsp;</span>
+            <img 
+              src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png"
+              alt="Next.js Logo" 
+              className={`${styles.techLogo} ${styles.nextLogo} ${styles.glow}`}
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+              alt="React Logo"
+              className={`${styles.techLogo} ${styles.reactLogo}`}
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+              alt="JavaScript Logo"
+              className={`${styles.techLogo} ${styles.jsLogo}`}
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"
+              alt="CSS Logo"
+              className={`${styles.techLogo} ${styles.cssLogo}`}
+            />
+          </div>
+        </div>
       </div>
 {/*##########################################################################*/}
       <h1>Create Demo File</h1>

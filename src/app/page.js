@@ -52,71 +52,70 @@ export default function Home() {
   ];
 
   const column4Values = [
-    'FAULT',
-    'first service reset ',
-    'standard service reset ',
-    'full service reset',
-    'first service interval is changed',
-    'standard service interval is changed',
-    'standard service interval is changed',
-    'confirm button is pressed',
-    'Time/Date updated',
-    'Export Logs',
-    'Import new Parameters',
-    'Export Parameters',
-    'MOCAS_HI_LEVEL_SUCCESS',
-    'MOCAS_HI_LEVEL_FAIL',
-    'MOCAS_HOURMETER_SUCCESS',
-    'MOCAS_HOURMETER_FAIL',
-    'MOCAS_OTHER_MODULE_SUCCESS',
-    'MOCAS_OTHER_MODULE_FAIL',
-    'Read new Text List',
-    'Export Text Lists',
-    'Export Backup Files',
-    'Hourmeters Mismatch Popup Screen',
-    'Hourmeters Mismatch Popup Pump',
-    'Hourmeters Mismatch Sync Screen',
-    'OS Screen version',
-    'PLC App version',
-    'PLC RTS version',
-    'Screen version',
-    'Pump VCL App Version',
-    'Pump OS/Profile version',
-    'Pump App version',
-    'TRR VCL App Version',
-    'TRR OS/Profile version',
-    'TRR App version',
-    'TRL VCL App Version',
-    'TRL OS/Profile version',
-    'TRL App version',
-    'TFR VCL App Version',
-    'TFR OS/Profile version',
-    'TFR App version',
-    'TFL VCL App Version',
-    'TFL OS/Profile version',
-    'TFL App version',
-    'SRR OS/Profile versions',
-    'SRL OS/Profile versions',
-    'SRL OS/Profile versions',
-    'SFL OS/Profile versions',
-    'Pump HW info',
-    'TRR HW info',
-    'TRR HW info',
-    'TFR HW info',
-    'TFL HW info',
-    'SRR HW info',
-    'SRL HW info',
-    'SRL HW info',
-    'SFL HW info',
-    'Pre-check done',
-    'Drivers Presence changed',
-    'Parameter Value Change',
-    'Parameter Value Change when Download Par from the Controllers',
-    'Download PAR from the Controllers',
-    'Upload PAR to the Controllers',
-    'Save Current PAR to Defaults',
-    'Load PAR Defaults',
-    'Load PAR Factory'
+'Confirm Button Is Pressed',
+'Download PAR From The Controllers',
+'Drivers Presence Changed',
+'Export Backup Files',
+'Export Logs',
+'Export Parameters',
+'Export Text Lists',
+'First Service Interval Is Changed',
+'First Service Reset',
+'Full Service Reset',
+'Hourmeters Mismatch Popup Pump',
+'Hourmeters Mismatch Popup Screen',
+'Hourmeters Mismatch Sync Screen',
+'Import New Parameters',
+'Load PAR Defaults',
+'Load PAR Factory',
+'MOCAS_HI_LEVEL_FAIL',
+'MOCAS_HI_LEVEL_SUCCESS',
+'MOCAS_HOURMETER_FAIL',
+'MOCAS_HOURMETER_SUCCESS',
+'MOCAS_OTHER_MODULE_FAIL',
+'MOCAS_OTHER_MODULE_SUCCESS',
+'OS Screen Version',
+'Parameter Value Change',
+'Parameter Value Change When Download PAR From The Controllers',
+'PLC App Version',
+'PLC RTS Version',
+'Pre-Check Done',
+'Pump App Version',
+'Pump HW Info',
+'Pump OS/Profile Version',
+'Pump VCL App Version',
+'Read New Text List',
+'Save Current PAR To Defaults',
+'Screen Version',
+'SFL HW Info',
+'SFL OS/Profile Versions',
+'SRL HW Info',
+'SRL HW Info',
+'SRL OS/Profile Versions',
+'SRL OS/Profile Versions',
+'SRR HW Info',
+'SRR OS/Profile Versions',
+'Standard Service Interval Is Changed',
+'Standard Service Interval Is Changed',
+'Standard Service Reset',
+'TFL App Version',
+'TFL HW Info',
+'TFL OS/Profile Version',
+'TFL VCL App Version',
+'TFR App Version',
+'TFR HW Info',
+'TFR OS/Profile Version',
+'TFR VCL App Version',
+'Time/Date Updated',
+'TRL App Version',
+'TRL HW Info',
+'TRL OS/Profile Version',
+'TRL VCL App Version',
+'TRR App Version',
+'TRR HW Info',
+'TRR OS/Profile Version',
+'TRR VCL App Version',
+'Upload PAR To The Controllers',
   ];
 
   const chunkSize = 256 * 1024;
@@ -331,71 +330,70 @@ export default function Home() {
             if (trimmedValue === '8') return '8 Developer Op.';
           }
           if (valueIndex === 3) {
-            if (trimmedValue === '601') return 'FAULT';
-            if (trimmedValue === '101') return 'first service reset';
-            if (trimmedValue === '102') return 'standard service reset ';
-            if (trimmedValue === '103') return 'full service reset';
-            if (trimmedValue === '104') return 'first service interval is changed';
-            if (trimmedValue === '105') return 'standard service interval is changed';
-            if (trimmedValue === '106') return 'full service interval is changed';
-            if (trimmedValue === '107') return 'confirm button is pressed';
-            if (trimmedValue === '204') return 'Time/Date updated';
+            if (trimmedValue === '101') return 'First Service Reset';
+            if (trimmedValue === '102') return 'Standard Service Reset';
+            if (trimmedValue === '103') return 'Full Service Reset';
+            if (trimmedValue === '104') return 'First Service Interval Is Changed';
+            if (trimmedValue === '105') return 'Standard Service Interval Is Changed';
+            if (trimmedValue === '106') return 'Full Service Interval Is Changed';
+            if (trimmedValue === '107') return 'Confirm Button Is Pressed';
+            if (trimmedValue === '204') return 'Time/Date Updated';
             if (trimmedValue === '206') return 'Export Logs';
-            if (trimmedValue === '207') return 'Import new Parameters';
+            if (trimmedValue === '207') return 'Import New Parameters';
             if (trimmedValue === '208') return 'Export Parameters';
-            if (trimmedValue === '209') return 'MOCAS_HI_LEVEL_SUCCESS';
-            if (trimmedValue === '210') return 'MOCAS_HI_LEVEL_FAIL';
-            if (trimmedValue === '211') return 'MOCAS_HOURMETER_SUCCESS';
-            if (trimmedValue === '212') return 'MOCAS_HOURMETER_FAIL';
-            if (trimmedValue === '213') return 'MOCAS_OTHER_MODULE_SUCCESS';
-            if (trimmedValue === '214') return 'MOCAS_OTHER_MODULE_FAIL';
-            if (trimmedValue === '215') return 'Read new Text List';
+            if (trimmedValue === '209') return 'MOCAS HI LEVEL SUCCESS';
+            if (trimmedValue === '210') return 'MOCAS HI LEVEL FAIL';
+            if (trimmedValue === '211') return 'MOCAS HOURMETER SUCCESS';
+            if (trimmedValue === '212') return 'MOCAS HOURMETER FAIL';
+            if (trimmedValue === '213') return 'MOCAS OTHER MODULE SUCCESS';
+            if (trimmedValue === '214') return 'MOCAS OTHER MODULE FAIL';
+            if (trimmedValue === '215') return 'Read New Text List';
             if (trimmedValue === '216') return 'Export Text Lists';
             if (trimmedValue === '217') return 'Export Backup Files';
             if (trimmedValue === '220') return 'Hourmeters Mismatch Popup Screen';
             if (trimmedValue === '221') return 'Hourmeters Mismatch Popup Pump';
             if (trimmedValue === '222') return 'Hourmeters Mismatch Sync Screen';
-            if (trimmedValue === '229') return 'OS Screen version';
-            if (trimmedValue === '230') return 'PLC App version';
-            if (trimmedValue === '231') return 'PLC RTS version';
-            if (trimmedValue === '232') return 'Screen version';
+            if (trimmedValue === '229') return 'OS Screen Version';
+            if (trimmedValue === '230') return 'PLC App Version';
+            if (trimmedValue === '231') return 'PLC RTS Version';
+            if (trimmedValue === '232') return 'Screen Version';
             if (trimmedValue === '233') return 'Pump VCL App Version';
-            if (trimmedValue === '234') return 'Pump OS/Profile version';
-            if (trimmedValue === '235') return 'Pump App version';
+            if (trimmedValue === '234') return 'Pump OS/Profile Version';
+            if (trimmedValue === '235') return 'Pump App Version';
             if (trimmedValue === '236') return 'TRR VCL App Version';
-            if (trimmedValue === '237') return 'TRR OS/Profile version';
-            if (trimmedValue === '238') return 'TRR App version';
+            if (trimmedValue === '237') return 'TRR OS/Profile Version';
+            if (trimmedValue === '238') return 'TRR App Version';
             if (trimmedValue === '239') return 'TRL VCL App Version';
-            if (trimmedValue === '240') return 'TRL OS/Profile version';
-            if (trimmedValue === '241') return 'TRL App version';
+            if (trimmedValue === '240') return 'TRL OS/Profile Version';
+            if (trimmedValue === '241') return 'TRL App Version';
             if (trimmedValue === '242') return 'TFR VCL App Version';
-            if (trimmedValue === '243') return 'TFR OS/Profile version';
-            if (trimmedValue === '244') return 'TFR App version';
+            if (trimmedValue === '243') return 'TFR OS/Profile Version';
+            if (trimmedValue === '244') return 'TFR App Version';
             if (trimmedValue === '245') return 'TFL VCL App Version';
-            if (trimmedValue === '246') return 'TFL OS/Profile version';
-            if (trimmedValue === '247') return 'TFL App version';
-            if (trimmedValue === '248') return 'SRR OS/Profile versions';
-            if (trimmedValue === '249') return 'SRL OS/Profile versions';
-            if (trimmedValue === '250') return 'SFR OS/Profile versions';
-            if (trimmedValue === '251') return 'SFL OS/Profile versions';
-            if (trimmedValue === '252') return 'Pump HW info';
-            if (trimmedValue === '253') return 'TRR HW info';
-            if (trimmedValue === '254') return 'TRL HW info';
-            if (trimmedValue === '255') return 'TFR HW info';
-            if (trimmedValue === '256') return 'TFL HW info';
-            if (trimmedValue === '257') return 'SRR HW info';
-            if (trimmedValue === '258') return 'SRL HW info';
-            if (trimmedValue === '259') return 'SFR HW info';
-            if (trimmedValue === '260') return 'SFL HW info';
-            if (trimmedValue === '401') return 'Pre-check done';
-            if (trimmedValue === '402') return 'Drivers Presence changed';
+            if (trimmedValue === '246') return 'TFL OS/Profile Version';
+            if (trimmedValue === '247') return 'TFL App Version';
+            if (trimmedValue === '248') return 'SRR OS/Profile Versions';
+            if (trimmedValue === '249') return 'SRL OS/Profile Versions';
+            if (trimmedValue === '250') return 'SFR OS/Profile Versions';
+            if (trimmedValue === '251') return 'SFL OS/Profile Versions';
+            if (trimmedValue === '252') return 'Pump HW Info';
+            if (trimmedValue === '253') return 'TRR HW Info';
+            if (trimmedValue === '254') return 'TRL HW Info';
+            if (trimmedValue === '255') return 'TFR HW Info';
+            if (trimmedValue === '256') return 'TFL HW Info';
+            if (trimmedValue === '257') return 'SRR HW Info';
+            if (trimmedValue === '258') return 'SRL HW Info';
+            if (trimmedValue === '259') return 'SFR HW Info';
+            if (trimmedValue === '260') return 'SFL HW Info';
+            if (trimmedValue === '401') return 'Pre-Check Done';
+            if (trimmedValue === '402') return 'Drivers Presence Changed';
             if (trimmedValue === '501') return 'Parameter Value Change';
-            if (trimmedValue === '502') return 'Parameter Value Change when Download Par from the Controllers';
-            if (trimmedValue === '701') return 'Download PAR from the Controllers';
-            if (trimmedValue === '702') return 'Upload PAR to the Controllers';
-            if (trimmedValue === '703') return 'Save Current PAR to Defaults';
+            if (trimmedValue === '502') return 'Parameter Value Change When Download PAR From The Controllers';
+            if (trimmedValue === '701') return 'Download PAR From The Controllers';
+            if (trimmedValue === '702') return 'Upload PAR To The Controllers';
+            if (trimmedValue === '703') return 'Save Current PAR To Defaults';
             if (trimmedValue === '704') return 'Load PAR Defaults';
-            if (trimmedValue === '705') return 'Load PAR Defaults';
+            if (trimmedValue === '705') return 'Load PAR Factory';
           }
           return value;
         });
@@ -425,7 +423,7 @@ export default function Home() {
 //##############################################################################
 
     return (
-    <main className={styles.main}>
+    <main className={styles.main} style={{ overflowX: 'auto' }}>
 {/*##########################################################################*/}
       <div className={styles.navigationButtons}>
         <button
@@ -446,13 +444,38 @@ export default function Home() {
         >
           Demo File
         </button>
-        <div><h5>Next.js test v0.01 nunonogueir444</h5></div>
+        <div className={styles.brandingContainer}>
+          <h5>v0.7 @nunonogueir444</h5>
+          <div className={styles.poweredBy}>
+            <span>Powered by&nbsp;&nbsp;</span>
+            <img 
+              src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png"
+              alt="Next.js Logo" 
+              className={`${styles.techLogo} ${styles.nextLogo} ${styles.glow}`}
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+              alt="React Logo"
+              className={`${styles.techLogo} ${styles.reactLogo}`}
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+              alt="JavaScript Logo"
+              className={`${styles.techLogo} ${styles.jsLogo}`}
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"
+              alt="CSS Logo"
+              className={`${styles.techLogo} ${styles.cssLogo}`}
+            />
+          </div>
+        </div>
       </div>
 {/*##########################################################################*/}
       <h1>Activity Logs</h1>
 {/*##########################################################################*/}
       <div>
-        <h3>Upload Activities File</h3>
+        Load Activities File:
         <input type="file" accept=".log" onChange={handleFileChange} />
         {isLoading && <LoadingMessage />}
       </div>

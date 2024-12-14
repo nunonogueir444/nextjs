@@ -181,31 +181,33 @@ a.secondary {
 .navigationButtons {
   padding: 10px 10px;
   margin-top: 1px;
-  background-color: rgb(0, 20, 10);
-  border: 1px solid #ccc;
+  background-color: #092816;
+  border: 1px solid rgb(0, 20, 10);
   border-radius: 1px;
-  cursor: pointer;
   display: flex;
   gap: 10px;
   margin-bottom: 1px;
 }
 .navigationButtons button{
-  transition: background-color 0.3s ease;
+  transition: background-color 0.8s ease;
 }
 /*############################################################################*/
 .navigationButton {
-  padding: 8px 50px;
-  margin-top: 1px;
-  background-color: rgb(0, 72, 36);
-  border: 1px solid #ccc;
+  padding: 0px 50px;
+  height: 40px;
+  margin-top: 0px;
+  background-color: #166938;
+  border: 1px solid #ffffff;
   border-radius: 10px;
   cursor: pointer;
   gap: 1px;
   margin-bottom: 1px;
   color: white;
+  font-size: 14px;
+  font-weight: bold;
 }
 .navigationButton:hover {
-  background-color: rgb(0, 46, 23);
+  background-color: #53ba45
 }
 .navigationButton.hovered {
   background-color: #ddd;
@@ -218,19 +220,19 @@ a.secondary {
   border: 1px solid #dddddd;
 }
 .table th {
-  background-color: #3498db;
-  color: white;
+  background-color: #166938;
+  color: #ffffff;
   padding: 10px;
   text-align: left;
   font-size: 14px;
   font-weight: bold;
-  border: 1px solid #ddd;
+  border: 1px solid #ffffff;
 }
 .table td {
   padding: 10px;
   text-align: left;
   font-size: 14px;
-  border: 1px solid #ddd;
+  border: 1px solid #ffffff;
 }
 .table tr:hover {
   background-color: #353535;
@@ -244,23 +246,24 @@ a.secondary {
 }
 
 .pageNavigation button {
-  background-color: #3498db;
-  color: white;
+  background-color: #166938;
+  color: #ffffff;
   border: none;
-  padding: 10px 20px;
+  padding: 0px 20px;
+  height: 24px;
   cursor: pointer;
   font-size: 14px;
   margin: 0 10px;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.8s ease;
 }
 
 .pageNavigation button:hover {
-  background-color: #072e48;
+  background-color: #53ba45;
 }
 
 .pageNavigation button:disabled {
-  background-color: #bdc3c7;
+  background-color: #545454;
   cursor: not-allowed;
 }
 /*############################################################################*/
@@ -273,50 +276,174 @@ a.secondary {
 }
 
 .dateFilters label {
-  height: 30px;
+  height: 40px;
   display: flex;
-  gap: 10px;
+  gap: 4px;
   align-items: center;
-  background-color: rgb(0, 72, 36);
-  color: white;
+  background-color: #166938;
+  color: #ffffff;
   font-size: 14px;
-
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  padding-left: 4px;
 }
 
 .dateFilters input {
-  height: 30px;
-  padding: 2px;
+  height: 40px;
+  padding: 8px;
   border-radius: 10px;
+  border: 1px solid #ffffff;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .dateFilters button {
-  height: 30px;
-  padding: 2px;
+  height: 40px;
+  padding: 4px;
   border-radius: 10px;
-  background-color: rgb(0, 72, 36);
-  color: white;
+  background-color: #166938;
+  color: #ffffff;
+  transition: background-color 0.8s ease;
+  border: 1px solid #ffffff;
+  cursor: pointer;
 }
 .dateFilters button:hover {
-  background-color: #072e48;
+  background-color: #53ba45
 }
 
 .dateFilters select {
   margin-left: 50px;
-  height: 30px;
-  padding: 2px;
+  height: 40px;
+  padding: 0px;
   border-radius: 10px;
 }
 
 .dateFilters select {
   margin-left: 10px;
-  height: 30px;
+  height: 40px;
   padding: 2px;
   border-radius: 10px;
-  background-color: rgb(0, 72, 36);
-  color: white;
+  background-color: #166938;
+  color: #ffffff;
 }
 
 /*############################################################################*/
+
+.glow {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
+              0 0 20px rgba(255, 255, 255, 0.5),
+              0 0 30px rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease;
+  animation: glowPulse 3s infinite;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.7),
+                0 0 8px rgba(255, 255, 255, 0.5),
+                0 0 12px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 4px rgba(255, 255, 255, 1),
+                0 0 8px rgba(255, 255, 255, 0.7),
+                0 0 12px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.7),
+                0 0 8px rgba(255, 255, 255, 0.5),
+                0 0 12px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.brandingContainer {
+  display: flex;
+  align-items: top;
+  gap: 10px;
+  padding-left: 20px;
+}
+
+.poweredBy {
+  display: flex;
+  align-items: top;
+  gap: 5px;
+  color: rgb(151, 151, 151);
+  font-size: 12px;
+  padding: 0px 20px;
+}
+
+.techLogo {
+  height: 40px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.techLogo:hover {
+  transform: scale(1.2);
+}
+
+.reactLogo {
+  animation: spin 5s alternate infinite;
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.nextLogo {
+  animation: pulse 2s ease-in-out infinite, glowPulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.jsLogo {
+  animation: moveUpDown 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  padding: 0px 0px;
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.cssLogo {
+  animation: scalePulse 2s ease-in-out infinite;
+  padding: 0px 10px;
+}
+
+@keyframes scalePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
 
 /*############################################################################*/
 
