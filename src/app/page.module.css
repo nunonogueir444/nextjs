@@ -308,7 +308,7 @@ a.secondary {
 }
 
 .dateFilters select {
-  margin-left: 50px;
+  margin-left: 10px;
   height: 30px;
   padding: 2px;
   border-radius: 10px;

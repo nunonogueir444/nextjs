@@ -239,7 +239,7 @@ export default function Home() {
       .filter(line => line.trim() !== '')
       .map((line) => {
         //const values = line.split(';');
-        const trimmedLine = line.replace(/;$/, ''); // Remove trailing semicolon
+        const trimmedLine = line.replace(/;$/, '');
         const values = trimmedLine.split(';');
 
         if (values.length === 8) {
@@ -307,7 +307,7 @@ export default function Home() {
     .filter(line => line.trim() !== '')
     .map((line) => {
       //const values = line.split(';');
-      const trimmedLine = line.replace(/;$/, ''); // Remove trailing semicolon
+      const trimmedLine = line.replace(/;$/, '');
       const values = trimmedLine.split(';');
 
       if (values.length === 8) {

@@ -23,7 +23,7 @@ export default function PageFiles() {
   const getRandomGroupEventNodes = () => {
     const ranges = [
       { min: 2, max: 5 },
-      { min: 36, max: 39 },
+      { min: 36, max: 40 },
       { min: 50, max: 50 },
 
     ];
@@ -43,9 +43,11 @@ export default function PageFiles() {
   const getRandomGroupEventFaultsMajor = () => {
     const ranges = [
       { min: 0,    max: 64 }, //PLC
+      { min: 65,   max: 100 }, //PLC generic
       { min: 100,  max: 100 }, //CAN
       { min: 8449, max: 10387 }, //FSeries
       { min: 11,   max: 75 }, //SE Series
+      { min: 0,    max: 100 }, //SE Series generic
     ];
     const selectedRange = ranges[Math.floor(Math.random() * ranges.length)];
     return Math.floor(Math.random() * (selectedRange.max - selectedRange.min + 1)) + selectedRange.min;

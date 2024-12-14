@@ -44,12 +44,9 @@ export default function Home() {
     '8 Developer Op.'
   ];
 
-  const column4Values = [
-    'FAULT',
-  ];
-
   const column5Values = [
     'PLC',
+    'Pump',
     'TRR',
     'TRL',
     'TFR',
@@ -58,151 +55,11 @@ export default function Home() {
     'SRL',
     'SFR',
     'SFL',
-    'Pump'
   ];
 
   const column8Values = [
     'Connection Fault',
-    '13-2 - Phase PWM Mismatch',
-    '3-11 - Misalignment Error',
-    '3-10 - Motor Setup Needed',
-    '13-1 - Lift Input',
-    '13-4 - Lower Input',
-    '12-7 - Analog 31 Out of Range',
-    '12-8 - Invalid CAN Port',
-    '12-9 - VCL Watchdog',
-    '1-11 - Critical OS General',
-    '1-12 - OS General 2',
-    '12-4 - Torque Input',
-    '12-13 - PWM Input 28 Out of Range',
-    '12-12 - PWM Input 29 Out of Range',
-    '1-14 - Motor Short',
-    '12-15 - Force Feedback Fault',
-    '1-13 - Reset Rejected',
-    '12-10 - Auto Baud Failure On Ancillary',
-    '13-0 - Steering Traction Msg Count',
-    '12-11 - Primary State Error',
-    '13-13 - IMU Failure',
-    '13-0 - Delayed Shutdown',
-    '8-0 - Secondary Command Input',
-    '8-1 - Secondary Feedback Input',
-    '8-4 - Motor Braking Impaired',
-    '13-6 - Hazardous Movement',
-    '8-3 - Lv Supply Pos Out Of Range',
-    '1-7 - Severe B+ Undervoltage',
-    '2-3 - Undervoltage Cutback',
-    '1-7 - Severe KSI Undervoltage',
-    '4-7 - Hydraulic HPD SRO Lower',
-    '4-7 - Hydraulic HPD SRO Lift',
-    '4-7 - LHS Throttle Conflict',
-    '13-10 - Lift Limit',
-    '15-1 - Memory Parity',
-    '1-8 - Severe B+ Overvoltage',
-    '2-4 - Overvoltage Cutback',
-    '1-8 - Severe KSI Overvoltage',
-    '1-9 - Speed Limit Supervision',
-    '1-10 - Motor Not Stopped',
-    '2-2 - Controller Overtemperature Cutback',
-    '1-5 - Controller Severe Undertemperature',
-    '1-6 - Controller Severe Overtemperature',
-    '2-9 - Motor Temp Sensor',
-    '2-8 - Motor Temp Hot Cutback',
-    '10-1 - Driver 1 Fault',
-    '10-2 - Driver 2 Fault',
-    '10-3 - Driver 3 Fault',
-    '10-4 - Driver 4 Fault',
-    '10-5 - Driver 5 Fault',
-    '10-6 - Driver 6 Fault',
-    '10-7 - Driver 7 Fault',
-    '10-9 - Coil Supply',
-    '4-2 - Throttle Input',
-    '4-7 - HPD Sequencing',
-    '3-8 - Main Contactor Welded',
-    '3-9 - Main Contactor Did Not Close',
-    '3-1 - Main Driver',
-    '1-4 - Precharge Failed',
-    '3-6 - IM Motor Feedback',
-    '7-3 - Stall Detected',
-    '3-6 - Sin Cos Motor Feedback',
-    '9-3 - Encoder LOS',
-    '8-8 - Encoder Pulse Error',
-    '3-7 - Motor Open',
-    '7-6 - Dual Severe',
-    '7-4 - Fault On Other Traction Controller Active',
-    '4-5 - Steer Angle Input',
-    '7-2 - Dual Pdo Timeout',
-    '4-8 - Following Error',
-    '13-5 - Primary Command Input',
-    '13-7 - Primary Feedback Input',
-    '7-7 - Steering Supervision Error',
-    '7-7 - Home Switch Supervision',
-    '7-7 - Interlock Input Conflict',
-    '7-7 - Steer Command Supervision',
-    '7-7 - Wheel Position Supervision',
-    '7-7 - Home Position Not Found',
-    '7-7 - Home Reference Tolerance',
-    '10-4 - Steering Safety Output Failed',
-    '4-4 - Brake Input',
-    '3-2 - EM Brake Driver',
-    '9-2 - EM Brake Failed to Set',
-    '9-4 - Emer Rev Timeout',
-    '4-7 - Emer Rev HPD',
-    '9-10 - Interlock Braking Supervision',
-    '9-11 - EMR Supervision',
-    '3-3 - Pump Driver',
-    '3-4 - Load Hold Driver',
-    '3-5 - Lower Driver',
-    '9-6 - Pump BDI',
-    '1-2 - Controller Overcurrent',
-    '9-5 - Pump Overcurrent',
-    '2-5 - Ext 5V Supply Failure',
-    '2-6 - Ext 12V Supply Failure',
-    '7-2 - PDO Timeout',
-    '8-2 - PDO Mapping Error',
-    '7-6 - Insulation Resistance Low',
-    '11-1 - Analog 1 Out Of Range',
-    '11-2 - Analog 2 Out Of Range',
-    '11-3 - Analog 3 Out Of Range',
-    '11-4 - Analog 4 Out Of Range',
-    '11-5 - Analog 5 Out Of Range',
-    '11-6 - Analog 6 Out Of Range',
-    '11-7 - Analog 7 Out Of Range',
-    '11-8 - Analog 8 Out Of Range',
-    '11-9 - Analog 9 Out of Range',
-    '12-5 - PWM Input 10 Out of Range',
-    '11-11 - Analog 14 Out Of Range',
-    '11-13 - Analog 18 Out of range',
-    '11-14 - Analog 19 Out of range',
-    '12-6 - Pwm Input 17 Out Of Range',
-    '11-12 - Analog Assignment',
-    '10-8 - Driver Assignment',
-    '8-9 - Parameter Out of Range',
-    '9-9 - Parameter Mismatch',
-    '4-9 - Parameter Change',
-    '9-1 - Bad Firmware',
-    '4-10 - EMR Switch',
-    '6-8 - VCL Run Time Error',
-    '4-6 - NV Memory Failure',
-    '7-1 - OS General',
-    '1-3 - Current Sensor',
-    '9-7 - Pump Hardware',
-    '11-15 - Pump Current Sensor',
-    '8-3 - Internal Hardware',
-    '7-7 - Supervision',
-    '7-9 - Supervision Input Check',
-    '8-7 - Motor Characterization',
-    '12-1 - Branding Error',
-    '12-2 - BMS Cutback',
-    '12-3 - Differential Steering',
-    '13-3 - Hardware Compatibility',
-    '6-8 - ECC Run Time Error',
-    '14-14 - Eru Configuration',
-    '14-15 - Desat Trip',
-    '13-8 - ESTOP_Mismatch',
-    '13-9 - ESTOP_SRO',
-
     'Generic Fault',
-
     '5-1 - User 1 Fault',
     '5-2 - User 2 Fault',
     '5-3 - User 3 Fault',
@@ -234,7 +91,215 @@ export default function Home() {
     '7-10 - User 29 Fault',
     '7-11 - User 30 Fault',
     '7-12 - User 31 Fault',
-    '7-13 - User 32 Fault'
+    '7-13 - User 32 Fault',
+
+    '1-2 - Controller Overcurrent',
+    '1-3 - Current Sensor',
+    '1-4 - Precharge Failed',
+    '1-5 - Controller Severe Undertemperature',
+    '1-6 - Controller Severe Overtemperature',
+    '1-7 - Severe B+ Undervoltage',
+    '1-7 - Severe KSI Undervoltage',
+    '1-8 - Severe B+ Overvoltage',
+    '1-8 - Severe KSI Overvoltage',
+    '1-9 - Speed Limit Supervision',
+    '1-10 - Motor Not Stopped',
+    '1-11 - Critical OS General',
+    '1-12 - OS General 2',
+    '1-13 - Reset Rejected',
+    '1-14 - Motor Short',
+    '2-2 - Controller Overtemperature Cutback',
+    '2-3 - Undervoltage Cutback',
+    '2-4 - Overvoltage Cutback',
+    '2-5 - Ext 5V Supply Failure',
+    '2-6 - Ext 12V Supply Failure',
+    '2-8 - Motor Temp Hot Cutback',
+    '2-9 - Motor Temp Sensor',
+    '3-1 - Main Driver',
+    '3-2 - EM Brake Driver',
+    '3-3 - Pump Driver',
+    '3-4 - Load Hold Driver',
+    '3-5 - Lower Driver',
+    '3-6 - IM Motor Feedback',
+    '3-6 - Sin Cos Motor Feedback',
+    '3-7 - Motor Open',
+    '3-8 - Main Contactor Welded',//pag 220
+    '3-9 - Main Contactor Did Not Close',
+    '3-10 - Motor Setup Needed',
+    '3-11 - Misalignment Error',
+    '4-2 - Throttle Input',
+    '4-4 - Brake Input',
+    '4-5 - Steer Angle Input',
+    '4-6 - NV Memory Failure',
+    '4-7 - Hydraulic HPD SRO Lower',
+    '4-7 - Hydraulic HPD SRO Lift',
+    '4-7 - LHS Throttle Conflict',
+    '4-7 - HPD Sequencing',
+    '4-7 - Emer Rev HPD',
+    //'4-8 - Following Error',
+    '4-9 - Parameter Change',
+    '4-10 - EMR Switch',
+    '6-8 - VCL Run Time Error',
+    '6-8 - ECC Run Time Error',
+    '7-1 - OS General',
+    '7-2 - PDO Timeout',
+    //'7-2 - Dual Pdo Timeout',
+    '7-3 - Stall Detected',
+    //'7-4 - Fault On Other Traction Controller Active',
+    //'7-6 - Dual Severe',
+    //'7-6 - Insulation Resistance Low',
+    //'7-7 - Steering Supervision Error',
+    //'7-7 - Home Switch Supervision',
+    //'7-7 - Interlock Input Conflict',
+    //'7-7 - Steer Command Supervision',
+    //'7-7 - Wheel Position Supervision',
+    //'7-7 - Home Position Not Found',
+    //'7-7 - Home Reference Tolerance',
+    '7-7 - Supervision',
+    '7-9 - Supervision Input Check',
+    '8-0 - Secondary Command Input',
+    //'8-1 - Secondary Feedback Input',
+    '8-2 - PDO Mapping Error',
+    //'8-3 - Lv Supply Pos Out Of Range',
+    '8-3 - Internal Hardware',
+    '8-4 - Motor Braking Impaired',
+    '8-7 - Motor Characterization',
+    '8-8 - Encoder Pulse Error',
+    '8-9 - Parameter Out of Range',
+    '9-1 - Bad Firmware',
+    '9-2 - EM Brake Failed to Set',
+    '9-3 - Encoder LOS',
+    '9-4 - Emer Rev Timeout',
+    //'9-5 - Pump Overcurrent',
+    //'9-6 - Pump BDI',//pag 221
+    //'9-7 - Pump Hardware',
+    '9-9 - Parameter Mismatch',
+    '9-10 - Interlock Braking Supervision',
+    '9-11 - EMR Supervision',
+    '10-1 - Driver 1 Fault',
+    '10-2 - Driver 2 Fault',
+    '10-3 - Driver 3 Fault',
+    '10-4 - Driver 4 Fault',
+    //'10-4 - Steering Safety Output Failed',
+    '10-5 - Driver 5 Fault',
+    '10-6 - Driver 6 Fault',
+    '10-7 - Driver 7 Fault',
+    '10-8 - Driver Assignment',
+    '10-9 - Coil Supply',
+    '11-1 - Analog 1 Out Of Range',
+    '11-2 - Analog 2 Out Of Range',
+    '11-3 - Analog 3 Out Of Range',
+    '11-4 - Analog 4 Out Of Range',
+    '11-5 - Analog 5 Out Of Range',
+    '11-6 - Analog 6 Out Of Range',
+    '11-7 - Analog 7 Out Of Range',
+    '11-8 - Analog 8 Out Of Range',
+    '11-9 - Analog 9 Out of Range',
+    '11-11 - Analog 14 Out Of Range',
+    //'11-12 - Analog Assignment',
+    '11-13 - Analog 18 Out of range',
+    '11-14 - Analog 19 Out of range',
+    //'11-15 - Pump Current Sensor',
+    '12-1 - Branding Error',
+    '12-2 - BMS Cutback',
+    //'12-3 - Differential Steering',
+    //'12-4 - Torque Input',
+    '12-5 - PWM Input 10 Out of Range',
+    //'12-6 - Pwm Input 17 Out Of Range',
+    '12-7 - Analog 31 Out of Range',
+    '12-8 - Invalid CAN Port',
+    '12-9 - VCL Watchdog',
+    //'12-10 - Auto Baud Failure On Ancillary',
+    '12-11 - Primary State Error',// pag 222
+    '12-12 - PWM Input 29 Out of Range',
+    '12-13 - PWM Input 28 Out of Range',
+    //'12-15 - Force Feedback Fault',
+    //'13-0 - Steering Traction Msg Count',
+    //'13-0 - Delayed Shutdown',
+    '13-1 - Lift Input',
+    '13-2 - Phase PWM Mismatch',
+    '13-3 - Hardware Compatibility',
+    '13-4 - Lower Input',
+    //'13-5 - Primary Command Input',
+    '13-6 - Hazardous Movement',
+    //'13-7 - Primary Feedback Input',
+    '13-8 - ESTOP_Mismatch',
+    '13-9 - ESTOP_SRO',
+    '13-10 - Lift Limit',
+    '13-13 - IMU Failure',
+    //'14-14 - Eru Configuration',
+    //'14-15 - Desat Trip',
+    '15-1 - Memory Parity',
+  ];
+
+  const column8PLCValues = [
+    'Connection Fault',
+    'Generic Fault',
+    '0 - Pin L2 - Supply Fault',
+    '1 - Pin L1 - Supply Fault',
+    '2 - Pin K4 - Supply Fault',
+    '3 - Pin H3 - Sensor Supply Fault',
+    '4 - Pin K3 - CAN1 Fault',
+    '5 - Pin J3 - CAN1 Fault',
+    '6 - Pin G4 - Input Fault',
+    '7 - Pin F4 - Input Fault',
+    '8 - Pin E3 - Input Fault',
+    '9 - Pin D3 - Input Fault',
+    '10 - Pin C3 - Input Fault',
+    '11 - Pin B3 - Input Fault',
+    '12 - Pin J4 - Input Fault',
+    '13 - Pin H4 - Input Fault',
+    '14 - Pin E4 - Input Fault',
+    '15 - Pin D4 - Input Fault',
+    '16 - Pin C4 - Input Fault',
+    '17 - Pin B4 - Input Fault',
+    '18 - Pin A4 - Input Fault',
+    '19 - Pin A3 - Input Fault',
+    '20 - Pin H1 - HS Output Fault',
+    '21 - Pin G1 - HS Output Fault',
+    '22 - Pin F1 - HS Output Fault',
+    '23 - Pin E1 - HS Output Fault',
+    '24 - Pin D1 - HS Output Fault',
+    '25 - Pin C1 - HS Output Fault',
+    '26 - Pin K1 - HS Output Fault',
+    '27 - Pin J1 - HS Output Fault',
+    '28 - Pin B1 - LS Output Fault',
+    '29 - Pin A1 - LS Output Fault',
+    '30 - Pin K2 - PVG Output Fault',
+    '31 - Pin J2 - PVG Output Fault',
+    '32 - Pin H2 - PVG Output Fault',
+    '33 - Pin G2 - PVG Output Fault',
+    '34 - Pin F2 - PVG Output Fault',
+    '35 - Pin E2 - PVG Output Fault',
+    '36 - Fault 36',
+    '37 - Fault 37',
+    '38 - Fault 38',
+    '39 - Fault 39',
+    '40 - Fault 40',
+    '41 - Fault 41',
+    '42 - Fault 42',
+    '43 - Fault 43',
+    '44 - Fault 44',
+    '45 - Fault 45',
+    '46 - Fault 46',
+    '47 - Fault 47',
+    '48 - Fault 48',
+    '49 - Fault 49',
+    '50 - Fault 50',
+    '51 - Fault 51',
+    '52 - Fault 52',
+    '53 - Fault 53',
+    '54 - Fault 54',
+    '55 - Fault 55',
+    '56 - Fault 56',
+    '57 - Fault 57',
+    '58 - Fault 58',
+    '59 - Fault 59',
+    '60 - Fault 60',
+    '61 - Fault 61',
+    '62 - Fault 62',
+    '63 - Fault 63',
+    '64 - Fault 64',
   ];
 
   const chunkSize = 256 * 1024;
@@ -356,7 +421,7 @@ export default function Home() {
       .filter(line => line.trim() !== '')
       .map((line) => {
         //const values = line.split(';');
-        const trimmedLine = line.replace(/;$/, ''); // Remove trailing semicolon
+        const trimmedLine = line.replace(/;$/, '');
         const values = trimmedLine.split(';');
 
         if (values.length === 8) {
@@ -424,7 +489,7 @@ export default function Home() {
     .filter(line => line.trim() !== '')
     .map((line) => {
       //const values = line.split(';');
-      const trimmedLine = line.replace(/;$/, ''); // Remove trailing semicolon
+      const trimmedLine = line.replace(/;$/, '');
       const values = trimmedLine.split(';');
 
       if (values.length === 8) {
@@ -575,8 +640,8 @@ export default function Home() {
           if (values[5] === '9768') updatedValues[7] = '11-9 - Analog 9 Out of Range';
           if (values[5] === '9769') updatedValues[7] = '12-5 - PWM Input 10 Out of Range';
           if (values[5] === '9770') updatedValues[7] = '11-11 - Analog 14 Out Of Range';
-          if (values[5] === '9771') updatedValues[7] = '11-13 - Analog 18 Out of range';
-          if (values[5] === '9772') updatedValues[7] = '11-14 - Analog 19 Out of range';
+          if (values[5] === '9771') updatedValues[7] = '11-13 - Analog 18 Out of Range';
+          if (values[5] === '9772') updatedValues[7] = '11-14 - Analog 19 Out of Range';
           if (values[5] === '9773') updatedValues[7] = '12-6 - Pwm Input 17 Out Of Range';
           if (values[5] === '9777') updatedValues[7] = '11-12 - Analog Assignment';
           if (values[5] === '9778') updatedValues[7] = '10-8 - Driver Assignment';
@@ -637,8 +702,6 @@ export default function Home() {
           if (values[5] === '10113') updatedValues[7] = '7-11 - User 30 Fault';
           if (values[5] === '10114') updatedValues[7] = '7-12 - User 31 Fault';
           if (values[5] === '10115') updatedValues[7] = '7-13 - User 32 Fault';
-        } else {
-          updatedValues[7] = 'Generic Fault';
         }
 
         if (values[4] >= '2' && values[4] <= '5') {
@@ -695,8 +758,87 @@ export default function Home() {
           if (values[5] === '73' && values[6] === '1') updatedValues[7] = '73-1 - Following Error';
           if (values[5] === '74' && values[6] === '1') updatedValues[7] = '74-1 - Hardware Software Mismatch';
           if (values[5] === '75' && values[6] === '1') updatedValues[7] = '75-1 - Parameter Conflict';
-        } else {
-          updatedValues[7] = 'Generic Fault';
+        }
+
+        if (values[4] === '50') {
+          if (values[5] === '100') updatedValues[7] = 'Connection Fault';
+          if (values[5] === '0') updatedValues[7] = '0 - Pin L2 - Supply Fault';
+          if (values[5] === '1') updatedValues[7] = '1 - Pin L1 - Supply Fault';
+          if (values[5] === '2') updatedValues[7] = '2 - Pin K4 - Supply Fault';
+          if (values[5] === '3') updatedValues[7] = '3 - Pin H3 - Sensor Supply Fault';
+          if (values[5] === '4') updatedValues[7] = '4 - Pin K3 - CAN1 Fault';
+          if (values[5] === '5') updatedValues[7] = '5 - Pin J3 - CAN1 Fault';
+          if (values[5] === '6') updatedValues[7] = '6 - Pin G4 - Input Fault';
+          if (values[5] === '7') updatedValues[7] = '7 - Pin F4 - Input Fault';
+          if (values[5] === '8') updatedValues[7] = '8 - Pin E3 - Input Fault';
+          if (values[5] === '9') updatedValues[7] = '9 - Pin D3 - Input Fault';
+          if (values[5] === '10') updatedValues[7] = '10 - Pin C3 - Input Fault';
+          if (values[5] === '11') updatedValues[7] = '11 - Pin B3 - Input Fault';
+          if (values[5] === '12') updatedValues[7] = '12 - Pin J4 - Input Fault';
+          if (values[5] === '13') updatedValues[7] = '13 - Pin H4 - Input Fault';
+          if (values[5] === '14') updatedValues[7] = '14 - Pin E4 - Input Fault';
+          if (values[5] === '15') updatedValues[7] = '15 - Pin D4 - Input Fault';
+          if (values[5] === '16') updatedValues[7] = '16 - Pin C4 - Input Fault';
+          if (values[5] === '17') updatedValues[7] = '17 - Pin B4 - Input Fault';
+          if (values[5] === '18') updatedValues[7] = '18 - Pin A4 - Input Fault';
+          if (values[5] === '19') updatedValues[7] = '19 - Pin A3 - Input Fault';
+          if (values[5] === '20') updatedValues[7] = '20 - Pin H1 - HS Output Fault';
+          if (values[5] === '21') updatedValues[7] = '21 - Pin G1 - HS Output Fault';
+          if (values[5] === '22') updatedValues[7] = '22 - Pin F1 - HS Output Fault';
+          if (values[5] === '23') updatedValues[7] = '23 - Pin E1 - HS Output Fault';
+          if (values[5] === '24') updatedValues[7] = '24 - Pin D1 - HS Output Fault';
+          if (values[5] === '25') updatedValues[7] = '25 - Pin C1 - HS Output Fault';
+          if (values[5] === '26') updatedValues[7] = '26 - Pin K1 - HS Output Fault';
+          if (values[5] === '27') updatedValues[7] = '27 - Pin J1 - HS Output Fault';
+          if (values[5] === '28') updatedValues[7] = '28 - Pin B1 - LS Output Fault';
+          if (values[5] === '29') updatedValues[7] = '29 - Pin A1 - LS Output Fault';
+          if (values[5] === '30') updatedValues[7] = '30 - Pin K2 - PVG Output Fault';
+          if (values[5] === '31') updatedValues[7] = '31 - Pin J2 - PVG Output Fault';
+          if (values[5] === '32') updatedValues[7] = '32 - Pin H2 - PVG Output Fault';
+          if (values[5] === '33') updatedValues[7] = '33 - Pin G2 - PVG Output Fault';
+          if (values[5] === '34') updatedValues[7] = '34 - Pin F2 - PVG Output Fault';
+          if (values[5] === '35') updatedValues[7] = '35 - Pin E2 - PVG Output Fault';
+          if (values[5] === '36') updatedValues[7] = '36 - Fault 36';
+          if (values[5] === '37') updatedValues[7] = '37 - Fault 37';
+          if (values[5] === '38') updatedValues[7] = '38 - Fault 38';
+          if (values[5] === '39') updatedValues[7] = '39 - Fault 39';
+          if (values[5] === '40') updatedValues[7] = '40 - Fault 40';
+          if (values[5] === '41') updatedValues[7] = '41 - Fault 41';
+          if (values[5] === '42') updatedValues[7] = '42 - Fault 42';
+          if (values[5] === '43') updatedValues[7] = '43 - Fault 43';
+          if (values[5] === '44') updatedValues[7] = '44 - Fault 44';
+          if (values[5] === '45') updatedValues[7] = '45 - Fault 45';
+          if (values[5] === '46') updatedValues[7] = '46 - Fault 46';
+          if (values[5] === '47') updatedValues[7] = '47 - Fault 47';
+          if (values[5] === '48') updatedValues[7] = '48 - Fault 48';
+          if (values[5] === '49') updatedValues[7] = '49 - Fault 49';
+          if (values[5] === '50') updatedValues[7] = '50 - Fault 50';
+          if (values[5] === '51') updatedValues[7] = '51 - Fault 51';
+          if (values[5] === '52') updatedValues[7] = '52 - Fault 52';
+          if (values[5] === '53') updatedValues[7] = '53 - Fault 53';
+          if (values[5] === '54') updatedValues[7] = '54 - Fault 54';
+          if (values[5] === '55') updatedValues[7] = '55 - Fault 55';
+          if (values[5] === '56') updatedValues[7] = '56 - Fault 56';
+          if (values[5] === '57') updatedValues[7] = '57 - Fault 57';
+          if (values[5] === '58') updatedValues[7] = '58 - Fault 58';
+          if (values[5] === '59') updatedValues[7] = '59 - Fault 59';
+          if (values[5] === '60') updatedValues[7] = '60 - Fault 60';
+          if (values[5] === '61') updatedValues[7] = '61 - Fault 61';
+          if (values[5] === '62') updatedValues[7] = '62 - Fault 62';
+          if (values[5] === '63') updatedValues[7] = '63 - Fault 63';
+          if (values[5] === '64') updatedValues[7] = '64 - Fault 64';
+        }
+
+        if (updatedValues[7] === '0') {
+          if (values[4] >= '2' && values[4] <= '5') {
+            updatedValues[7] = values[5] + ' - ' + values[6] + ' - Generic Fault';
+          }
+
+          if ((values[4] >= '36' && values[4] <= '40') || (values[4] === '50')){
+            updatedValues[7] = values[5] + ' - Generic Fault';
+          }
+
+
         }
 
       return updatedValues;
@@ -796,7 +938,7 @@ export default function Home() {
               value={filters.column2}
               onChange={(e) => handleFilterChange('column2', e.target.value)}
             >
-              <option value="">User Level - All Values</option>
+              <option value="">User Levels - All</option>
               {column2Values.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -811,7 +953,7 @@ export default function Home() {
               value={filters.column5}
               onChange={(e) => handleFilterChange('column5', e.target.value)}
             >
-              <option value="">Controllers - All Values</option>
+              <option value="">Controllers - All</option>
               {column5Values.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -826,7 +968,7 @@ export default function Home() {
               value={filters.column8}
               onChange={(e) => handleFilterChange('column8', e.target.value)}
             >
-              <option value="">F Series - All Values</option>
+              <option value="">Traction - All Faults</option>
               {column8Values.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -834,6 +976,37 @@ export default function Home() {
               ))}
             </select>
           </div>
+
+          <div>
+            <select
+              className="filters-select"
+              value={filters.column8}
+              onChange={(e) => handleFilterChange('column8', e.target.value)}
+            >
+              <option value="">Steer - All Faults</option>
+              {column8Values.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <select
+              className="filters-select"
+              value={filters.column8}
+              onChange={(e) => handleFilterChange('column8', e.target.value)}
+            >
+              <option value="">PLC - All Faults</option>
+              {column8PLCValues.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
+
         </div>
 {/*##########################################################################*/}
         {pages.length > 0 && (
