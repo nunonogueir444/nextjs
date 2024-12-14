@@ -61,178 +61,180 @@ export default function Home() {
     'Pump'
   ];
 
-  const column6Values = [
-    '100 > Connection Fault',
-    '8449 - 13-2 - Phase PWM Mismatch',
-    '8450 - 3-11 - Misalignment Error',
-    '8451 - 3-10 - Motor Setup Needed',
-    '8452 - 13-1 - Lift Input',
-    '8453 - 13-4 - Lower Input',
-    '8454 - 12-7 - Analog 31 Out of Range',
-    '8455 - 12-8 - Invalid CAN Port',
-    '8456 - 12-9 - VCL Watchdog',
-    '8457 - 1-11 - Critical OS General',
-    '8458 - 1-12 - OS General 2',
-    '8459 - 12-4 - Torque Input',
-    '8460 - 12-13 - PWM Input 28 Out of Range',
-    '8461 - 12-12 - PWM Input 29 Out of Range',
-    '8462 - 1-14 - Motor Short',
-    '8463 - 12-15 - Force Feedback Fault',
-    '8464 - 1-13 - Reset Rejected',
-    '8465 - 12-10 - Auto Baud Failure On Ancillary',
-    '8466 - 13-0 - Steering Traction Msg Count',
-    '8467 - 12-11 - Primary State Error',
-    '8468 - 13-13 - IMU Failure',
-    '8470 - 13-0 - Delayed Shutdown',
-    '8471 - 8-0 - Secondary Command Input',
-    '8472 - 8-1 - Secondary Feedback Input',
-    '8474 - 8-4 - Motor Braking Impaired',
-    '8476 - 13-6 - Hazardous Movement',
-    '8477 - 8-3 - Lv Supply Pos Out Of Range',
-    '8480 - 1-7 - Severe B+ Undervoltage',
-    '8481 - 2-3 - Undervoltage Cutback',
-    '8482 - 1-7 - Severe KSI Undervoltage',
-    '8484 - 4-7 - Hydraulic HPD SRO Lower',
-    '8485 - 4-7 - Hydraulic HPD SRO Lift',
-    '8486 - 4-7 - LHS Throttle Conflict',
-    '8487 - 13-10 - Lift Limit',
-    '8490 - 15-1 - Memory Parity',
-    '8496 - 1-8 - Severe B+ Overvoltage',
-    '8497 - 2-4 - Overvoltage Cutback',
-    '8498 - 1-8 - Severe KSI Overvoltage',
-    '8499 - 1-9 - Speed Limit Supervision',
-    '8500 - 1-10 - Motor Not Stopped',
-    '8512 - 2-2 - Controller Overtemperature Cutback',
-    '8513 - 1-5 - Controller Severe Undertemperature',
-    '8514 - 1-6 - Controller Severe Overtemperature',
-    '8528 - 2-9 - Motor Temp Sensor',
-    '8529 - 2-8 - Motor Temp Hot Cutback',
-    '8544 - 10-1 - Driver 1 Fault',
-    '8545 - 10-2 - Driver 2 Fault',
-    '8546 - 10-3 - Driver 3 Fault',
-    '8547 - 10-4 - Driver 4 Fault',
-    '8548 - 10-5 - Driver 5 Fault',
-    '8549 - 10-6 - Driver 6 Fault',
-    '8550 - 10-7 - Driver 7 Fault',
-    '8553 - 10-9 - Coil Supply',
-    '8720 - 4-2 - Throttle Input',
-    '8721 - 4-7 - HPD Sequencing',
-    '8736 - 3-8 - Main Contactor Welded',
-    '8737 - 3-9 - Main Contactor Did Not Close',
-    '8738 - 3-1 - Main Driver',
-    '8739 - 1-4 - Precharge Failed',
-    '8752 - 3-6 - IM Motor Feedback',
-    '8753 - 7-3 - Stall Detected',
-    '8754 - 3-6 - Sin Cos Motor Feedback',
-    '8755 - 9-3 - Encoder LOS',
-    '8756 - 8-8 - Encoder Pulse Error',
-    '8768 - 3-7 - Motor Open',
-    '8784 - 7-6 - Dual Severe',
-    '8785 - 7-4 - Fault On Other Traction Controller Active',
-    '8786 - 4-5 - Steer Angle Input',
-    '8787 - 7-2 - Dual Pdo Timeout',
-    '8800 - 4-8 - Following Error',
-    '8832 - 13-5 - Primary Command Input',
-    '8848 - 13-7 - Primary Feedback Input',
-    '8864 - 7-7 - Steering Supervision Error',
-    '8865 - 7-7 - Home Switch Supervision',
-    '8866 - 7-7 - Interlock Input Conflict',
-    '8867 - 7-7 - Steer Command Supervision',
-    '8868 - 7-7 - Wheel Position Supervision',
-    '8869 - 7-7 - Home Position Not Found',
-    '8870 - 7-7 - Home Reference Tolerance',
-    '8871 - 10-4 - Steering Safety Output Failed',
-    '8976 - 4-4 - Brake Input',
-    '8992 - 3-2 - EM Brake Driver',
-    '8993 - 9-2 - EM Brake Failed to Set',
-    '9008 - 9-4 - Emer Rev Timeout',
-    '9009 - 4-7 - Emer Rev HPD',
-    '9010 - 9-10 - Interlock Braking Supervision',
-    '9011 - 9-11 - EMR Supervision',
-    '9248 - 3-3 - Pump Driver',
-    '9264 - 3-4 - Load Hold Driver',
-    '9280 - 3-5 - Lower Driver',
-    '9296 - 9-6 - Pump BDI',
-    '9488 - 1-2 - Controller Overcurrent',
-    '9504 - 9-5 - Pump Overcurrent',
-    '9521 - 2-5 - Ext 5V Supply Failure',
-    '9522 - 2-6 - Ext 12V Supply Failure',
-    '9537 - 7-2 - PDO Timeout',
-    '9538 - 8-2 - PDO Mapping Error',
-    '9552 - 7-6 - Insulation Resistance Low',
-    '9760 - 11-1 - Analog 1 Out Of Range',
-    '9761 - 11-2 - Analog 2 Out Of Range',
-    '9762 - 11-3 - Analog 3 Out Of Range',
-    '9763 - 11-4 - Analog 4 Out Of Range',
-    '9764 - 11-5 - Analog 5 Out Of Range',
-    '9765 - 11-6 - Analog 6 Out Of Range',
-    '9766 - 11-7 - Analog 7 Out Of Range',
-    '9767 - 11-8 - Analog 8 Out Of Range',
-    '9768 - 11-9 - Analog 9 Out of Range',
-    '9769 - 12-5 - PWM Input 10 Out of Range',
-    '9770 - 11-11 - Analog 14 Out Of Range',
-    '9771 - 11-13 - Analog 18 Out of range',
-    '9772 - 11-14 - Analog 19 Out of range',
-    '9773 - 12-6 - Pwm Input 17 Out Of Range',
-    '9777 - 11-12 - Analog Assignment',
-    '9778 - 10-8 - Driver Assignment',
-    '10257 - 8-9 - Parameter Out of Range',
-    '10258 - 9-9 - Parameter Mismatch',
-    '10259 - 4-9 - Parameter Change',
-    '10261 - 9-1 - Bad Firmware',
-    '10263 - 4-10 - EMR Switch',
-    '10272 - 6-8 - VCL Run Time Error',
-    '10288 - 4-6 - NV Memory Failure',
-    '10289 - 7-1 - OS General',
-    '10290 - 1-3 - Current Sensor',
-    '10291 - 9-7 - Pump Hardware',
-    '10292 - 11-15 - Pump Current Sensor',
-    '10293 - 8-3 - Internal Hardware',
-    '10304 - 7-7 - Supervision',
-    '10305 - 7-9 - Supervision Input Check',
-    '10320 - 8-7 - Motor Characterization',
-    '10336 - 12-1 - Branding Error',
-    '10337 - 12-2 - BMS Cutback',
-    '10338 - 12-3 - Differential Steering',
-    '10352 - 13-3 - Hardware Compatibility',
-    '10353 - 6-8 - ECC Run Time Error',
-    '10384 - 14-14 - Eru Configuration',
-    '10385 - 14-15 - Desat Trip',
-    '10386 - 13-8 - ESTOP_Mismatch',
-    '10387 - 13-9 - ESTOP_SRO',
-    '99999 - Generic Fault',
-    '10000 - 5-1 - User 1 Fault',
-    '10001 - 5-2 - User 2 Fault',
-    '10002 - 5-3 - User 3 Fault',
-    '10003 - 5-4 - User 4 Fault',
-    '10016 - 5-5 - User 5 Fault',
-    '10017 - 5-6 - User 6 Fault',
-    '10018 - 5-7 - User 7 Fault',
-    '10019 - 5-8 - User 8 Fault',
-    '10032 - 5-9 - User 9 Fault',
-    '10033 - 6-1 - User 10 Fault',
-    '10034 - 6-2 - User 11 Fault',
-    '10035 - 6-3 - User 12 Fault',
-    '10048 - 6-4 - User 13 Fault',
-    '10049 - 6-5 - User 14 Fault',
-    '10050 - 6-6 - User 15 Fault',
-    '10051 - 6-7 - User 16 Fault',
-    '10064 - 5-10 - User 17 Fault',
-    '10065 - 5-11 - User 18 Fault',
-    '10066 - 5-12 - User 19 Fault',
-    '10067 - 5-13 - User 20 Fault',
-    '10080 - 5-14 - User 21 Fault',
-    '10081 - 5-15 - User 22 Fault',
-    '10082 - 6-10 - User 23 Fault',
-    '10083 - 6-11 - User 24 Fault',
-    '10096 - 6-12 - User 25 Fault',
-    '10097 - 6-13 - User 26 Fault',
-    '10098 - 6-14 - User 27 Fault',
-    '10099 - 6-15 - User 28 Fault',
-    '10112 - 7-10 - User 29 Fault',
-    '10113 - 7-11 - User 30 Fault',
-    '10114 - 7-12 - User 31 Fault',
-    '10115 - 7-13 - User 32 Fault'
+  const column8Values = [
+    'Connection Fault',
+    '13-2 - Phase PWM Mismatch',
+    '3-11 - Misalignment Error',
+    '3-10 - Motor Setup Needed',
+    '13-1 - Lift Input',
+    '13-4 - Lower Input',
+    '12-7 - Analog 31 Out of Range',
+    '12-8 - Invalid CAN Port',
+    '12-9 - VCL Watchdog',
+    '1-11 - Critical OS General',
+    '1-12 - OS General 2',
+    '12-4 - Torque Input',
+    '12-13 - PWM Input 28 Out of Range',
+    '12-12 - PWM Input 29 Out of Range',
+    '1-14 - Motor Short',
+    '12-15 - Force Feedback Fault',
+    '1-13 - Reset Rejected',
+    '12-10 - Auto Baud Failure On Ancillary',
+    '13-0 - Steering Traction Msg Count',
+    '12-11 - Primary State Error',
+    '13-13 - IMU Failure',
+    '13-0 - Delayed Shutdown',
+    '8-0 - Secondary Command Input',
+    '8-1 - Secondary Feedback Input',
+    '8-4 - Motor Braking Impaired',
+    '13-6 - Hazardous Movement',
+    '8-3 - Lv Supply Pos Out Of Range',
+    '1-7 - Severe B+ Undervoltage',
+    '2-3 - Undervoltage Cutback',
+    '1-7 - Severe KSI Undervoltage',
+    '4-7 - Hydraulic HPD SRO Lower',
+    '4-7 - Hydraulic HPD SRO Lift',
+    '4-7 - LHS Throttle Conflict',
+    '13-10 - Lift Limit',
+    '15-1 - Memory Parity',
+    '1-8 - Severe B+ Overvoltage',
+    '2-4 - Overvoltage Cutback',
+    '1-8 - Severe KSI Overvoltage',
+    '1-9 - Speed Limit Supervision',
+    '1-10 - Motor Not Stopped',
+    '2-2 - Controller Overtemperature Cutback',
+    '1-5 - Controller Severe Undertemperature',
+    '1-6 - Controller Severe Overtemperature',
+    '2-9 - Motor Temp Sensor',
+    '2-8 - Motor Temp Hot Cutback',
+    '10-1 - Driver 1 Fault',
+    '10-2 - Driver 2 Fault',
+    '10-3 - Driver 3 Fault',
+    '10-4 - Driver 4 Fault',
+    '10-5 - Driver 5 Fault',
+    '10-6 - Driver 6 Fault',
+    '10-7 - Driver 7 Fault',
+    '10-9 - Coil Supply',
+    '4-2 - Throttle Input',
+    '4-7 - HPD Sequencing',
+    '3-8 - Main Contactor Welded',
+    '3-9 - Main Contactor Did Not Close',
+    '3-1 - Main Driver',
+    '1-4 - Precharge Failed',
+    '3-6 - IM Motor Feedback',
+    '7-3 - Stall Detected',
+    '3-6 - Sin Cos Motor Feedback',
+    '9-3 - Encoder LOS',
+    '8-8 - Encoder Pulse Error',
+    '3-7 - Motor Open',
+    '7-6 - Dual Severe',
+    '7-4 - Fault On Other Traction Controller Active',
+    '4-5 - Steer Angle Input',
+    '7-2 - Dual Pdo Timeout',
+    '4-8 - Following Error',
+    '13-5 - Primary Command Input',
+    '13-7 - Primary Feedback Input',
+    '7-7 - Steering Supervision Error',
+    '7-7 - Home Switch Supervision',
+    '7-7 - Interlock Input Conflict',
+    '7-7 - Steer Command Supervision',
+    '7-7 - Wheel Position Supervision',
+    '7-7 - Home Position Not Found',
+    '7-7 - Home Reference Tolerance',
+    '10-4 - Steering Safety Output Failed',
+    '4-4 - Brake Input',
+    '3-2 - EM Brake Driver',
+    '9-2 - EM Brake Failed to Set',
+    '9-4 - Emer Rev Timeout',
+    '4-7 - Emer Rev HPD',
+    '9-10 - Interlock Braking Supervision',
+    '9-11 - EMR Supervision',
+    '3-3 - Pump Driver',
+    '3-4 - Load Hold Driver',
+    '3-5 - Lower Driver',
+    '9-6 - Pump BDI',
+    '1-2 - Controller Overcurrent',
+    '9-5 - Pump Overcurrent',
+    '2-5 - Ext 5V Supply Failure',
+    '2-6 - Ext 12V Supply Failure',
+    '7-2 - PDO Timeout',
+    '8-2 - PDO Mapping Error',
+    '7-6 - Insulation Resistance Low',
+    '11-1 - Analog 1 Out Of Range',
+    '11-2 - Analog 2 Out Of Range',
+    '11-3 - Analog 3 Out Of Range',
+    '11-4 - Analog 4 Out Of Range',
+    '11-5 - Analog 5 Out Of Range',
+    '11-6 - Analog 6 Out Of Range',
+    '11-7 - Analog 7 Out Of Range',
+    '11-8 - Analog 8 Out Of Range',
+    '11-9 - Analog 9 Out of Range',
+    '12-5 - PWM Input 10 Out of Range',
+    '11-11 - Analog 14 Out Of Range',
+    '11-13 - Analog 18 Out of range',
+    '11-14 - Analog 19 Out of range',
+    '12-6 - Pwm Input 17 Out Of Range',
+    '11-12 - Analog Assignment',
+    '10-8 - Driver Assignment',
+    '8-9 - Parameter Out of Range',
+    '9-9 - Parameter Mismatch',
+    '4-9 - Parameter Change',
+    '9-1 - Bad Firmware',
+    '4-10 - EMR Switch',
+    '6-8 - VCL Run Time Error',
+    '4-6 - NV Memory Failure',
+    '7-1 - OS General',
+    '1-3 - Current Sensor',
+    '9-7 - Pump Hardware',
+    '11-15 - Pump Current Sensor',
+    '8-3 - Internal Hardware',
+    '7-7 - Supervision',
+    '7-9 - Supervision Input Check',
+    '8-7 - Motor Characterization',
+    '12-1 - Branding Error',
+    '12-2 - BMS Cutback',
+    '12-3 - Differential Steering',
+    '13-3 - Hardware Compatibility',
+    '6-8 - ECC Run Time Error',
+    '14-14 - Eru Configuration',
+    '14-15 - Desat Trip',
+    '13-8 - ESTOP_Mismatch',
+    '13-9 - ESTOP_SRO',
+
+    'Generic Fault',
+
+    '5-1 - User 1 Fault',
+    '5-2 - User 2 Fault',
+    '5-3 - User 3 Fault',
+    '5-4 - User 4 Fault',
+    '5-5 - User 5 Fault',
+    '5-6 - User 6 Fault',
+    '5-7 - User 7 Fault',
+    '5-8 - User 8 Fault',
+    '5-9 - User 9 Fault',
+    '6-1 - User 10 Fault',
+    '6-2 - User 11 Fault',
+    '6-3 - User 12 Fault',
+    '6-4 - User 13 Fault',
+    '6-5 - User 14 Fault',
+    '6-6 - User 15 Fault',
+    '6-7 - User 16 Fault',
+    '5-10 - User 17 Fault',
+    '5-11 - User 18 Fault',
+    '5-12 - User 19 Fault',
+    '5-13 - User 20 Fault',
+    '5-14 - User 21 Fault',
+    '5-15 - User 22 Fault',
+    '6-10 - User 23 Fault',
+    '6-11 - User 24 Fault',
+    '6-12 - User 25 Fault',
+    '6-13 - User 26 Fault',
+    '6-14 - User 27 Fault',
+    '6-15 - User 28 Fault',
+    '7-10 - User 29 Fault',
+    '7-11 - User 30 Fault',
+    '7-12 - User 31 Fault',
+    '7-13 - User 32 Fault'
   ];
 
   const chunkSize = 256 * 1024;
@@ -460,235 +462,241 @@ export default function Home() {
             if (trimmedValue === '40') return 'Pump';
             if (trimmedValue === '50') return 'PLC';
           }
-          if (valueIndex === 5 ) {
-            if (trimmedValue === '100' ) return '100 > Connection Fault';
-            if (trimmedValue === '8449') return '8449 > 13-2 - Phase PWM Mismatch';
-            if (trimmedValue === '8450') return '8450 > 3-11 - Misalignment Error';
-            if (trimmedValue === '8451') return '8451 > 3-10 - Motor Setup Needed';
-            if (trimmedValue === '8452') return '8452 > 13-1 - Lift Input';
-            if (trimmedValue === '8453') return '8453 > 13-4 - Lower Input';
-            if (trimmedValue === '8454') return '8454 > 12-7 - Analog 31 Out of Range';
-            if (trimmedValue === '8455') return '8455 > 12-8 - Invalid CAN Port';
-            if (trimmedValue === '8456') return '8456 > 12-9 - VCL Watchdog';
-            if (trimmedValue === '8457') return '8457 > 1-11 - Critical OS General';
-            if (trimmedValue === '8458') return '8458 > 1-12 - OS General 2';
-            if (trimmedValue === '8459') return '8459 > 12-4 - Torque Input';
-            if (trimmedValue === '8460') return '8460 > 12-13 - PWM Input 28 Out of Range';
-            if (trimmedValue === '8461') return '8461 > 12-12 - PWM Input 29 Out of Range';
-            if (trimmedValue === '8462') return '8462 > 1-14 - Motor Short';
-            if (trimmedValue === '8463') return '8463 > 12-15 - Force Feedback Fault';
-            if (trimmedValue === '8464') return '8464 > 1-13 - Reset Rejected';
-            if (trimmedValue === '8465') return '8465 > 12-10 - Auto Baud Failure On Ancillary';
-            if (trimmedValue === '8466') return '8466 > 13-0 - Steering Traction Msg Count';
-            if (trimmedValue === '8467') return '8467 > 12-11 - Primary State Error';
-            if (trimmedValue === '8468') return '8468 > 13-13 - IMU Failure';
-            if (trimmedValue === '8470') return '8470 > 13-0 - Delayed Shutdown';
-            if (trimmedValue === '8471') return '8471 > 8-0 - Secondary Command Input';
-            if (trimmedValue === '8472') return '8472 > 8-1 - Secondary Feedback Input';
-            if (trimmedValue === '8474') return '8474 > 8-4 - Motor Braking Impaired';
-            if (trimmedValue === '8476') return '8476 > 13-6 - Hazardous Movement';
-            if (trimmedValue === '8477') return '8477 > 8-3 - Lv Supply Pos Out Of Range';
-            if (trimmedValue === '8480') return '8480 > 1-7 - Severe B+ Undervoltage';
-            if (trimmedValue === '8481') return '8481 > 2-3 - Undervoltage Cutback';
-            if (trimmedValue === '8482') return '8482 > 1-7 - Severe KSI Undervoltage';
-            if (trimmedValue === '8484') return '8484 > 4-7 - Hydraulic HPD SRO Lower';
-            if (trimmedValue === '8485') return '8485 > 4-7 - Hydraulic HPD SRO Lift';
-            if (trimmedValue === '8486') return '8486 > 4-7 - LHS Throttle Conflict';
-            if (trimmedValue === '8487') return '8487 > 13-10 - Lift Limit';
-            if (trimmedValue === '8490') return '8490 > 15-1 - Memory Parity';
-            if (trimmedValue === '8496') return '8496 > 1-8 - Severe B+ Overvoltage';
-            if (trimmedValue === '8497') return '8497 > 2-4 - Overvoltage Cutback';
-            if (trimmedValue === '8498') return '8498 > 1-8 - Severe KSI Overvoltage';
-            if (trimmedValue === '8499') return '8499 > 1-9 - Speed Limit Supervision';
-            if (trimmedValue === '8500') return '8500 > 1-10 - Motor Not Stopped';
-            if (trimmedValue === '8512') return '8512 > 2-2 - Controller Overtemperature Cutback';
-            if (trimmedValue === '8513') return '8513 > 1-5 - Controller Severe Undertemperature';
-            if (trimmedValue === '8514') return '8514 > 1-6 - Controller Severe Overtemperature';
-            if (trimmedValue === '8528') return '8528 > 2-9 - Motor Temp Sensor';
-            if (trimmedValue === '8529') return '8529 > 2-8 - Motor Temp Hot Cutback';
-            if (trimmedValue === '8544') return '8544 > 10-1 - Driver 1 Fault';
-            if (trimmedValue === '8545') return '8545 > 10-2 - Driver 2 Fault';
-            if (trimmedValue === '8546') return '8546 > 10-3 - Driver 3 Fault';
-            if (trimmedValue === '8547') return '8547 > 10-4 - Driver 4 Fault';
-            if (trimmedValue === '8548') return '8548 > 10-5 - Driver 5 Fault';
-            if (trimmedValue === '8549') return '8549 > 10-6 - Driver 6 Fault';
-            if (trimmedValue === '8550') return '8550 > 10-7 - Driver 7 Fault';
-            if (trimmedValue === '8553') return '8553 > 10-9 - Coil Supply';
-            if (trimmedValue === '8720') return '8720 > 4-2 - Throttle Input';
-            if (trimmedValue === '8721') return '8721 > 4-7 - HPD Sequencing';
-            if (trimmedValue === '8736') return '8736 > 3-8 - Main Contactor Welded';
-            if (trimmedValue === '8737') return '8737 > 3-9 - Main Contactor Did Not Close';
-            if (trimmedValue === '8738') return '8738 > 3-1 - Main Driver';
-            if (trimmedValue === '8739') return '8739 > 1-4 - Precharge Failed';
-            if (trimmedValue === '8752') return '8752 > 3-6 - IM Motor Feedback';
-            if (trimmedValue === '8753') return '8753 > 7-3 - Stall Detected';
-            if (trimmedValue === '8754') return '8754 > 3-6 - Sin Cos Motor Feedback';
-            if (trimmedValue === '8755') return '8755 > 9-3 - Encoder LOS';
-            if (trimmedValue === '8756') return '8756 > 8-8 - Encoder Pulse Error';
-            if (trimmedValue === '8768') return '8768 > 3-7 - Motor Open';
-            if (trimmedValue === '8784') return '8784 > 7-6 - Dual Severe';
-            if (trimmedValue === '8785') return '8785 > 7-4 - Fault On Other Traction Controller Active';
-            if (trimmedValue === '8786') return '8786 > 4-5 - Steer Angle Input';
-            if (trimmedValue === '8787') return '8787 > 7-2 - Dual Pdo Timeout';
-            if (trimmedValue === '8800') return '8800 > 4-8 - Following Error';
-            if (trimmedValue === '8832') return '8832 > 13-5 - Primary Command Input';
-            if (trimmedValue === '8848') return '8848 > 13-7 - Primary Feedback Input';
-            if (trimmedValue === '8864') return '8864 > 7-7 - Steering Supervision Error';
-            if (trimmedValue === '8865') return '8865 > 7-7 - Home Switch Supervision';
-            if (trimmedValue === '8866') return '8866 > 7-7 - Interlock Input Conflict';
-            if (trimmedValue === '8867') return '8867 > 7-7 - Steer Command Supervision';
-            if (trimmedValue === '8868') return '8868 > 7-7 - Wheel Position Supervision';
-            if (trimmedValue === '8869') return '8869 > 7-7 - Home Position Not Found';
-            if (trimmedValue === '8870') return '8870 > 7-7 - Home Reference Tolerance';
-            if (trimmedValue === '8871') return '8871 > 10-4 - Steering Safety Output Failed';
-            if (trimmedValue === '8976') return '8976 > 4-4 - Brake Input';
-            if (trimmedValue === '8992') return '8992 > 3-2 - EM Brake Driver';
-            if (trimmedValue === '8993') return '8993 > 9-2 - EM Brake Failed to Set';
-            if (trimmedValue === '9008') return '9008 > 9-4 - Emer Rev Timeout';
-            if (trimmedValue === '9009') return '9009 > 4-7 - Emer Rev HPD';
-            if (trimmedValue === '9010') return '9010 > 9-10 - Interlock Braking Supervision';
-            if (trimmedValue === '9011') return '9011 > 9-11 - EMR Supervision';
-            if (trimmedValue === '9248') return '9248 > 3-3 - Pump Driver';
-            if (trimmedValue === '9264') return '9264 > 3-4 - Load Hold Driver';
-            if (trimmedValue === '9280') return '9280 > 3-5 - Lower Driver';
-            if (trimmedValue === '9296') return '9296 > 9-6 - Pump BDI';
-            if (trimmedValue === '9488') return '9488 > 1-2 - Controller Overcurrent';
-            if (trimmedValue === '9504') return '9504 > 9-5 - Pump Overcurrent';
-            if (trimmedValue === '9521') return '9521 > 2-5 - Ext 5V Supply Failure';
-            if (trimmedValue === '9522') return '9522 > 2-6 - Ext 12V Supply Failure';
-            if (trimmedValue === '9537') return '9537 > 7-2 - PDO Timeout';
-            if (trimmedValue === '9538') return '9538 > 8-2 - PDO Mapping Error';
-            if (trimmedValue === '9552') return '9552 > 7-6 - Insulation Resistance Low';
-            if (trimmedValue === '9760') return '9760 > 11-1 - Analog 1 Out Of Range';
-            if (trimmedValue === '9761') return '9761 > 11-2 - Analog 2 Out Of Range';
-            if (trimmedValue === '9762') return '9762 > 11-3 - Analog 3 Out Of Range';
-            if (trimmedValue === '9763') return '9763 > 11-4 - Analog 4 Out Of Range';
-            if (trimmedValue === '9764') return '9764 > 11-5 - Analog 5 Out Of Range';
-            if (trimmedValue === '9765') return '9765 > 11-6 - Analog 6 Out Of Range';
-            if (trimmedValue === '9766') return '9766 > 11-7 - Analog 7 Out Of Range';
-            if (trimmedValue === '9767') return '9767 > 11-8 - Analog 8 Out Of Range';
-            if (trimmedValue === '9768') return '9768 > 11-9 - Analog 9 Out of Range';
-            if (trimmedValue === '9769') return '9769 > 12-5 - PWM Input 10 Out of Range';
-            if (trimmedValue === '9770') return '9770 > 11-11 - Analog 14 Out Of Range';
-            if (trimmedValue === '9771') return '9771 > 11-13 - Analog 18 Out of range';
-            if (trimmedValue === '9772') return '9772 > 11-14 - Analog 19 Out of range';
-            if (trimmedValue === '9773') return '9773 > 12-6 - Pwm Input 17 Out Of Range';
-            if (trimmedValue === '9777') return '9777 > 11-12 - Analog Assignment';
-            if (trimmedValue === '9778') return '9778 > 10-8 - Driver Assignment';
-            if (trimmedValue === '10257') return '10257 > 8-9 - Parameter Out of Range';
-            if (trimmedValue === '10258') return '10258 > 9-9 - Parameter Mismatch';
-            if (trimmedValue === '10259') return '10259 > 4-9 - Parameter Change';
-            if (trimmedValue === '10261') return '10261 > 9-1 - Bad Firmware';
-            if (trimmedValue === '10263') return '10263 > 4-10 - EMR Switch';
-            if (trimmedValue === '10272') return '10272 > 6-8 - VCL Run Time Error';
-            if (trimmedValue === '10288') return '10288 > 4-6 - NV Memory Failure';
-            if (trimmedValue === '10289') return '10289 > 7-1 - OS General';
-            if (trimmedValue === '10290') return '10290 > 1-3 - Current Sensor';
-            if (trimmedValue === '10291') return '10291 > 9-7 - Pump Hardware';
-            if (trimmedValue === '10292') return '10292 > 11-15 - Pump Current Sensor';
-            if (trimmedValue === '10293') return '10293 > 8-3 - Internal Hardware';
-            if (trimmedValue === '10304') return '10304 > 7-7 - Supervision';
-            if (trimmedValue === '10305') return '10305 > 7-9 - Supervision Input Check';
-            if (trimmedValue === '10320') return '10320 > 8-7 - Motor Characterization';
-            if (trimmedValue === '10336') return '10336 > 12-1 - Branding Error';
-            if (trimmedValue === '10337') return '10337 > 12-2 - BMS Cutback';
-            if (trimmedValue === '10338') return '10338 > 12-3 - Differential Steering';
-            if (trimmedValue === '10352') return '10352 > 13-3 - Hardware Compatibility';
-            if (trimmedValue === '10353') return '10353 > 6-8 - ECC Run Time Error';
-            if (trimmedValue === '10384') return '10384 > 14-14 - Eru Configuration';
-            if (trimmedValue === '10385') return '10385 > 14-15 - Desat Trip';
-            if (trimmedValue === '10386') return '10386 > 13-8 - ESTOP_Mismatch';
-            if (trimmedValue === '10387') return '10387 > 13-9 - ESTOP_SRO';
-            if (trimmedValue === '99999') return '99999 > Generic Fault';
-            if (trimmedValue === '10000') return '10000 > 5-1 - User 1 Fault';
-            if (trimmedValue === '10001') return '10001 > 5-2 - User 2 Fault';
-            if (trimmedValue === '10002') return '10002 > 5-3 - User 3 Fault';
-            if (trimmedValue === '10003') return '10003 > 5-4 - User 4 Fault';
-            if (trimmedValue === '10016') return '10016 > 5-5 - User 5 Fault';
-            if (trimmedValue === '10017') return '10017 > 5-6 - User 6 Fault';
-            if (trimmedValue === '10018') return '10018 > 5-7 - User 7 Fault';
-            if (trimmedValue === '10019') return '10019 > 5-8 - User 8 Fault';
-            if (trimmedValue === '10032') return '10032 > 5-9 - User 9 Fault';
-            if (trimmedValue === '10033') return '10033 > 6-1 - User 10 Fault';
-            if (trimmedValue === '10034') return '10034 > 6-2 - User 11 Fault';
-            if (trimmedValue === '10035') return '10035 > 6-3 - User 12 Fault';
-            if (trimmedValue === '10048') return '10048 > 6-4 - User 13 Fault';
-            if (trimmedValue === '10049') return '10049 > 6-5 - User 14 Fault';
-            if (trimmedValue === '10050') return '10050 > 6-6 - User 15 Fault';
-            if (trimmedValue === '10051') return '10051 > 6-7 - User 16 Fault';
-            if (trimmedValue === '10064') return '10064 > 5-10 - User 17 Fault';
-            if (trimmedValue === '10065') return '10065 > 5-11 - User 18 Fault';
-            if (trimmedValue === '10066') return '10066 > 5-12 - User 19 Fault';
-            if (trimmedValue === '10067') return '10067 > 5-13 - User 20 Fault';
-            if (trimmedValue === '10080') return '10080 > 5-14 - User 21 Fault';
-            if (trimmedValue === '10081') return '10081 > 5-15 - User 22 Fault';
-            if (trimmedValue === '10082') return '10082 > 6-10 - User 23 Fault';
-            if (trimmedValue === '10083') return '10083 > 6-11 - User 24 Fault';
-            if (trimmedValue === '10096') return '10096 > 6-12 - User 25 Fault';
-            if (trimmedValue === '10097') return '10097 > 6-13 - User 26 Fault';
-            if (trimmedValue === '10098') return '10098 > 6-14 - User 27 Fault';
-            if (trimmedValue === '10099') return '10099 > 6-15 - User 28 Fault';
-            if (trimmedValue === '10112') return '10112 > 7-10 - User 29 Fault';
-            if (trimmedValue === '10113') return '10113 > 7-11 - User 30 Fault';
-            if (trimmedValue === '10114') return '10114 > 7-12 - User 31 Fault';
-            if (trimmedValue === '10115') return '10115 > 7-13 - User 32 Fault';
-          }
           return value;
         });
 
+        if (values[4] >= '36' && values[4] <= '40') {
+          if (values[5] === '100') updatedValues[7] = 'Connection Fault';
+          if (values[5] === '8449') updatedValues[7] = '13-2 - Phase PWM Mismatch';
+          if (values[5] === '8450') updatedValues[7] = '3-11 - Misalignment Error';
+          if (values[5] === '8451') updatedValues[7] = '3-10 - Motor Setup Needed';
+          if (values[5] === '8452') updatedValues[7] = '13-1 - Lift Input';
+          if (values[5] === '8453') updatedValues[7] = '13-4 - Lower Input';
+          if (values[5] === '8454') updatedValues[7] = '12-7 - Analog 31 Out of Range';
+          if (values[5] === '8455') updatedValues[7] = '12-8 - Invalid CAN Port';
+          if (values[5] === '8456') updatedValues[7] = '12-9 - VCL Watchdog';
+          if (values[5] === '8457') updatedValues[7] = '1-11 - Critical OS General';
+          if (values[5] === '8458') updatedValues[7] = '1-12 - OS General 2';
+          if (values[5] === '8459') updatedValues[7] = '12-4 - Torque Input';
+          if (values[5] === '8460') updatedValues[7] = '12-13 - PWM Input 28 Out of Range';
+          if (values[5] === '8461') updatedValues[7] = '12-12 - PWM Input 29 Out of Range';
+          if (values[5] === '8462') updatedValues[7] = '1-14 - Motor Short';
+          if (values[5] === '8463') updatedValues[7] = '12-15 - Force Feedback Fault';
+          if (values[5] === '8464') updatedValues[7] = '1-13 - Reset Rejected';
+          if (values[5] === '8465') updatedValues[7] = '12-10 - Auto Baud Failure On Ancillary';
+          if (values[5] === '8466') updatedValues[7] = '13-0 - Steering Traction Msg Count';
+          if (values[5] === '8467') updatedValues[7] = '12-11 - Primary State Error';
+          if (values[5] === '8468') updatedValues[7] = '13-13 - IMU Failure';
+          if (values[5] === '8470') updatedValues[7] = '13-0 - Delayed Shutdown';
+          if (values[5] === '8471') updatedValues[7] = '8-0 - Secondary Command Input';
+          if (values[5] === '8472') updatedValues[7] = '8-1 - Secondary Feedback Input';
+          if (values[5] === '8474') updatedValues[7] = '8-4 - Motor Braking Impaired';
+          if (values[5] === '8476') updatedValues[7] = '13-6 - Hazardous Movement';
+          if (values[5] === '8477') updatedValues[7] = '8-3 - Lv Supply Pos Out Of Range';
+          if (values[5] === '8480') updatedValues[7] = '1-7 - Severe B+ Undervoltage';
+          if (values[5] === '8481') updatedValues[7] = '2-3 - Undervoltage Cutback';
+          if (values[5] === '8482') updatedValues[7] = '1-7 - Severe KSI Undervoltage';
+          if (values[5] === '8484') updatedValues[7] = '4-7 - Hydraulic HPD SRO Lower';
+          if (values[5] === '8485') updatedValues[7] = '4-7 - Hydraulic HPD SRO Lift';
+          if (values[5] === '8486') updatedValues[7] = '4-7 - LHS Throttle Conflict';
+          if (values[5] === '8487') updatedValues[7] = '13-10 - Lift Limit';
+          if (values[5] === '8490') updatedValues[7] = '15-1 - Memory Parity';
+          if (values[5] === '8496') updatedValues[7] = '1-8 - Severe B+ Overvoltage';
+          if (values[5] === '8497') updatedValues[7] = '2-4 - Overvoltage Cutback';
+          if (values[5] === '8498') updatedValues[7] = '1-8 - Severe KSI Overvoltage';
+          if (values[5] === '8499') updatedValues[7] = '1-9 - Speed Limit Supervision';
+          if (values[5] === '8500') updatedValues[7] = '1-10 - Motor Not Stopped';
+          if (values[5] === '8512') updatedValues[7] = '2-2 - Controller Overtemperature Cutback';
+          if (values[5] === '8513') updatedValues[7] = '1-5 - Controller Severe Undertemperature';
+          if (values[5] === '8514') updatedValues[7] = '1-6 - Controller Severe Overtemperature';
+          if (values[5] === '8528') updatedValues[7] = '2-9 - Motor Temp Sensor';
+          if (values[5] === '8529') updatedValues[7] = '2-8 - Motor Temp Hot Cutback';
+          if (values[5] === '8544') updatedValues[7] = '10-1 - Driver 1 Fault';
+          if (values[5] === '8545') updatedValues[7] = '10-2 - Driver 2 Fault';
+          if (values[5] === '8546') updatedValues[7] = '10-3 - Driver 3 Fault';
+          if (values[5] === '8547') updatedValues[7] = '10-4 - Driver 4 Fault';
+          if (values[5] === '8548') updatedValues[7] = '10-5 - Driver 5 Fault';
+          if (values[5] === '8549') updatedValues[7] = '10-6 - Driver 6 Fault';
+          if (values[5] === '8550') updatedValues[7] = '10-7 - Driver 7 Fault';
+          if (values[5] === '8553') updatedValues[7] = '10-9 - Coil Supply';
+          if (values[5] === '8720') updatedValues[7] = '4-2 - Throttle Input';
+          if (values[5] === '8721') updatedValues[7] = '4-7 - HPD Sequencing';
+          if (values[5] === '8736') updatedValues[7] = '3-8 - Main Contactor Welded';
+          if (values[5] === '8737') updatedValues[7] = '3-9 - Main Contactor Did Not Close';
+          if (values[5] === '8738') updatedValues[7] = '3-1 - Main Driver';
+          if (values[5] === '8739') updatedValues[7] = '1-4 - Precharge Failed';
+          if (values[5] === '8752') updatedValues[7] = '3-6 - IM Motor Feedback';
+          if (values[5] === '8753') updatedValues[7] = '7-3 - Stall Detected';
+          if (values[5] === '8754') updatedValues[7] = '3-6 - Sin Cos Motor Feedback';
+          if (values[5] === '8755') updatedValues[7] = '9-3 - Encoder LOS';
+          if (values[5] === '8756') updatedValues[7] = '8-8 - Encoder Pulse Error';
+          if (values[5] === '8768') updatedValues[7] = '3-7 - Motor Open';
+          if (values[5] === '8784') updatedValues[7] = '7-6 - Dual Severe';
+          if (values[5] === '8785') updatedValues[7] = '7-4 - Fault On Other Traction Controller Active';
+          if (values[5] === '8786') updatedValues[7] = '4-5 - Steer Angle Input';
+          if (values[5] === '8787') updatedValues[7] = '7-2 - Dual Pdo Timeout';
+          if (values[5] === '8800') updatedValues[7] = '4-8 - Following Error';
+          if (values[5] === '8832') updatedValues[7] = '13-5 - Primary Command Input';
+          if (values[5] === '8848') updatedValues[7] = '13-7 - Primary Feedback Input';
+          if (values[5] === '8864') updatedValues[7] = '7-7 - Steering Supervision Error';
+          if (values[5] === '8865') updatedValues[7] = '7-7 - Home Switch Supervision';
+          if (values[5] === '8866') updatedValues[7] = '7-7 - Interlock Input Conflict';
+          if (values[5] === '8867') updatedValues[7] = '7-7 - Steer Command Supervision';
+          if (values[5] === '8868') updatedValues[7] = '7-7 - Wheel Position Supervision';
+          if (values[5] === '8869') updatedValues[7] = '7-7 - Home Position Not Found';
+          if (values[5] === '8870') updatedValues[7] = '7-7 - Home Reference Tolerance';
+          if (values[5] === '8871') updatedValues[7] = '10-4 - Steering Safety Output Failed';
+          if (values[5] === '8976') updatedValues[7] = '4-4 - Brake Input';
+          if (values[5] === '8992') updatedValues[7] = '3-2 - EM Brake Driver';
+          if (values[5] === '8993') updatedValues[7] = '9-2 - EM Brake Failed to Set';
+          if (values[5] === '9008') updatedValues[7] = '9-4 - Emer Rev Timeout';
+          if (values[5] === '9009') updatedValues[7] = '4-7 - Emer Rev HPD';
+          if (values[5] === '9010') updatedValues[7] = '9-10 - Interlock Braking Supervision';
+          if (values[5] === '9011') updatedValues[7] = '9-11 - EMR Supervision';
+          if (values[5] === '9248') updatedValues[7] = '3-3 - Pump Driver';
+          if (values[5] === '9264') updatedValues[7] = '3-4 - Load Hold Driver';
+          if (values[5] === '9280') updatedValues[7] = '3-5 - Lower Driver';
+          if (values[5] === '9296') updatedValues[7] = '9-6 - Pump BDI';
+          if (values[5] === '9488') updatedValues[7] = '1-2 - Controller Overcurrent';
+          if (values[5] === '9504') updatedValues[7] = '9-5 - Pump Overcurrent';
+          if (values[5] === '9521') updatedValues[7] = '2-5 - Ext 5V Supply Failure';
+          if (values[5] === '9522') updatedValues[7] = '2-6 - Ext 12V Supply Failure';
+          if (values[5] === '9537') updatedValues[7] = '7-2 - PDO Timeout';
+          if (values[5] === '9538') updatedValues[7] = '8-2 - PDO Mapping Error';
+          if (values[5] === '9552') updatedValues[7] = '7-6 - Insulation Resistance Low';
+          if (values[5] === '9760') updatedValues[7] = '11-1 - Analog 1 Out Of Range';
+          if (values[5] === '9761') updatedValues[7] = '11-2 - Analog 2 Out Of Range';
+          if (values[5] === '9762') updatedValues[7] = '11-3 - Analog 3 Out Of Range';
+          if (values[5] === '9763') updatedValues[7] = '11-4 - Analog 4 Out Of Range';
+          if (values[5] === '9764') updatedValues[7] = '11-5 - Analog 5 Out Of Range';
+          if (values[5] === '9765') updatedValues[7] = '11-6 - Analog 6 Out Of Range';
+          if (values[5] === '9766') updatedValues[7] = '11-7 - Analog 7 Out Of Range';
+          if (values[5] === '9767') updatedValues[7] = '11-8 - Analog 8 Out Of Range';
+          if (values[5] === '9768') updatedValues[7] = '11-9 - Analog 9 Out of Range';
+          if (values[5] === '9769') updatedValues[7] = '12-5 - PWM Input 10 Out of Range';
+          if (values[5] === '9770') updatedValues[7] = '11-11 - Analog 14 Out Of Range';
+          if (values[5] === '9771') updatedValues[7] = '11-13 - Analog 18 Out of range';
+          if (values[5] === '9772') updatedValues[7] = '11-14 - Analog 19 Out of range';
+          if (values[5] === '9773') updatedValues[7] = '12-6 - Pwm Input 17 Out Of Range';
+          if (values[5] === '9777') updatedValues[7] = '11-12 - Analog Assignment';
+          if (values[5] === '9778') updatedValues[7] = '10-8 - Driver Assignment';
+          if (values[5] === '10257') updatedValues[7] = '8-9 - Parameter Out of Range';
+          if (values[5] === '10258') updatedValues[7] = '9-9 - Parameter Mismatch';
+          if (values[5] === '10259') updatedValues[7] = '4-9 - Parameter Change';
+          if (values[5] === '10261') updatedValues[7] = '9-1 - Bad Firmware';
+          if (values[5] === '10263') updatedValues[7] = '4-10 - EMR Switch';
+          if (values[5] === '10272') updatedValues[7] = '6-8 - VCL Run Time Error';
+          if (values[5] === '10288') updatedValues[7] = '4-6 - NV Memory Failure';
+          if (values[5] === '10289') updatedValues[7] = '7-1 - OS General';
+          if (values[5] === '10290') updatedValues[7] = '1-3 - Current Sensor';
+          if (values[5] === '10291') updatedValues[7] = '9-7 - Pump Hardware';
+          if (values[5] === '10292') updatedValues[7] = '11-15 - Pump Current Sensor';
+          if (values[5] === '10293') updatedValues[7] = '8-3 - Internal Hardware';
+          if (values[5] === '10304') updatedValues[7] = '7-7 - Supervision';
+          if (values[5] === '10305') updatedValues[7] = '7-9 - Supervision Input Check';
+          if (values[5] === '10320') updatedValues[7] = '8-7 - Motor Characterization';
+          if (values[5] === '10336') updatedValues[7] = '12-1 - Branding Error';
+          if (values[5] === '10337') updatedValues[7] = '12-2 - BMS Cutback';
+          if (values[5] === '10338') updatedValues[7] = '12-3 - Differential Steering';
+          if (values[5] === '10352') updatedValues[7] = '13-3 - Hardware Compatibility';
+          if (values[5] === '10353') updatedValues[7] = '6-8 - ECC Run Time Error';
+          if (values[5] === '10384') updatedValues[7] = '14-14 - Eru Configuration';
+          if (values[5] === '10385') updatedValues[7] = '14-15 - Desat Trip';
+          if (values[5] === '10386') updatedValues[7] = '13-8 - ESTOP_Mismatch';
+          if (values[5] === '10387') updatedValues[7] = '13-9 - ESTOP_SRO';
+
+          if (values[5] === '10000') updatedValues[7] = '5-1 - User 1 Fault';
+          if (values[5] === '10001') updatedValues[7] = '5-2 - User 2 Fault';
+          if (values[5] === '10002') updatedValues[7] = '5-3 - User 3 Fault';
+          if (values[5] === '10003') updatedValues[7] = '5-4 - User 4 Fault';
+          if (values[5] === '10016') updatedValues[7] = '5-5 - User 5 Fault';
+          if (values[5] === '10017') updatedValues[7] = '5-6 - User 6 Fault';
+          if (values[5] === '10018') updatedValues[7] = '5-7 - User 7 Fault';
+          if (values[5] === '10019') updatedValues[7] = '5-8 - User 8 Fault';
+          if (values[5] === '10032') updatedValues[7] = '5-9 - User 9 Fault';
+          if (values[5] === '10033') updatedValues[7] = '6-1 - User 10 Fault';
+          if (values[5] === '10034') updatedValues[7] = '6-2 - User 11 Fault';
+          if (values[5] === '10035') updatedValues[7] = '6-3 - User 12 Fault';
+          if (values[5] === '10048') updatedValues[7] = '6-4 - User 13 Fault';
+          if (values[5] === '10049') updatedValues[7] = '6-5 - User 14 Fault';
+          if (values[5] === '10050') updatedValues[7] = '6-6 - User 15 Fault';
+          if (values[5] === '10051') updatedValues[7] = '6-7 - User 16 Fault';
+          if (values[5] === '10064') updatedValues[7] = '5-10 - User 17 Fault';
+          if (values[5] === '10065') updatedValues[7] = '5-11 - User 18 Fault';
+          if (values[5] === '10066') updatedValues[7] = '5-12 - User 19 Fault';
+          if (values[5] === '10067') updatedValues[7] = '5-13 - User 20 Fault';
+          if (values[5] === '10080') updatedValues[7] = '5-14 - User 21 Fault';
+          if (values[5] === '10081') updatedValues[7] = '5-15 - User 22 Fault';
+          if (values[5] === '10082') updatedValues[7] = '6-10 - User 23 Fault';
+          if (values[5] === '10083') updatedValues[7] = '6-11 - User 24 Fault';
+          if (values[5] === '10096') updatedValues[7] = '6-12 - User 25 Fault';
+          if (values[5] === '10097') updatedValues[7] = '6-13 - User 26 Fault';
+          if (values[5] === '10098') updatedValues[7] = '6-14 - User 27 Fault';
+          if (values[5] === '10099') updatedValues[7] = '6-15 - User 28 Fault';
+          if (values[5] === '10112') updatedValues[7] = '7-10 - User 29 Fault';
+          if (values[5] === '10113') updatedValues[7] = '7-11 - User 30 Fault';
+          if (values[5] === '10114') updatedValues[7] = '7-12 - User 31 Fault';
+          if (values[5] === '10115') updatedValues[7] = '7-13 - User 32 Fault';
+        } else {
+          updatedValues[7] = 'Generic Fault';
+        }
+
         if (values[4] >= '2' && values[4] <= '5') {
-          if (values[5] === '72' && values[6] === '1') updatedValues[7] = 'PDO1 Timeout';
-          if (values[5] === '72' && values[6] === '2') updatedValues[7] = 'PDO2 Timeout';
-          if (values[5] === '72' && values[6] === '3') updatedValues[7] = 'PDO3 Timeout';
-          if (values[5] === '72' && values[6] === '4') updatedValues[7] = 'PDO4 Timeout';
-          if (values[5] === '11' && values[6] === '1') updatedValues[7] = 'Hardware Fault';
-          if (values[5] === '12' && values[6] === '1') updatedValues[7] = 'Controller Overcurrent 1';
-          if (values[5] === '12' && values[6] === '2') updatedValues[7] = 'Controller Overcurrent 2';
-          if (values[5] === '13' && values[6] === '1') updatedValues[7] = 'Current Sensor Fault';
-          if (values[5] === '14' && values[6] === '1') updatedValues[7] = 'Precharge';
-          if (values[5] === '15' && values[6] === '1') updatedValues[7] = 'Controller Severe Undertemp';
-          if (values[5] === '16' && values[6] === '1') updatedValues[7] = 'Controller Severe Overtemp';
-          if (values[5] === '17' && values[6] === '1') updatedValues[7] = 'Severe Undervoltage';
-          if (values[5] === '18' && values[6] === '1') updatedValues[7] = 'Severe Overvoltage';
-          if (values[5] === '22' && values[6] === '1') updatedValues[7] = 'Controller Overtemp';
-          if (values[5] === '25' && values[6] === '1') updatedValues[7] = '5V Supply Failure';
-          if (values[5] === '26' && values[6] === '1') updatedValues[7] = '10V Supply Failure';
-          if (values[5] === '27' && values[6] === '1') updatedValues[7] = 'Severe Motor Over Temp';
-          if (values[5] === '28' && values[6] === '1') updatedValues[7] = 'Motor Temp Hot Cutback';
-          if (values[5] === '29' && values[6] === '1') updatedValues[7] = 'Motor Temp Sensor Fault';
-          if (values[5] === '31' && values[6] === '1') updatedValues[7] = 'Contactor Open/Short';
-          if (values[5] === '35' && values[6] === '1') updatedValues[7] = 'Fault Output Open/Short';
-          if (values[5] === '36' && values[6] === '1') updatedValues[7] = 'Motor Stalled';
-          if (values[5] === '37' && values[6] === '1') updatedValues[7] = 'Motor Open';
-          if (values[5] === '38' && values[6] === '1') updatedValues[7] = 'Contactor Welded';
-          if (values[5] === '39' && values[6] === '1') updatedValues[7] = 'Contactor Did Not Close';
-          if (values[5] === '39' && values[6] === '2') updatedValues[7] = 'Contactor Opened';
-          if (values[5] === '41' && values[6] === '1') updatedValues[7] = 'Command Analog1 Out of Range';
-          if (values[5] === '42' && values[6] === '1') updatedValues[7] = 'Command Analog3 Out of Range';
-          if (values[5] === '43' && values[6] === '1') updatedValues[7] = 'Feedback Analog5 Out of Range';
-          if (values[5] === '44' && values[6] === '1') updatedValues[7] = 'Feedback Analog6 Out of Range';
-          if (values[5] === '45' && values[6] === '1') updatedValues[7] = 'CAN Not Operational';
-          if (values[5] === '46' && values[6] === '1') updatedValues[7] = 'EEPROM CRC Fault';
-          if (values[5] === '47' && values[6] === '1') updatedValues[7] = 'Sawtooth Command Sensor';
-          if (values[5] === '47' && values[6] === '2') updatedValues[7] = 'Sin Cos Command Sensor';
-          if (values[5] === '48' && values[6] === '1') updatedValues[7] = 'Sawtooth Feedback Sensor';
-          if (values[5] === '48' && values[6] === '2') updatedValues[7] = 'Sin Cos Feedback Sensor';
-          if (values[5] === '49' && values[6] === '1') updatedValues[7] = 'Parameter Change Fault';
-          if (values[5] === '51' && values[6] === '1') updatedValues[7] = 'Interlock Switch Supervision';
-          if (values[5] === '52' && values[6] === '1') updatedValues[7] = 'Home Switch Supervision';
-          if (values[5] === '53' && values[6] === '1') updatedValues[7] = 'Home Position Not Found';
-          if (values[5] === '54' && values[6] === '1') updatedValues[7] = 'Home Reference Tolerance Fault';
-          if (values[5] === '55' && values[6] === '1') updatedValues[7] = 'Steer Command Supervision';
-          if (values[5] === '56' && values[6] === '1') updatedValues[7] = 'Wheel Position Supervision';
-          if (values[5] === '69' && values[6] === '1') updatedValues[7] = '5V Current Out of Range';
-          if (values[5] === '71' && values[6] === '1') updatedValues[7] = 'Software Fault 1';
-          if (values[5] === '71' && values[6] === '2') updatedValues[7] = 'Software Fault 2';
-          if (values[5] === '71' && values[6] === '3') updatedValues[7] = 'Software Fault 3';
-          if (values[5] === '71' && values[6] === '4') updatedValues[7] = 'Software Fault 4';
-          if (values[5] === '71' && values[6] === '5') updatedValues[7] = 'Software Fault 5';
-          if (values[5] === '73' && values[6] === '1') updatedValues[7] = 'Following Error';
-          if (values[5] === '74' && values[6] === '1') updatedValues[7] = 'Hardware Software Mismatch';
-          if (values[5] === '75' && values[6] === '1') updatedValues[7] = 'Parameter Conflict';
+          if (values[5] === '100') updatedValues[7] = 'Connection Fault';
+          if (values[5] === '72' && values[6] === '1') updatedValues[7] = '72-1 - PDO1 Timeout';
+          if (values[5] === '72' && values[6] === '2') updatedValues[7] = '72-2 - PDO2 Timeout';
+          if (values[5] === '72' && values[6] === '3') updatedValues[7] = '72-3 - PDO3 Timeout';
+          if (values[5] === '72' && values[6] === '4') updatedValues[7] = '72-4 - PDO4 Timeout';
+          if (values[5] === '11' && values[6] === '1') updatedValues[7] = '11-1 - Hardware Fault';
+          if (values[5] === '12' && values[6] === '1') updatedValues[7] = '12-1 - Controller Overcurrent 1';
+          if (values[5] === '12' && values[6] === '2') updatedValues[7] = '12-2 - Controller Overcurrent 2';
+          if (values[5] === '13' && values[6] === '1') updatedValues[7] = '13-1 - Current Sensor Fault';
+          if (values[5] === '14' && values[6] === '1') updatedValues[7] = '14-1 - Precharge';
+          if (values[5] === '15' && values[6] === '1') updatedValues[7] = '15-1 - Controller Severe Undertemp';
+          if (values[5] === '16' && values[6] === '1') updatedValues[7] = '16-1 - Controller Severe Overtemp';
+          if (values[5] === '17' && values[6] === '1') updatedValues[7] = '17-1 - Severe Undervoltage';
+          if (values[5] === '18' && values[6] === '1') updatedValues[7] = '18-1 - Severe Overvoltage';
+          if (values[5] === '22' && values[6] === '1') updatedValues[7] = '22-1 - Controller Overtemp';
+          if (values[5] === '25' && values[6] === '1') updatedValues[7] = '25-1 - 5V Supply Failure';
+          if (values[5] === '26' && values[6] === '1') updatedValues[7] = '26-1 - 10V Supply Failure';
+          if (values[5] === '27' && values[6] === '1') updatedValues[7] = '27-1 - Severe Motor Over Temp';
+          if (values[5] === '28' && values[6] === '1') updatedValues[7] = '28-1 - Motor Temp Hot Cutback';
+          if (values[5] === '29' && values[6] === '1') updatedValues[7] = '29-1 - Motor Temp Sensor Fault';
+          if (values[5] === '31' && values[6] === '1') updatedValues[7] = '31-1 - Contactor Open/Short';
+          if (values[5] === '35' && values[6] === '1') updatedValues[7] = '35-1 - Fault Output Open/Short';
+          if (values[5] === '36' && values[6] === '1') updatedValues[7] = '36-1 - Motor Stalled';
+          if (values[5] === '37' && values[6] === '1') updatedValues[7] = '37-1 - Motor Open';
+          if (values[5] === '38' && values[6] === '1') updatedValues[7] = '38-1 - Contactor Welded';
+          if (values[5] === '39' && values[6] === '1') updatedValues[7] = '39-1 - Contactor Did Not Close';
+          if (values[5] === '39' && values[6] === '2') updatedValues[7] = '39-2 - Contactor Opened';
+          if (values[5] === '41' && values[6] === '1') updatedValues[7] = '41-1 - Command Analog1 Out of Range';
+          if (values[5] === '42' && values[6] === '1') updatedValues[7] = '42-1 - Command Analog3 Out of Range';
+          if (values[5] === '43' && values[6] === '1') updatedValues[7] = '43-1 - Feedback Analog5 Out of Range';
+          if (values[5] === '44' && values[6] === '1') updatedValues[7] = '44-1 - Feedback Analog6 Out of Range';
+          if (values[5] === '45' && values[6] === '1') updatedValues[7] = '45-1 - CAN Not Operational';
+          if (values[5] === '46' && values[6] === '1') updatedValues[7] = '46-1 - EEPROM CRC Fault';
+          if (values[5] === '47' && values[6] === '1') updatedValues[7] = '47-1 - Sawtooth Command Sensor';
+          if (values[5] === '47' && values[6] === '2') updatedValues[7] = '47-2 - Sin Cos Command Sensor';
+          if (values[5] === '48' && values[6] === '1') updatedValues[7] = '48-1 - Sawtooth Feedback Sensor';
+          if (values[5] === '48' && values[6] === '2') updatedValues[7] = '48-2 - Sin Cos Feedback Sensor';
+          if (values[5] === '49' && values[6] === '1') updatedValues[7] = '49-1 - Parameter Change Fault';
+          if (values[5] === '51' && values[6] === '1') updatedValues[7] = '51-1 - Interlock Switch Supervision';
+          if (values[5] === '52' && values[6] === '1') updatedValues[7] = '52-1 - Home Switch Supervision';
+          if (values[5] === '53' && values[6] === '1') updatedValues[7] = '53-1 - Home Position Not Found';
+          if (values[5] === '54' && values[6] === '1') updatedValues[7] = '54-1 - Home Reference Tolerance Fault';
+          if (values[5] === '55' && values[6] === '1') updatedValues[7] = '55-1 - Steer Command Supervision';
+          if (values[5] === '56' && values[6] === '1') updatedValues[7] = '56-1 - Wheel Position Supervision';
+          if (values[5] === '69' && values[6] === '1') updatedValues[7] = '69-1 - 5V Current Out of Range';
+          if (values[5] === '71' && values[6] === '1') updatedValues[7] = '71-1 - Software Fault 1';
+          if (values[5] === '71' && values[6] === '2') updatedValues[7] = '71-2 - Software Fault 2';
+          if (values[5] === '71' && values[6] === '3') updatedValues[7] = '71-3 - Software Fault 3';
+          if (values[5] === '71' && values[6] === '4') updatedValues[7] = '71-4 - Software Fault 4';
+          if (values[5] === '71' && values[6] === '5') updatedValues[7] = '71-5 - Software Fault 5';
+          if (values[5] === '73' && values[6] === '1') updatedValues[7] = '73-1 - Following Error';
+          if (values[5] === '74' && values[6] === '1') updatedValues[7] = '74-1 - Hardware Software Mismatch';
+          if (values[5] === '75' && values[6] === '1') updatedValues[7] = '75-1 - Parameter Conflict';
+        } else {
+          updatedValues[7] = 'Generic Fault';
         }
 
       return updatedValues;
@@ -706,7 +714,7 @@ export default function Home() {
       isWithinDateRange &&
       (filters.column2 === '' || row[1].includes(filters.column2)) &&
       (filters.column5 === '' || row[4].includes(filters.column5)) &&
-      (filters.column6 === '' || row[5].includes(filters.column6))
+      (filters.column8 === '' || row[7].includes(filters.column8))
     );
   });
 
@@ -815,11 +823,11 @@ export default function Home() {
           <div>
             <select
               className="filters-select"
-              value={filters.column6}
-              onChange={(e) => handleFilterChange('column6', e.target.value)}
+              value={filters.column8}
+              onChange={(e) => handleFilterChange('column8', e.target.value)}
             >
               <option value="">F Series - All Values</option>
-              {column6Values.map((value, index) => (
+              {column8Values.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
                 </option>
