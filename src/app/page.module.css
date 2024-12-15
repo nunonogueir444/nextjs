@@ -331,29 +331,38 @@ a.secondary {
 /*############################################################################*/
 
 .glow {
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
-              0 0 20px rgba(255, 255, 255, 0.5),
-              0 0 30px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 5px hsl(0, 100%, 50%),
+              0 0 10px hsl(0, 100%, 50%),
+              0 0 15px hsl(0, 100%, 50%);
   border-radius: 50%;
-  transition: box-shadow 0.3s ease;
-  animation: glowPulse 3s infinite;
+  transition: box-shadow 0.8s ease;
 }
 
 @keyframes glowPulse {
   0% {
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.7),
-                0 0 8px rgba(255, 255, 255, 0.5),
-                0 0 12px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px hsl(0, 100%, 50%),
+                0 0 10px hsl(0, 100%, 50%),
+                0 0 15px hsl(0, 100%, 50%);
+  }
+  25% {
+    box-shadow: 0 0 5px hsl(90, 100%, 50%),
+                0 0 10px hsl(90, 100%, 50%),
+                0 0 15px hsl(90, 100%, 50%);
   }
   50% {
-    box-shadow: 0 0 4px rgba(255, 255, 255, 1),
-                0 0 8px rgba(255, 255, 255, 0.7),
-                0 0 12px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 5px hsl(180, 100%, 50%),
+                0 0 10px hsl(180, 100%, 50%),
+                0 0 15px hsl(180, 100%, 50%);
+  }
+  75% {
+    box-shadow: 0 0 5px hsl(270, 100%, 50%),
+                0 0 10px hsl(270, 100%, 50%),
+                0 0 15px hsl(270, 100%, 50%);
   }
   100% {
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.7),
-                0 0 8px rgba(255, 255, 255, 0.5),
-                0 0 12px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px hsl(360, 100%, 50%),
+                0 0 10px hsl(360, 100%, 50%),
+                0 0 15px hsl(360, 100%, 50%);
   }
 }
 
@@ -399,7 +408,7 @@ a.secondary {
 }
 
 .nextLogo {
-  animation: pulse 2s ease-in-out infinite, glowPulse 3s infinite;
+  animation: /*pulse 10s alternate infinite,*/ glowPulse 10s infinite;
 }
 
 @keyframes pulse {
@@ -407,7 +416,7 @@ a.secondary {
     opacity: 1;
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.5;
   }
   100% {
     opacity: 1;
@@ -424,7 +433,7 @@ a.secondary {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-2px);
   }
   100% {
     transform: translateY(0);
@@ -442,6 +451,27 @@ a.secondary {
   }
   50% {
     transform: scale(1.1);
+  }
+}
+
+.htmlLogo {
+  animation: shake 2s ease-in-out infinite;
+  height: 47px;
+  width: auto;
+  animation: shake 2s ease-in-out infinite;
+  margin-top: -6px;
+  margin-left: -8px;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
   }
 }
 
