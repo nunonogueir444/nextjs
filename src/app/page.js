@@ -5,10 +5,9 @@ import { useRouter, usePathname } from 'next/navigation';
 import styles from './page.module.css';
 
 const LoadingMessage = () => (
-  <div className={styles.floatingText} style={{ position: 'center', height: '100px' }}> {/* Ensure the container has relative positioning */}
+  <div className={styles.floatingText} style={{ position: 'center', height: '100px' }}>
     <div className="floatingText">Loading file, please wait...</div>
   </div>
-  
 );
 
 /*
@@ -418,12 +417,16 @@ export default function Home() {
 
   const headerColumns = fileContent ? fileContent.split('\n')[0].split(';') : [];
 
+  const handleBlur = (event) => {
+    event.target.blur();
+  };
+
 //##############################################################################
 //##############################################################################
 //##############################################################################
 
     return (
-    <main className={styles.main} style={{ overflowX: 'auto' }}>
+      <main className={styles.main} style={{ overflowX: 'auto' }}>
 {/*##########################################################################*/}
       <div className={styles.navigationButtons}>
         <button
@@ -445,12 +448,12 @@ export default function Home() {
           Demo File
         </button>
         <div className={styles.brandingContainer}>
-          <h5>v0.9 @nunonogueir444</h5>
+          <h5>v1alpha @nunonogueir444</h5>
           <div className={styles.poweredBy}>
             <span>Powered by:&nbsp;&nbsp;</span>
-            <img 
+            <img
               src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png"
-              alt="Next.js Logo" 
+              alt="Next.js Logo"
               className={`${styles.techLogo} ${styles.nextLogo} ${styles.glow}`}
             />
             <img
@@ -477,9 +480,11 @@ export default function Home() {
         </div>
       </div>
 {/*##########################################################################*/}
-      <h1>Activity Logs</h1>
+      <div className={styles.logsLabel}>
+        <label>Activity Logs</label>
+      </div>
 {/*##########################################################################*/}
-<div className={styles.inputContainer}>
+      <div className={styles.inputContainer}>
         <div>
           <label>Load Activities File:
             </label>
@@ -498,8 +503,16 @@ export default function Home() {
         {isLoading && <LoadingMessage />}
       </div>
 {/*##########################################################################*/}
+      <div className={styles.filtersLabel}>
+        <label>Filters:</label>
+      </div>
+
+      <div className={styles.filterLabel}>
+        <div><label>User Levels</label></div>
+        <div><label>Activities</label></div>
+      </div>
+
       <div>
-        <h3>Filters:</h3>
         <div className={styles.dateFilters}>
           <div>
             <label>
@@ -531,10 +544,14 @@ export default function Home() {
             </button>
           </div>
 {/*##########################################################################*/}
+
           <div>
             <select
               value={filters.column2}
-              onChange={(e) => handleFilterChange('column2', e.target.value)}
+              onChange={(e) => {
+                handleFilterChange('column2', e.target.value);
+                handleBlur(e);
+              }}
             >
               <option value="">All User Levels</option>
               {column2Values.map((value, index) => (
@@ -548,7 +565,10 @@ export default function Home() {
           <div>
             <select
               value={filters.column4}
-              onChange={(e) => handleFilterChange('column4', e.target.value)}
+              onChange={(e) => {
+                handleFilterChange('column4', e.target.value);
+                handleBlur(e);
+              }}
             >
               <option value="">All Activities</option>
               {column4Values.map((value, index) => (
@@ -578,51 +598,53 @@ export default function Home() {
               </button>
             </div>
 
-            <table border="1" className={styles.table}>
-              <thead>
-                <tr>
-                  <th>
-                    Date
-                    <button
-                      onClick={handleSort}
-                    >
-                      {sortDirection === 'asc' ? '↑' : '↓'}
-                    </button>
+            <div className={styles.tableContainer}>
+              <table border="1" className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>
+                      Date
+                      <button
+                        onClick={handleSort}
+                      >
+                        {sortDirection === 'asc' ? '↑' : '↓'}
+                      </button>
 
-                    <button
-                      onClick={handleResetSort}
-                      style={{ marginLeft: '5px' }}
-                    >
-                      Reset Sort
-                    </button>
-                  </th>
-                  <th>User Level</th>
-                  <th>Ind. User</th>
-                  <th>Activity Description</th>
-                  <th>Value1</th>
-                  <th>Value2</th>
-                  <th>Value3</th>
-                  <th>Value4</th>
-                  {headerColumns.slice(8).map((column, index) => (
-                    <th key={index}>{column}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {filteredContent.map((row, index) => (
-                  <tr key={index}>
-                    <td>{row[0] instanceof Date ? formatDate(row[0]) : row[0]}</td>
-                    <td>{row[1]}</td>
-                    <td>{row[2]}</td>
-                    <td>{row[3]}</td>
-                    <td>{row[4]}</td>
-                    <td>{row[5]}</td>
-                    <td>{row[6]}</td>
-                    <td>{row[7]}</td>
+                      <button
+                        onClick={handleResetSort}
+                        style={{ marginLeft: '5px' }}
+                      >
+                        Reset Sort
+                      </button>
+                    </th>
+                    <th>User Level</th>
+                    <th>Ind. User</th>
+                    <th>Activity Description</th>
+                    <th>Value 1</th>
+                    <th>Value 2</th>
+                    <th>Value 3</th>
+                    <th>Value 4</th>
+                    {headerColumns.slice(8).map((column, index) => (
+                      <th key={index}>{column}</th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {filteredContent.map((row, index) => (
+                    <tr key={index}>
+                      <td>{row[0] instanceof Date ? formatDate(row[0]) : row[0]}</td>
+                      <td>{row[1]}</td>
+                      <td>{row[2]}</td>
+                      <td>{row[3]}</td>
+                      <td>{row[4]}</td>
+                      <td>{row[5]}</td>
+                      <td>{row[6]}</td>
+                      <td>{row[7]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
             <div className={styles.pageNavigation}>
               <button onClick={handleFirstPage} disabled={currentPage === 0}>

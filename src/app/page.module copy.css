@@ -18,13 +18,9 @@
 
 @media (prefers-color-scheme: dark) {
   .page {
-    /*--gray-rgb: 255, 255, 255;
+    --gray-rgb: 255, 255, 255;
     --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);*/
-
-    --gray-rgb: 0, 0, 0;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
 
     --button-primary-hover: #ccc;
     --button-secondary-hover: #1a1a1a;
@@ -36,39 +32,6 @@
   flex-direction: column;
   gap: 32px;
   grid-row-start: 2;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  scrollbar-width: auto;
-  scrollbar-gutter: stable;
-  min-height: 100vh;
-  height: 100vh;
-}
-
-.main::-webkit-scrollbar {
-  width: 20px;
-  height: 20px;
-}
-
-.main::-webkit-scrollbar-track {
-  background: #092816;
-  border: 1px solid #166938;
-  border-radius: 5px;
-}
-
-.main::-webkit-scrollbar-corner {
-  background: #092816;
-  border: 1px solid #166938;
-  border-radius: 5px;
-}
-
-.main::-webkit-scrollbar-thumb {
-  background: #166938;
-  border-radius: 5px;
-  border: 1px solid #092816;
-}
-
-.main::-webkit-scrollbar-thumb:hover {
-  background: #53ba45;
 }
 
 .main ol {
@@ -224,8 +187,6 @@ a.secondary {
   display: flex;
   gap: 10px;
   margin-bottom: 1px;
-  justify-content: center;
-  align-items: center;
 }
 .navigationButtons button{
   transition: background-color 0.8s ease;
@@ -256,9 +217,6 @@ a.secondary {
   display: flex;
   gap: 0px;
   border-radius: 10px;
-  margin-left: 10px;
-  justify-content: center;
-  align-items: center;
 }
 
 .inputContainer label {
@@ -270,11 +228,10 @@ a.secondary {
   font-size: 14px;
   border-radius: 10px;
   /*border: 1px solid #ffffff;*/
-  /* width: 100px;*/
+  width: 140px;
   /*gap: 4px;*/
   justify-content: center;
   text-align: center;
-  width: 130px;
 }
 
 .inputContainer input[type="file"] {
@@ -286,40 +243,31 @@ a.secondary {
   border: 1px solid #166938;
   border-radius: 10px;
   height: 40px;
-  margin-left: 10px;
 }
 /*############################################################################*/
-.tableContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 20px;
-}
-
 .table {
-  width: 1500px;
+  width: 100%;
   border-collapse: collapse;
-  border: 1px solid #ffffff;
+  margin-top: 20px;
+  border: 1px solid #dddddd;
 }
-
 .table th {
   background-color: #166938;
   color: #ffffff;
   padding: 10px;
-  text-align: center;
+  text-align: left;
   font-size: 14px;
   font-weight: bold;
-  border: 1px solid #818181;
+  border: 1px solid #ffffff;
 }
 .table td {
   padding: 10px;
   text-align: left;
   font-size: 14px;
-  border: 1px solid #818181;
+  border: 1px solid #ffffff;
 }
 .table tr:hover {
-  background-color: #313131;;
+  background-color: #353535;
 }
 /*############################################################################*/
 .pageNavigation {
@@ -351,38 +299,18 @@ a.secondary {
   cursor: not-allowed;
 }
 /*############################################################################*/
-.logsLabel {
-  display: flex;
-  padding: 0px 10px;
-  margin-bottom: 0px;
-  justify-content: center;
-  align-items: center;
-  margin-right: 900px;
-}
-
-.logsLabel label{
-  height: 40px;
-  display: flex;
-  color: #ffffff;
-  font-size: 30px;
-  font-weight: bold;
-}
-/*############################################################################*/
 .dateFilters {
   display: flex;
   gap: 10px;
   margin-top: 0px;
   margin-bottom: 0px;
   border-radius: 10px;
-  margin-left: 10px;
-  justify-content: center;
-  align-items: center;
 }
 
 .dateFilters label {
   height: 40px;
   display: flex;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
   background-color: #166938;
   color: #ffffff;
@@ -390,14 +318,13 @@ a.secondary {
   border-radius: 10px;
   border: 1px solid #ffffff;
   padding-left: 4px;
-  width: 220px;
-  justify-content: flex-end;
 }
 
 .dateFilters input {
   height: 40px;
   padding: 8px;
   border-radius: 10px;
+  border: 1px solid #ffffff;
   border: 1px solid #ffffff;
   cursor: pointer;
   font-size: 14px;
@@ -412,7 +339,6 @@ a.secondary {
   transition: background-color 0.8s ease;
   border: 1px solid #ffffff;
   cursor: pointer;
-  width: 90px;
 }
 .dateFilters button:hover {
   background-color: #53ba45
@@ -434,48 +360,14 @@ a.secondary {
   color: #ffffff;
   width: 200px;
   border: 1px solid #ffffff;
-  outline: none;
-  transition: background-color 0.8s ease;
-  cursor: pointer;
 }
-
-.dateFilters select:hover {
-  background-color: #53ba45
-}
-
-.dateFilters select:focus {
-  background-color: #166938;
-  transition: background-color 0.8s ease;
-}
-
 /*############################################################################*/
-.filtersLabel {
-  display: flex;
-  padding: 0px 10px;
-  margin-bottom: -64px;
-  justify-content: center;
-  align-items: center;
-  margin-right: 910px;
-}
-
-.filtersLabel label{
-  height: 40px;
-  display: flex;
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: bold;
-  justify-content: center;
-  align-items: center;
-}
-
 .filterLabel {
   display: flex;
   padding: 0px 0px;
   margin-bottom: -34px;
-  margin-left: 580px;
-  gap: 19px;
-  justify-content: center;
-  align-items: center;
+  margin-left: 542px;
+  gap: 18px;
 }
 
 .filterLabel label{
@@ -487,7 +379,7 @@ a.secondary {
   font-size: 14px;
   border-radius: 10px;
   border: 0px solid #ffffff;
-  width: 201px;
+  width: 202px;
   background-color: #166938;
 }
 /*############################################################################*/

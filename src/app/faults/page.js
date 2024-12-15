@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import styles from '../page.module.css';
 
+
 const LoadingMessage = () => (
   <div className={styles.loadingMessage}>
     Loading file, please wait...
@@ -45,8 +46,8 @@ export default function Home() {
   ];
 
   const column5Values = [
-    'Traction - All',
-    'Steer - All',
+    'All Traction',
+    'All Steer',
     'PLC',
     'Pump',
     'TRR',
@@ -916,10 +917,10 @@ export default function Home() {
       }
 
       if (column === 'column5') {
-        if (filterValue === 'Traction - All') {
+        if (filterValue === 'All Traction') {
           const tractionValues = ['TRR', 'TRL', 'TFR', 'TFL'];
           return tractionValues.includes(rowValue);
-        } else if (filterValue === 'Steer - All') {
+        } else if (filterValue === 'All Steer') {
           const steerValues = ['SRR', 'SRL', 'SFR', 'SFL'];
           return steerValues.includes(rowValue);
         } else {
@@ -936,6 +937,10 @@ export default function Home() {
   });
 
   const headerColumns = fileContent ? fileContent.split('\n')[0].split(';') : [];
+
+  const handleBlur = (event) => {
+    event.target.blur();
+  };
 
 //##############################################################################
 //##############################################################################
@@ -964,7 +969,7 @@ export default function Home() {
           Demo File
         </button>
         <div className={styles.brandingContainer}>
-          <h5>v0.9 @nunonogueir444</h5>
+          <h5>v1alpha @nunonogueir444</h5>
           <div className={styles.poweredBy}>
             <span>Powered by:&nbsp;&nbsp;</span>
             <img 
@@ -996,7 +1001,9 @@ export default function Home() {
         </div>
       </div>
 {/*##########################################################################*/}
-<h1>Fault Logs</h1>
+      <div className={styles.logsLabel}>
+        <label>Fault Logs</label>
+      </div>
 {/*##########################################################################*/}
       <div className={styles.inputContainer}>
         <div>
@@ -1017,8 +1024,19 @@ export default function Home() {
         {isLoading && <LoadingMessage />}
       </div>
 {/*##########################################################################*/}
+      <div className={styles.filtersLabel}>
+        <label>Filters:</label>
+      </div>
+
+      <div className={styles.filterLabel}>
+        <div><label>User Levels</label></div>
+        <div><label>Controllers</label></div>
+        <div><label>Traction Faults</label></div>
+        <div><label>Steer Faults</label></div>
+        <div><label>PLC Faults</label></div>
+      </div>
+
       <div>
-        <h3>Filters:</h3>
           <div className={styles.dateFilters}>
           <div>
             <label>
@@ -1054,9 +1072,12 @@ export default function Home() {
             <select
               className="filters-select"
               value={filters.column2}
-              onChange={(e) => handleFilterChange('column2', e.target.value)}
+              onChange={(e) => {
+                handleFilterChange('column2', e.target.value);
+                handleBlur(e);
+              }}
             >
-              <option value="">User Levels - All</option>
+              <option value="">All User Levels</option>
               {column2Values.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -1069,9 +1090,12 @@ export default function Home() {
             <select
               className="filters-select"
               value={filters.column5}
-              onChange={(e) => handleFilterChange('column5', e.target.value)}
+              onChange={(e) => {
+                handleFilterChange('column5', e.target.value);
+                handleBlur(e);
+              }}
             >
-              <option value="">Controllers - All</option>
+              <option value="">All Controllers</option>
               {column5Values.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -1084,9 +1108,12 @@ export default function Home() {
             <select
               className="filters-select"
               value={filters.column8}
-              onChange={(e) => handleFilterChange('column8', e.target.value)}
+              onChange={(e) => {
+                handleFilterChange('column8', e.target.value);
+                handleBlur(e);
+              }}
             >
-              <option value="">Traction - All Faults</option>
+              <option value="">All Traction Faults</option>
               {column8Values.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -1099,9 +1126,12 @@ export default function Home() {
             <select
               className="filters-select"
               value={filters.column8}
-              onChange={(e) => handleFilterChange('column8', e.target.value)}
+              onChange={(e) => {
+                handleFilterChange('column8', e.target.value);
+                handleBlur(e);
+              }}
             >
-              <option value="">Steer - All Faults</option>
+              <option value="">All Steer Faults</option>
               {column8SteerValues.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -1114,9 +1144,12 @@ export default function Home() {
             <select
               className="filters-select"
               value={filters.column8}
-              onChange={(e) => handleFilterChange('column8', e.target.value)}
+              onChange={(e) => {
+                handleFilterChange('column8', e.target.value);
+                handleBlur(e);
+              }}
             >
-              <option value="">PLC - All Faults</option>
+              <option value="">All PLC Faults</option>
               {column8PLCValues.map((value, index) => (
                 <option key={index} value={value}>
                   {value}
@@ -1144,53 +1177,55 @@ export default function Home() {
               </button>
             </div>
 
-            <table border="1" className={styles.table}>
-              <thead>
-                <tr>
-                  <th>
-                    Date
-                    <button
-                      className={styles.sortButton}
-                      onClick={handleSort}
-                    >
-                      {sortDirection === 'asc' ? '↑' : '↓'}
-                    </button>
+            <div className={styles.tableContainer}>
+              <table border="1" className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>
+                      Date
+                      <button
+                        className={styles.sortButton}
+                        onClick={handleSort}
+                      >
+                        {sortDirection === 'asc' ? '↑' : '↓'}
+                      </button>
 
-                    <button
-                      className={styles.resetSortButton}
-                      onClick={handleResetSort}
-                      style={{ marginLeft: '5px' }}
-                    >
-                      Reset Sort
-                    </button>
-                  </th>
-                  <th>User Level</th>
-                  <th>Ind. User</th>
-                  <th>Group Event</th>
-                  <th>Controller</th>
-                  <th>Fault Code (Major)</th>
-                  <th>Fault Code (Minor)</th>
-                  <th>Fault Description</th>
-                  {headerColumns.slice(8).map((column, index) => (
-                    <th key={index}>{column}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {filteredContent.map((row, index) => (
-                  <tr key={index}>
-                    <td>{row[0] instanceof Date ? formatDate(row[0]) : row[0]}</td>
-                    <td>{row[1]}</td>
-                    <td>{row[2]}</td>
-                    <td>{row[3]}</td>
-                    <td>{row[4]}</td>
-                    <td>{row[5]}</td>
-                    <td>{row[6]}</td>
-                    <td>{row[7]}</td>
+                      <button
+                        className={styles.resetSortButton}
+                        onClick={handleResetSort}
+                        style={{ marginLeft: '5px' }}
+                      >
+                        Reset Sort
+                      </button>
+                    </th>
+                    <th>User Level</th>
+                    <th>Ind. User</th>
+                    <th>Group Event</th>
+                    <th>Controller</th>
+                    <th>Fault Code (Major)</th>
+                    <th>Fault Code (Minor)</th>
+                    <th>Fault Description</th>
+                    {headerColumns.slice(8).map((column, index) => (
+                      <th key={index}>{column}</th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {filteredContent.map((row, index) => (
+                    <tr key={index}>
+                      <td>{row[0] instanceof Date ? formatDate(row[0]) : row[0]}</td>
+                      <td>{row[1]}</td>
+                      <td>{row[2]}</td>
+                      <td>{row[3]}</td>
+                      <td>{row[4]}</td>
+                      <td>{row[5]}</td>
+                      <td>{row[6]}</td>
+                      <td>{row[7]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
             <div className={styles.pageNavigation}>
               <button onClick={handleFirstPage} disabled={currentPage === 0}>
