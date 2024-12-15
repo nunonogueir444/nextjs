@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import styles from '../page.module.css';
 
 export default function PageFiles() {
   const router = useRouter();
+  const pathname = usePathname();
   const [lineCount, setLineCount] = useState('');
   const [error, setError] = useState('');
   const [fileType, setFileType] = useState('type1');
@@ -149,25 +150,25 @@ export default function PageFiles() {
 {/*##########################################################################*/}
 <div className={styles.navigationButtons}>
         <button
-        className={styles.navigationButton}
+          className={`${styles.navigationButton} ${pathname === '/' ? styles.active : ''}`}
           onClick={() => router.push('/')}
         >
           Activities
         </button>
         <button
-          className={styles.navigationButton}
+          className={`${styles.navigationButton} ${pathname === '/faults' ? styles.active : ''}`}
           onClick={() => router.push('/faults')}
         >
           Faults
         </button>
         <button
-          className={styles.navigationButton}
+          className={`${styles.navigationButton} ${pathname === '/page_files' ? styles.active : ''}`}
           onClick={() => router.push('/page_files')}
         >
           Demo File
         </button>
         <div className={styles.brandingContainer}>
-          <h5>v0.7 @nunonogueir444</h5>
+          <h5>v0.9 @nunonogueir444</h5>
           <div className={styles.poweredBy}>
             <span>Powered by:&nbsp;&nbsp;</span>
             <img 

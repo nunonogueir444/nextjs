@@ -182,7 +182,7 @@ a.secondary {
   padding: 10px 10px;
   margin-top: 1px;
   background-color: #092816;
-  border: 1px solid rgb(0, 20, 10);
+  border: 1px solid #092816;
   border-radius: 1px;
   display: flex;
   gap: 10px;
@@ -206,12 +206,46 @@ a.secondary {
   font-size: 14px;
   font-weight: bold;
 }
-.navigationButton:hover {
-  background-color: #53ba45
+
+.navigationButton:hover,
+.navigationButton.active {
+  background-color: #53ba45;
 }
-.navigationButton.hovered {
-  background-color: #ddd;
+
+/*############################################################################*/
+.inputContainer {
+  display: flex;
+  gap: 0px;
+  border-radius: 10px;
 }
+
+.inputContainer label {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  /*background-color: #166938;*/
+  color: #ffffff;
+  font-size: 14px;
+  border-radius: 10px;
+  /*border: 1px solid #ffffff;*/
+  width: 140px;
+  /*gap: 4px;*/
+  justify-content: center;
+  text-align: center;
+}
+
+.inputContainer input[type="file"] {
+  max-width: none;
+  width: 100%;
+  white-space: nowrap;
+  overflow: visible;
+  padding: 10px;
+  border: 1px solid #166938;
+  border-radius: 10px;
+  height: 40px;
+}
+/*############################################################################*/
+
 /*############################################################################*/
 .table {
   width: 100%;
@@ -331,38 +365,38 @@ a.secondary {
 /*############################################################################*/
 
 .glow {
-  box-shadow: 0 0 5px hsl(0, 100%, 50%),
-              0 0 10px hsl(0, 100%, 50%),
-              0 0 15px hsl(0, 100%, 50%);
+  box-shadow: 0 0 5px #ffffff,
+              0 0 10px #ffffff,
+              0 0 15px #ffffff;
   border-radius: 50%;
   transition: box-shadow 0.8s ease;
 }
 
 @keyframes glowPulse {
   0% {
-    box-shadow: 0 0 5px hsl(0, 100%, 50%),
-                0 0 10px hsl(0, 100%, 50%),
-                0 0 15px hsl(0, 100%, 50%);
+    box-shadow: 0 0 5px #ff0000,
+                0 0 10px #ff0000,
+                0 0 15px #ff0000;
   }
   25% {
-    box-shadow: 0 0 5px hsl(90, 100%, 50%),
-                0 0 10px hsl(90, 100%, 50%),
-                0 0 15px hsl(90, 100%, 50%);
+    box-shadow: 0 0 5px #00ff00,
+                0 0 10px #00ff00,
+                0 0 15px #00ff00;
   }
   50% {
-    box-shadow: 0 0 5px hsl(180, 100%, 50%),
-                0 0 10px hsl(180, 100%, 50%),
-                0 0 15px hsl(180, 100%, 50%);
+    box-shadow: 0 0 5px #00fffb,
+                0 0 10px #00fffb,
+                0 0 15px #00fffb;
   }
   75% {
-    box-shadow: 0 0 5px hsl(270, 100%, 50%),
-                0 0 10px hsl(270, 100%, 50%),
-                0 0 15px hsl(270, 100%, 50%);
+    box-shadow: 0 0 5px #9900ff,
+                0 0 10px #9900ff,
+                0 0 15px #9900ff;
   }
   100% {
-    box-shadow: 0 0 5px hsl(360, 100%, 50%),
-                0 0 10px hsl(360, 100%, 50%),
-                0 0 15px hsl(360, 100%, 50%);
+    box-shadow: 0 0 5px #ff0000,
+                0 0 10px #ff0000,
+                0 0 15px #ff0000;
   }
 }
 
@@ -456,11 +490,11 @@ a.secondary {
 
 .htmlLogo {
   animation: shake 2s ease-in-out infinite;
-  height: 47px;
+  height: 40px;
   width: auto;
   animation: shake 2s ease-in-out infinite;
-  margin-top: -6px;
-  margin-left: -8px;
+  /*margin-top: -6px;*/
+  margin-left: -6px;
 }
 
 @keyframes shake {

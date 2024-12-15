@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import styles from './page.module.css';
 
 const LoadingMessage = () => (
@@ -18,8 +18,8 @@ function startFileUpload() {
 */
 
 export default function Home() {
-
   const router = useRouter();
+  const pathname = usePathname();
   const [fileContent, setFileContent] = useState('');
   const [pages, setPages] = useState([]);
   const [originalPages, setOriginalPages] = useState([]);
@@ -427,25 +427,25 @@ export default function Home() {
 {/*##########################################################################*/}
       <div className={styles.navigationButtons}>
         <button
-        className={styles.navigationButton}
+          className={`${styles.navigationButton} ${pathname === '/' ? styles.active : ''}`}
           onClick={() => router.push('/')}
         >
           Activities
         </button>
         <button
-          className={styles.navigationButton}
+          className={`${styles.navigationButton} ${pathname === '/faults' ? styles.active : ''}`}
           onClick={() => router.push('/faults')}
         >
           Faults
         </button>
         <button
-          className={styles.navigationButton}
+          className={`${styles.navigationButton} ${pathname === '/page_files' ? styles.active : ''}`}
           onClick={() => router.push('/page_files')}
         >
           Demo File
         </button>
         <div className={styles.brandingContainer}>
-          <h5>v0.7 @nunonogueir444</h5>
+          <h5>v0.9 @nunonogueir444</h5>
           <div className={styles.poweredBy}>
             <span>Powered by:&nbsp;&nbsp;</span>
             <img 
@@ -469,7 +469,7 @@ export default function Home() {
               className={`${styles.techLogo} ${styles.cssLogo}`}
             />
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg"
+              src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg"
               alt="HTML Logo"
               className={`${styles.techLogo} ${styles.htmlLogo}`}
             />
@@ -479,9 +479,22 @@ export default function Home() {
 {/*##########################################################################*/}
       <h1>Activity Logs</h1>
 {/*##########################################################################*/}
-      <div>
-        Load Activities File:
-        <input type="file" accept=".log" onChange={handleFileChange} />
+<div className={styles.inputContainer}>
+        <div>
+          <label>Load Activities File:
+            </label>
+        </div>
+        <div>
+          <input
+          type="file"
+          accept=".log"
+          onChange={handleFileChange}
+          style={{
+            width: '800px',
+            maxWidth: 'none'
+          }}
+          />
+        </div>
         {isLoading && <LoadingMessage />}
       </div>
 {/*##########################################################################*/}

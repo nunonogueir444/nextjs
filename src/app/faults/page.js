@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import styles from '../page.module.css';
 
 const LoadingMessage = () => (
@@ -11,8 +11,8 @@ const LoadingMessage = () => (
 );
 
 export default function Home() {
-
   const router = useRouter();
+  const pathname = usePathname();
   const [fileContent, setFileContent] = useState('');
   const [pages, setPages] = useState([]);
   const [originalPages, setOriginalPages] = useState([]);
@@ -888,11 +888,11 @@ export default function Home() {
 
         if (updatedValues[7] == 0) {
           if (values[4] >= 2 && values[4] <= 5) {
-            updatedValues[7] = values[5] + '-' + values[6] + ' - Generic Fault1';
+            updatedValues[7] = values[5] + '-' + values[6] + ' - Generic Fault';
           }
 
           if ((values[4] >= 36 && values[4] <= 40) || (values[4] == 50)){
-            updatedValues[7] = values[5] + ' - Generic Fault2';
+            updatedValues[7] = values[5] + ' - Generic Fault';
           }
         }
 
@@ -926,6 +926,9 @@ export default function Home() {
           return rowValue === filterValue;
         }
       } else {
+        if (filterValue === 'Generic Fault') {
+          return rowValue.includes('Generic Fault');
+        }
         return rowValue === filterValue;
       }
     });
@@ -941,29 +944,27 @@ export default function Home() {
     return (
     <main className={styles.main} style={{ overflowX: 'auto' }}>
 {/*##########################################################################*/}
-      <div className={styles.navigationButtons}>
+<div className={styles.navigationButtons}>
         <button
-        className={styles.navigationButton}
+          className={`${styles.navigationButton} ${pathname === '/' ? styles.active : ''}`}
           onClick={() => router.push('/')}
         >
           Activities
         </button>
-
         <button
-          className={styles.navigationButton}
+          className={`${styles.navigationButton} ${pathname === '/faults' ? styles.active : ''}`}
           onClick={() => router.push('/faults')}
         >
           Faults
         </button>
-
         <button
-          className={styles.navigationButton}
+          className={`${styles.navigationButton} ${pathname === '/page_files' ? styles.active : ''}`}
           onClick={() => router.push('/page_files')}
         >
           Demo File
         </button>
         <div className={styles.brandingContainer}>
-          <h5>v0.7 @nunonogueir444</h5>
+          <h5>v0.9 @nunonogueir444</h5>
           <div className={styles.poweredBy}>
             <span>Powered by:&nbsp;&nbsp;</span>
             <img 
@@ -997,9 +998,22 @@ export default function Home() {
 {/*##########################################################################*/}
 <h1>Fault Logs</h1>
 {/*##########################################################################*/}
-      <div>
-        Load Faults File:
-        <input type="file" accept=".log" onChange={handleFileChange} />
+      <div className={styles.inputContainer}>
+        <div>
+          <label>Load Faults File:
+            </label>
+        </div>
+        <div>
+          <input
+          type="file"
+          accept=".log"
+          onChange={handleFileChange}
+          style={{
+            width: '800px',
+            maxWidth: 'none'
+          }}
+          />
+        </div>
         {isLoading && <LoadingMessage />}
       </div>
 {/*##########################################################################*/}
