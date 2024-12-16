@@ -118,7 +118,7 @@ export default function Home() {
     if (file && (file.type === 'text/plain' || file.name.endsWith('.log'))) {
 
       setIsLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 30000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       const reader = new FileReader();
       reader.readAsText(file);
