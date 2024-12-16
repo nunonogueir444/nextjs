@@ -196,7 +196,7 @@ export default function PageFiles() {
               className={`${styles.techLogo} ${styles.cssLogo}`}
             />
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg"
+              src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg"
               alt="HTML Logo"
               className={`${styles.techLogo} ${styles.htmlLogo}`}
             />
