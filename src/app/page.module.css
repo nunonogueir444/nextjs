@@ -206,13 +206,16 @@ a.secondary {
 /*############################################################################*/
 .floatingText {
   position: absolute;
-  top: 300px;
-  left: 200px;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 30px;
-  color: rgb(101, 139, 255);
-  background-color: rgba(0, 47, 35, 0.8);
-  padding: 25px;
+  color: #ffffff;
+  background-color: #092816;
+  padding: 100px;
   border-radius: 10px;
+  text-align: center; /* Center text inside the element */
+  box-shadow: 0 0 50px #166938;
 }
 /*############################################################################*/
 .navigationButtons {
@@ -226,6 +229,7 @@ a.secondary {
   margin-bottom: 1px;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 155px 500px #166938;
 }
 .navigationButtons button{
   transition: background-color 0.8s ease;
@@ -251,12 +255,16 @@ a.secondary {
   background-color: #53ba45;
 }
 
+.navigationButton button{
+  transition: background-color 0.8s ease;
+}
+
 /*############################################################################*/
 .inputContainer {
   display: flex;
   gap: 0px;
   border-radius: 10px;
-  margin-left: 10px;
+  margin-left: 0px;
   justify-content: center;
   align-items: center;
 }
@@ -265,7 +273,7 @@ a.secondary {
   height: 40px;
   display: flex;
   align-items: center;
-  /*background-color: #166938;*/
+  background-color: #166938;
   color: #ffffff;
   font-size: 14px;
   border-radius: 10px;
@@ -282,12 +290,88 @@ a.secondary {
   width: 100%;
   white-space: nowrap;
   overflow: visible;
-  padding: 10px;
+  padding: 8px 10px;
   border: 1px solid #166938;
   border-radius: 10px;
   height: 40px;
   margin-left: 10px;
+  cursor: pointer;
+  background-color: #092816;
+  font-size: 14px;
+  transition: background-color 0.8s ease, border-color 0.8s ease;
+  color: #ffffff;
 }
+
+.inputContainer input[type="number"] {
+  max-width: none;
+  width: 100%;
+  white-space: nowrap;
+  overflow: visible;
+  padding: 8px 10px;
+  border: 1px solid #166938;
+  border-radius: 10px;
+  height: 40px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: #092816;
+  font-size: 14px;
+  transition: background-color 0.8s ease, border-color 0.8s ease;
+  color: #ffffff;
+  outline: none;
+}
+
+.inputContainer select[type="dropList"] {
+  max-width: none;
+  width: 100%;
+  white-space: nowrap;
+  overflow: visible;
+  padding: 8px 10px;
+  border: 1px solid #166938;
+  border-radius: 10px;
+  height: 40px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: #092816;
+  font-size: 14px;
+  transition: background-color 0.8s ease, border-color 0.8s ease;
+  
+  color: #ffffff;
+}
+
+.inputContainer input[type="file"]:hover{
+  background-color: #166938;
+  border-color: #ffffff;
+}
+
+.inputContainer input[type="file"]:focus {
+  background-color: #092816;
+}
+
+.inputContainer [type="number"]:hover{
+  background-color: #166938;
+  border-color: #ffffff;
+}
+
+.inputContainer input[type="number"]:focus {
+  background-color: #166938;
+  border-color: #ffffff;
+}
+
+.inputContainer [type="number"]:active{
+  background-color: #166938;
+  border-color: #ffffff;
+}
+
+.inputContainer select[type="dropList"]:hover{
+  background-color: #166938;
+  border-color: #ffffff;
+}
+
+/*
+.inputContainer select:focus {
+  background-color: #092816;
+}
+*/
 /*############################################################################*/
 .tableContainer {
   display: flex;
@@ -295,6 +379,23 @@ a.secondary {
   align-items: center;
   width: 100%;
   margin-top: 20px;
+}
+
+.table button {
+  border: 1px solid #ffffff;
+  margin: 0 8px;
+  padding: 0px 6px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: background-color 0.8s ease;
+  color: #ffffff;
+  background-color: #166938;
+  height: 20px;
+}
+
+.table button:hover {
+  background-color: #53ba45;
 }
 
 .table {
@@ -306,7 +407,7 @@ a.secondary {
 .table th {
   background-color: #166938;
   color: #ffffff;
-  padding: 10px;
+  padding: 4px 0px;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
@@ -320,6 +421,14 @@ a.secondary {
 }
 .table tr:hover {
   background-color: #313131;;
+}
+/*############################################################################*/
+.sortDate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
 }
 /*############################################################################*/
 .pageNavigation {
@@ -388,7 +497,6 @@ a.secondary {
   color: #ffffff;
   font-size: 14px;
   border-radius: 10px;
-  border: 1px solid #ffffff;
   padding-left: 4px;
   width: 220px;
   justify-content: flex-end;
@@ -401,6 +509,22 @@ a.secondary {
   border: 1px solid #ffffff;
   cursor: pointer;
   font-size: 14px;
+  background-color: #166938;
+  color: #ffffff;
+  transition: background-color 0.8s ease, border-color 0.8s ease;
+}
+
+.dateFilters input:hover {
+  background-color: #53ba45;
+}
+
+.dateFilters input:focus {
+  background-color: #166938;
+  outline: none;
+}
+
+.dateFilters input:active {
+  background-color: #166938;
 }
 
 .dateFilters button {
@@ -408,7 +532,7 @@ a.secondary {
   padding: 4px;
   border-radius: 10px;
   background-color: #166938;
-  color: #ffffff;
+  color: #ffffff !important;
   transition: background-color 0.8s ease;
   border: 1px solid #ffffff;
   cursor: pointer;
@@ -416,13 +540,6 @@ a.secondary {
 }
 .dateFilters button:hover {
   background-color: #53ba45
-}
-
-.dateFilters select {
-  margin-left: 50px;
-  height: 40px;
-  padding: 0px;
-  border-radius: 10px;
 }
 
 .dateFilters select {
@@ -437,6 +554,29 @@ a.secondary {
   outline: none;
   transition: background-color 0.8s ease;
   cursor: pointer;
+  overflow-y: auto;
+}
+
+.dateFilters select {
+  overflow-y: auto;
+}
+
+.dateFilters select::-webkit-scrollbar {
+  width: 20px;
+}
+
+.dateFilters select::-webkit-scrollbar-track {
+  background: #092816;
+  border: 1px solid #53ba45
+}
+
+.dateFilters select::-webkit-scrollbar-thumb {
+  background: #53ba45;
+  border-radius: 5px;
+}
+
+.dateFilters select::-webkit-scrollbar-thumb:hover {
+  background: #53ba45
 }
 
 .dateFilters select:hover {
@@ -447,7 +587,6 @@ a.secondary {
   background-color: #166938;
   transition: background-color 0.8s ease;
 }
-
 /*############################################################################*/
 .filtersLabel {
   display: flex;
@@ -490,6 +629,7 @@ a.secondary {
   width: 201px;
   background-color: #166938;
 }
+
 /*############################################################################*/
 .glow {
   box-shadow: 0 0 5px #ffffff,
@@ -635,7 +775,30 @@ a.secondary {
     transform: rotate(5deg);
   }
 }
-
 /*############################################################################*/
+.generateButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  padding: 10px 20px;
+  margin: 0px auto;
+}
 
+.generateButton button {
+
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 10px;
+  transition: background-color 0.8s ease;
+  color: #ffffff;
+  background-color: #166938;
+  height: 40px;
+}
+
+
+.generateButton button:hover {
+  background-color: #53ba45;
+}
 /*############################################################################*/

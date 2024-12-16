@@ -5,16 +5,10 @@ import { useRouter, usePathname } from 'next/navigation';
 import styles from './page.module.css';
 
 const LoadingMessage = () => (
-  <div className={styles.floatingText} style={{ position: 'center', height: '100px' }}>
+  <div className={styles.floatingText}>
     <div className="floatingText">Loading file, please wait...</div>
   </div>
 );
-
-/*
-function startFileUpload() {
-  alert('Uploading a file can take a few seconds, please be patient...');
-}
-*/
 
 export default function Home() {
   const router = useRouter();
@@ -122,7 +116,9 @@ export default function Home() {
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file && (file.type === 'text/plain' || file.name.endsWith('.log'))) {
-      //startFileUpload();
+
+      setIsLoading(true);
+      await new Promise(resolve => setTimeout(resolve, 30000));
 
       const reader = new FileReader();
       reader.readAsText(file);
@@ -150,6 +146,7 @@ export default function Home() {
             currentChunk += line + '\n';
             currentSize += lineSize;
           }
+          setTimeout(() => 10);
         });
 
         if (currentChunk) {
@@ -426,247 +423,254 @@ export default function Home() {
 //##############################################################################
 
     return (
-      <main className={styles.main} style={{ overflowX: 'auto' }}>
-{/*##########################################################################*/}
-      <div className={styles.navigationButtons}>
-        <button
-          className={`${styles.navigationButton} ${pathname === '/' ? styles.active : ''}`}
-          onClick={() => router.push('/')}
-        >
-          Activities
-        </button>
-        <button
-          className={`${styles.navigationButton} ${pathname === '/faults' ? styles.active : ''}`}
-          onClick={() => router.push('/faults')}
-        >
-          Faults
-        </button>
-        <button
-          className={`${styles.navigationButton} ${pathname === '/page_files' ? styles.active : ''}`}
-          onClick={() => router.push('/page_files')}
-        >
-          Demo File
-        </button>
-        <div className={styles.brandingContainer}>
-          <h5>v1alpha @nunonogueir444</h5>
-          <div className={styles.poweredBy}>
-            <span>Powered by:&nbsp;&nbsp;</span>
-            <img
-              src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png"
-              alt="Next.js Logo"
-              className={`${styles.techLogo} ${styles.nextLogo} ${styles.glow}`}
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-              alt="React Logo"
-              className={`${styles.techLogo} ${styles.reactLogo}`}
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
-              alt="JavaScript Logo"
-              className={`${styles.techLogo} ${styles.jsLogo}`}
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"
-              alt="CSS Logo"
-              className={`${styles.techLogo} ${styles.cssLogo}`}
-            />
-            <img
-              src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg"
-              alt="HTML Logo"
-              className={`${styles.techLogo} ${styles.htmlLogo}`}
-            />
-          </div>
-        </div>
-      </div>
-{/*##########################################################################*/}
-      <div className={styles.logsLabel}>
-        <label>Activity Logs</label>
-      </div>
-{/*##########################################################################*/}
-      <div className={styles.inputContainer}>
-        <div>
-          <label>Load Activities File:
-            </label>
-        </div>
-        <div>
-          <input
-          type="file"
-          accept=".log"
-          onChange={handleFileChange}
-          style={{
-            width: '800px',
-            maxWidth: 'none'
-          }}
-          />
-        </div>
-        {isLoading && <LoadingMessage />}
-      </div>
-{/*##########################################################################*/}
-      <div className={styles.filtersLabel}>
-        <label>Filters:</label>
-      </div>
-
-      <div className={styles.filterLabel}>
-        <div><label>User Levels</label></div>
-        <div><label>Activities</label></div>
-      </div>
-
       <div>
-        <div className={styles.dateFilters}>
-          <div>
-            <label>
-              Start Date:
-              <input
-                type="date"
-                value={startDate}
-                onChange={(e) => handleDateChange('start', e.target.value)}
-              />
-            </label>
-          </div>
-
-          <div>
-            <label>
-              End Date:
-              <input
-                type="date"
-                value={endDate}
-                onChange={(e) => handleDateChange('end', e.target.value)}
-              />
-            </label>
-          </div>
-
-          <div>
-            <button
-              onClick={handleResetDateFilter}
-            >
-              Reset Dates
-            </button>
-          </div>
+        {isLoading && <LoadingMessage />}
+        <main className={styles.main} style={{ overflowX: 'auto' }}>
 {/*##########################################################################*/}
-
-          <div>
-            <select
-              value={filters.column2}
-              onChange={(e) => {
-                handleFilterChange('column2', e.target.value);
-                handleBlur(e);
-              }}
-            >
-              <option value="">All User Levels</option>
-              {column2Values.map((value, index) => (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <select
-              value={filters.column4}
-              onChange={(e) => {
-                handleFilterChange('column4', e.target.value);
-                handleBlur(e);
-              }}
-            >
-              <option value="">All Activities</option>
-              {column4Values.map((value, index) => (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
+        <div className={styles.navigationButtons}>
+          <button
+            className={`${styles.navigationButton} ${pathname === '/' ? styles.active : ''}`}
+            onClick={() => router.push('/')}
+          >
+            Activities
+          </button>
+          <button
+            className={`${styles.navigationButton} ${pathname === '/faults' ? styles.active : ''}`}
+            onClick={() => router.push('/faults')}
+          >
+            Faults
+          </button>
+          <button
+            className={`${styles.navigationButton} ${pathname === '/page_files' ? styles.active : ''}`}
+            onClick={() => router.push('/page_files')}
+          >
+            Create Demo File
+          </button>
+          <div className={styles.brandingContainer}>
+            <h5>v1.0 @nunonogueir444</h5>
+            <div className={styles.poweredBy}>
+              <span>Powered by:&nbsp;&nbsp;</span>
+              <img
+                src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png"
+                alt="Next.js Logo"
+                className={`${styles.techLogo} ${styles.nextLogo} ${styles.glow}`}
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+                alt="React Logo"
+                className={`${styles.techLogo} ${styles.reactLogo}`}
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+                alt="JavaScript Logo"
+                className={`${styles.techLogo} ${styles.jsLogo}`}
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"
+                alt="CSS Logo"
+                className={`${styles.techLogo} ${styles.cssLogo}`}
+              />
+              <img
+                src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg"
+                alt="HTML Logo"
+                className={`${styles.techLogo} ${styles.htmlLogo}`}
+              />
+            </div>
           </div>
         </div>
 {/*##########################################################################*/}
-        {pages.length > 0 && (
-          <>
-            <div className={styles.pageNavigation}>
-              <button onClick={handleFirstPage} disabled={currentPage === 0}>
-                First
-              </button>
-              <button onClick={() => handlePageChange(-1)} disabled={currentPage === 0}>
-                Previous
-              </button>
-              <span>Page {currentPage + 1} of {pages.length}</span>
-              <button onClick={() => handlePageChange(1)} disabled={currentPage === pages.length - 1}>
-                Next
-              </button>
-              <button onClick={handleLastPage} disabled={currentPage === pages.length - 1}>
-                Last
-              </button>
-            </div>
-
-            <div className={styles.tableContainer}>
-              <table border="1" className={styles.table}>
-                <thead>
-                  <tr>
-                    <th>
-                      Date
-                      <button
-                        onClick={handleSort}
-                      >
-                        {sortDirection === 'asc' ? '↑' : '↓'}
-                      </button>
-
-                      <button
-                        onClick={handleResetSort}
-                        style={{ marginLeft: '5px' }}
-                      >
-                        Reset Sort
-                      </button>
-                    </th>
-                    <th>User Level</th>
-                    <th>Ind. User</th>
-                    <th>Activity Description</th>
-                    <th>Value 1</th>
-                    <th>Value 2</th>
-                    <th>Value 3</th>
-                    <th>Value 4</th>
-                    {headerColumns.slice(8).map((column, index) => (
-                      <th key={index}>{column}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredContent.map((row, index) => (
-                    <tr key={index}>
-                      <td>{row[0] instanceof Date ? formatDate(row[0]) : row[0]}</td>
-                      <td>{row[1]}</td>
-                      <td>{row[2]}</td>
-                      <td>{row[3]}</td>
-                      <td>{row[4]}</td>
-                      <td>{row[5]}</td>
-                      <td>{row[6]}</td>
-                      <td>{row[7]}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className={styles.pageNavigation}>
-              <button onClick={handleFirstPage} disabled={currentPage === 0}>
-                First
-              </button>
-              <button onClick={() => handlePageChange(-1)} disabled={currentPage === 0}>
-                Previous
-              </button>
-              <span>Page {currentPage + 1} of {pages.length}</span>
-              <button onClick={() => handlePageChange(1)} disabled={currentPage === pages.length - 1}>
-                Next
-              </button>
-              <button onClick={handleLastPage} disabled={currentPage === pages.length - 1}>
-                Last
-              </button>
-            </div>
-            <br></br>
-          </>
-        )}
-      </div>
+        <div className={styles.logsLabel}>
+          <label>Activity Logs</label>
+        </div>
 {/*##########################################################################*/}
-    </main>
-  );
+        <div className={styles.inputContainer}
+          onClick={(e) => {
+              handleBlur(e);
+          }}>
+          <div>
+            <label>Load Activities File:
+              </label>
+          </div>
+          <div>
+            <input
+            type="file"
+            accept=".log"
+            onChange={(e) => {
+              handleFileChange(e);
+              handleBlur(e);
+            }}
+            style={{
+              width: '800px',
+              maxWidth: 'none',
+            }}
+            />
+          </div>
+        </div>
+{/*##########################################################################*/}
+        <div className={styles.filtersLabel}>
+          <label>Filters:</label>
+        </div>
 
+        <div className={styles.filterLabel}>
+          <div><label>User Levels</label></div>
+          <div><label>Activities</label></div>
+        </div>
+
+        <div>
+          <div className={styles.dateFilters}>
+            <div>
+              <label>
+                Start Date:
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => handleDateChange('start', e.target.value)}
+                />
+              </label>
+            </div>
+
+            <div>
+              <label>
+                End Date:
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => handleDateChange('end', e.target.value)}
+                />
+              </label>
+            </div>
+
+            <div>
+              <button
+                onClick={handleResetDateFilter}
+              >
+                Reset Dates
+              </button>
+            </div>
+{/*##########################################################################*/}
+
+            <div>
+              <select
+                value={filters.column2}
+                onChange={(e) => {
+                  handleFilterChange('column2', e.target.value);
+                  handleBlur(e);
+                }}
+              >
+                <option value="">All User Levels</option>
+                {column2Values.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <select
+                value={filters.column4}
+                onChange={(e) => {
+                  handleFilterChange('column4', e.target.value);
+                  handleBlur(e);
+                }}
+              >
+                <option value="">All Activities</option>
+                {column4Values.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+{/*##########################################################################*/}
+          {pages.length > 0 && (
+            <>
+              <div className={styles.pageNavigation}>
+                <button onClick={handleFirstPage} disabled={currentPage === 0}>
+                  First
+                </button>
+                <button onClick={() => handlePageChange(-1)} disabled={currentPage === 0}>
+                  Previous
+                </button>
+                <span>Page {currentPage + 1} of {pages.length}</span>
+                <button onClick={() => handlePageChange(1)} disabled={currentPage === pages.length - 1}>
+                  Next
+                </button>
+                <button onClick={handleLastPage} disabled={currentPage === pages.length - 1}>
+                  Last
+                </button>
+              </div>
+
+              <div className={styles.tableContainer}>
+                <table border="1" className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>
+                        Date
+                        <button
+                          onClick={handleSort}
+                        >
+                          {sortDirection === 'asc' ? '↑' : '↓'}
+                        </button>
+
+                        <button
+                          onClick={handleResetSort}
+                          style={{ marginLeft: '5px' }}
+                        >
+                          Reset
+                        </button>
+                      </th>
+                      <th>User Level</th>
+                      <th>Ind. User</th>
+                      <th>Activity Description</th>
+                      <th>Value 1</th>
+                      <th>Value 2</th>
+                      <th>Value 3</th>
+                      <th>Value 4</th>
+                      {headerColumns.slice(8).map((column, index) => (
+                        <th key={index}>{column}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredContent.map((row, index) => (
+                      <tr key={index}>
+                        <td>{row[0] instanceof Date ? formatDate(row[0]) : row[0]}</td>
+                        <td>{row[1]}</td>
+                        <td>{row[2]}</td>
+                        <td>{row[3]}</td>
+                        <td>{row[4]}</td>
+                        <td>{row[5]}</td>
+                        <td>{row[6]}</td>
+                        <td>{row[7]}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className={styles.pageNavigation}>
+                <button onClick={handleFirstPage} disabled={currentPage === 0}>
+                  First
+                </button>
+                <button onClick={() => handlePageChange(-1)} disabled={currentPage === 0}>
+                  Previous
+                </button>
+                <span>Page {currentPage + 1} of {pages.length}</span>
+                <button onClick={() => handlePageChange(1)} disabled={currentPage === pages.length - 1}>
+                  Next
+                </button>
+                <button onClick={handleLastPage} disabled={currentPage === pages.length - 1}>
+                  Last
+                </button>
+              </div>
+              <br></br>
+            </>
+          )}
+        </div>
+{/*##########################################################################*/}
+      </main>
+    </div>
+  );
 }

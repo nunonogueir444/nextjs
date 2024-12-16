@@ -7,7 +7,7 @@ import styles from '../page.module.css';
 export default function PageFiles() {
   const router = useRouter();
   const pathname = usePathname();
-  const [lineCount, setLineCount] = useState('');
+  const [lineCount, setLineCount] = useState('10000');
   const [error, setError] = useState('');
   const [fileType, setFileType] = useState('type1');
 
@@ -141,6 +141,10 @@ export default function PageFiles() {
     URL.revokeObjectURL(url);
   };
 
+  const handleBlur = (event) => {
+    event.target.blur();
+  };
+
 //##############################################################################
 //##############################################################################
 //##############################################################################
@@ -165,10 +169,10 @@ export default function PageFiles() {
           className={`${styles.navigationButton} ${pathname === '/page_files' ? styles.active : ''}`}
           onClick={() => router.push('/page_files')}
         >
-          Demo File
+          Create Demo File
         </button>
         <div className={styles.brandingContainer}>
-          <h5>v0.9 @nunonogueir444</h5>
+          <h5>v1.0 @nunonogueir444</h5>
           <div className={styles.poweredBy}>
             <span>Powered by:&nbsp;&nbsp;</span>
             <img 
@@ -200,7 +204,9 @@ export default function PageFiles() {
         </div>
       </div>
 {/*##########################################################################*/}
-      <h1>Create Demo File</h1>
+      <div className={styles.logsLabel}>
+        <label>Create Demo File</label>
+      </div>
 {/*##########################################################################*/}
 
       <div className={styles.inputContainer}>
@@ -210,29 +216,41 @@ export default function PageFiles() {
           id="lineCount"
           value={lineCount}
           onChange={(e) => setLineCount(e.target.value)}
-          placeholder="Enter number of lines"
+          placeholder="Enter number of lines to generate"
           min="1"
-          className={styles.inputBox}
+
+          style={{
+            width: '800px',
+            maxWidth: 'none'
+          }}
         />
       </div>
 
       <div className={styles.inputContainer}>
         <label htmlFor="fileType">Select File Type:</label>
         <select
+          type="dropList"
           id="fileType"
           value={fileType}
-          onChange={(e) => setFileType(e.target.value)}
+          onChange={(e) => {setFileType(e.target.value); handleBlur(e);}}
+          style={{
+            width: '800px',
+            maxWidth: 'none'
+          }}
         >
           <option value="type1">Faults</option>
           <option value="type2">Activities</option>
         </select>
       </div>
 
-      {error && <p className={styles.error}>{error}</p>}
+      {/*{error && <p className={styles.error}>{error}</p>}*/}
 
-      <button className={styles.button} onClick={handleGenerateFile}>
-        Generate and Download File
-      </button>
+      <div className={styles.generateButton}>
+        <button className={styles.generateButton} onClick={handleGenerateFile}>
+          Generate File
+        </button>
+      </div>
+
     </main>
   );
 }
