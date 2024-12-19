@@ -507,82 +507,83 @@ export default function Home() {
           </div>
         </div>
 {/*##########################################################################*/}
-        <div className={styles.filtersLabel}>
-          <label>Filters:</label>
+        <div className={styles.dateFilters}>
+          <div className={styles.filtersLabel}>
+            <label>Filters:</label>
+          </div>
+
+          <div>
+            <label>
+              Start Date:
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => handleDateChange('start', e.target.value)}
+              />
+            </label>
+          </div>
+
+          <div>
+            <label>
+              End Date:
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => handleDateChange('end', e.target.value)}
+              />
+            </label>
+          </div>
+
+          <div>
+            <button
+              onClick={handleResetDateFilter}
+            >
+              Reset Dates
+            </button>
+          </div>
         </div>
 
         <div className={styles.filterLabel}>
           <div><label>User Levels</label></div>
           <div><label>Activities</label></div>
         </div>
-
-        <div>
-          <div className={styles.dateFilters}>
-            <div>
-              <label>
-                Start Date:
-                <input
-                  type="date"
-                  value={startDate}
-                  onChange={(e) => handleDateChange('start', e.target.value)}
-                />
-              </label>
-            </div>
-
-            <div>
-              <label>
-                End Date:
-                <input
-                  type="date"
-                  value={endDate}
-                  onChange={(e) => handleDateChange('end', e.target.value)}
-                />
-              </label>
-            </div>
-
-            <div>
-              <button
-                onClick={handleResetDateFilter}
-              >
-                Reset Dates
-              </button>
-            </div>
 {/*##########################################################################*/}
-
-            <div>
-              <select
-                value={filters.column2}
-                onChange={(e) => {
-                  handleFilterChange('column2', e.target.value);
-                  handleBlur(e);
-                }}
-              >
-                <option value="">All User Levels</option>
-                {column2Values.map((value, index) => (
-                  <option key={index} value={value}>
-                    {value}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <select
-                value={filters.column4}
-                onChange={(e) => {
-                  handleFilterChange('column4', e.target.value);
-                  handleBlur(e);
-                }}
-              >
-                <option value="">All Activities</option>
-                {column4Values.map((value, index) => (
-                  <option key={index} value={value}>
-                    {value}
-                  </option>
-                ))}
-              </select>
-            </div>
+        <div>
+        <div className={styles.dateFilters}>
+          <div>
+            <select
+              value={filters.column2}
+              onChange={(e) => {
+                handleFilterChange('column2', e.target.value);
+                handleBlur(e);
+              }}
+            >
+              <option value="">All User Levels</option>
+              {column2Values.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
           </div>
+
+          <div>
+            <select
+              value={filters.column4}
+              onChange={(e) => {
+                handleFilterChange('column4', e.target.value);
+                handleBlur(e);
+              }}
+            >
+              <option value="">All Activities</option>
+              {column4Values.map((value, index) => (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 {/*##########################################################################*/}
           {pages.length > 0 && (
             <>

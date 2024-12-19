@@ -219,7 +219,7 @@ a.secondary {
 }
 /*############################################################################*/
 .navigationButtons {
-  padding: 10px 10px;
+  padding: 10px 0px;
   margin-top: 1px;
   background-color: #092816;
   border: 1px solid #092816;
@@ -483,7 +483,7 @@ a.secondary {
   margin-top: 0px;
   margin-bottom: 0px;
   border-radius: 10px;
-  margin-left: 10px;
+  /*margin-left: 10px;*/
   justify-content: center;
   align-items: center;
 }
@@ -500,6 +500,7 @@ a.secondary {
   padding-left: 4px;
   width: 220px;
   justify-content: flex-end;
+  margin-bottom: -15px;
 }
 
 .dateFilters input {
@@ -528,8 +529,9 @@ a.secondary {
 }
 
 .dateFilters button {
+  display: flex;
   height: 40px;
-  padding: 4px;
+  /*padding: 4px;*/
   border-radius: 10px;
   background-color: #166938;
   color: #ffffff !important;
@@ -537,13 +539,16 @@ a.secondary {
   border: 1px solid #ffffff;
   cursor: pointer;
   width: 90px;
+  margin-bottom: -15px;
+  justify-content: center;
+  align-items: center;
 }
 .dateFilters button:hover {
   background-color: #53ba45
 }
 
 .dateFilters select {
-  margin-left: 10px;
+  /*margin-left: 10px;*/
   height: 40px;
   padding: 2px;
   border-radius: 10px;
@@ -590,29 +595,32 @@ a.secondary {
 /*############################################################################*/
 .filtersLabel {
   display: flex;
-  padding: 0px 10px;
-  margin-bottom: -64px;
-  justify-content: center;
-  align-items: center;
-  margin-right: 910px;
+  padding: 0px 0px;
+  /*margin-bottom: -64px;*/
+  /*justify-content: center;
+  align-items: center;*/
+  /*margin-right: 910px;*/
+
 }
 
 .filtersLabel label{
   height: 40px;
   display: flex;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  /*align-items: center;*/
+  background-color: transparent;
+  padding: 0px 0px;
 }
 
 .filterLabel {
   display: flex;
   padding: 0px 0px;
   margin-bottom: -34px;
-  margin-left: 580px;
-  gap: 19px;
+  /*margin-left: 580px;*/
+  gap: 10px;
   justify-content: center;
   align-items: center;
 }
@@ -626,7 +634,7 @@ a.secondary {
   font-size: 14px;
   border-radius: 10px;
   border: 0px solid #ffffff;
-  width: 201px;
+  width: 200px;
   background-color: #166938;
 }
 

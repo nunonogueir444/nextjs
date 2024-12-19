@@ -977,9 +977,9 @@ export default function Home() {
             <h5>v1.0 @nunonogueir444</h5>
             <div className={styles.poweredBy}>
               <span>Powered by:&nbsp;&nbsp;</span>
-              <img
+              <img 
                 src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png"
-                alt="Next.js Logo"
+                alt="Next.js Logo" 
                 className={`${styles.techLogo} ${styles.nextLogo} ${styles.glow}`}
               />
               <img
@@ -1034,40 +1034,8 @@ export default function Home() {
           </div>
         </div>
 {/*##########################################################################*/}
-        <div className={styles.dateFilters}>
-          <div className={styles.filtersLabel}>
-            <label>Filters:</label>
-          </div>
-
-          <div>
-            <label>
-              Start Date:
-              <input
-                type="date"
-                value={startDate}
-                onChange={(e) => handleDateChange('start', e.target.value)}
-              />
-            </label>
-          </div>
-
-          <div>
-            <label>
-              End Date:
-              <input
-                type="date"
-                value={endDate}
-                onChange={(e) => handleDateChange('end', e.target.value)}
-              />
-            </label>
-          </div>
-
-          <div>
-            <button
-              onClick={handleResetDateFilter}
-            >
-              Reset Dates
-            </button>
-          </div>
+        <div className={styles.filtersLabel}>
+          <label>Filters:</label>
         </div>
 
         <div className={styles.filterLabel}>
@@ -1077,99 +1045,129 @@ export default function Home() {
           <div><label>Steer Faults</label></div>
           <div><label>PLC Faults</label></div>
         </div>
-{/*##########################################################################*/}
+
         <div>
-        <div className={styles.dateFilters}>
-          <div>
-            <select
-              className="filters-select"
-              value={filters.column2}
-              onChange={(e) => {
-                handleFilterChange('column2', e.target.value);
-                handleBlur(e);
-              }}
-            >
-              <option value="">All User Levels</option>
-              {column2Values.map((value, index) => (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </div>
+            <div className={styles.dateFilters}>
+            <div>
+              <label>
+                Start Date:
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => handleDateChange('start', e.target.value)}
+                />
+              </label>
+            </div>
 
-          <div>
-            <select
-              className="filters-select"
-              value={filters.column5}
-              onChange={(e) => {
-                handleFilterChange('column5', e.target.value);
-                handleBlur(e);
-              }}
-            >
-              <option value="">All Controllers</option>
-              {column5Values.map((value, index) => (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </div>
+            <div>
+              <label>
+                End Date:
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => handleDateChange('end', e.target.value)}
+                />
+              </label>
+            </div>
 
-          <div>
-            <select
-              className="filters-select"
-              value={filters.column8}
-              onChange={(e) => {
-                handleFilterChange('column8', e.target.value);
-                handleBlur(e);
-              }}
-            >
-              <option value="">All Traction Faults</option>
-              {column8Values.map((value, index) => (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </div>
+            <div>
+              <button
+                onClick={handleResetDateFilter}
+              >
+                Reset Dates
+              </button>
+            </div>
+{/*##########################################################################*/}
+            <div>
+              <select
+                className="filters-select"
+                value={filters.column2}
+                onChange={(e) => {
+                  handleFilterChange('column2', e.target.value);
+                  handleBlur(e);
+                }}
+              >
+                <option value="">All User Levels</option>
+                {column2Values.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          <div>
-            <select
-              className="filters-select"
-              value={filters.column8}
-              onChange={(e) => {
-                handleFilterChange('column8', e.target.value);
-                handleBlur(e);
-              }}
-            >
-              <option value="">All Steer Faults</option>
-              {column8SteerValues.map((value, index) => (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </div>
+            <div>
+              <select
+                className="filters-select"
+                value={filters.column5}
+                onChange={(e) => {
+                  handleFilterChange('column5', e.target.value);
+                  handleBlur(e);
+                }}
+              >
+                <option value="">All Controllers</option>
+                {column5Values.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          <div>
-            <select
-              className="filters-select"
-              value={filters.column8}
-              onChange={(e) => {
-                handleFilterChange('column8', e.target.value);
-                handleBlur(e);
-              }}
-            >
-              <option value="">All PLC Faults</option>
-              {column8PLCValues.map((value, index) => (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
+            <div>
+              <select
+                className="filters-select"
+                value={filters.column8}
+                onChange={(e) => {
+                  handleFilterChange('column8', e.target.value);
+                  handleBlur(e);
+                }}
+              >
+                <option value="">All Traction Faults</option>
+                {column8Values.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <select
+                className="filters-select"
+                value={filters.column8}
+                onChange={(e) => {
+                  handleFilterChange('column8', e.target.value);
+                  handleBlur(e);
+                }}
+              >
+                <option value="">All Steer Faults</option>
+                {column8SteerValues.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <select
+                className="filters-select"
+                value={filters.column8}
+                onChange={(e) => {
+                  handleFilterChange('column8', e.target.value);
+                  handleBlur(e);
+                }}
+              >
+                <option value="">All PLC Faults</option>
+                {column8PLCValues.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
 {/*##########################################################################*/}
           {pages.length > 0 && (
             <>
