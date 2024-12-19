@@ -810,3 +810,58 @@ a.secondary {
   background-color: #53ba45;
 }
 /*############################################################################*/
+.tableContainer {
+  margin: 20px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.dataTable th,
+.dataTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.dataTable th {
+  background-color: #f4f4f4;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tableInput {
+  width: 100%;
+  border: none;
+  padding: 2px;
+  background-color: #000000 !important;
+  color: #ffffff;
+}
+
+.tableInput:focus,
+.tableInput:hover {
+  background-color: #313131 !important;
+  outline: none;
+}
+/*############################################################################*/

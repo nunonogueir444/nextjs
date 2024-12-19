@@ -10,7 +10,7 @@ const LoadingMessage = () => (
   </div>
 );
 
-export default function Home() {
+export default function Faults() {
   const router = useRouter();
   const pathname = usePathname();
   const [fileContent, setFileContent] = useState('');
@@ -956,20 +956,26 @@ export default function Home() {
 {/*##########################################################################*/}
         <div className={styles.navigationButtons}>
           <button
-            className={`${styles.navigationButton} ${pathname === '/' ? styles.active : ''}`}
-            onClick={() => router.push('/')}
+            className={`${styles.navigationButton} ${pathname === '/Activities' ? styles.active : ''}`}
+            onClick={() => router.push('/Activities')}
           >
             Activities
           </button>
           <button
-            className={`${styles.navigationButton} ${pathname === '/faults' ? styles.active : ''}`}
-            onClick={() => router.push('/faults')}
+            className={`${styles.navigationButton} ${pathname === '/Faults' ? styles.active : ''}`}
+            onClick={() => router.push('/Faults')}
           >
             Faults
           </button>
           <button
-            className={`${styles.navigationButton} ${pathname === '/page_files' ? styles.active : ''}`}
-            onClick={() => router.push('/page_files')}
+            className={`${styles.navigationButton} ${pathname === '/EditPAR' ? styles.active : ''}`}
+            onClick={() => router.push('/EditPAR')}
+          >
+            Edit PAR
+          </button>
+          <button
+            className={`${styles.navigationButton} ${pathname === '/CreateDemoFile' ? styles.active : ''}`}
+            onClick={() => router.push('/CreateDemoFile')}
           >
             Create Demo File
           </button>
