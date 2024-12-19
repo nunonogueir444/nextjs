@@ -8,7 +8,7 @@ const LoadingMessage = () => (
   <div className={styles.floatingText}>
     <div className="floatingText">Loading file, please wait...</div>
   </div>
-);
+);/*lol*/
 
 export default function Faults() {
   const router = useRouter();
