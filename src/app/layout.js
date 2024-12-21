@@ -1,3 +1,4 @@
+import React from "react";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -17,6 +18,8 @@ export const metadata = {
   description: "nunonogueir444",
 };
 
+import PropTypes from 'prop-types';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -26,3 +29,7 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+RootLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
