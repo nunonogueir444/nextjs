@@ -3,21 +3,24 @@
 import React, { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import styles from '../page.module.css';
-
 //##############################################################################
 //##############################################################################
 //##############################################################################
-
 export default function EditPAR() {
   const router = useRouter();
   const pathname = usePathname();
   const [tableHeaders, setTableHeaders] = useState(Array(13).fill(''));
   const [firstColumnData, setFirstColumnData] = useState(Array(1500).fill(''));
-
+  const [secondColumnData, setSecondColumnData] = useState(Array(1500).fill(''));
+  const [filterText, setFilterText] = useState('');
+  const [tableData, setTableData] = useState(Array(1500).fill(Array(11).fill('')));
+  const [hoveredRow, setHoveredRow] = useState(null);
+  const [hoveredCol, setHoveredCol] = useState(null);
+//##############################################################################
   const handleBlur = (event) => {
     event.target.blur();
   };
-
+//##############################################################################
   const loadDecodeFile = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -26,48 +29,165 @@ export default function EditPAR() {
         const content = e.target.result;
         const lines = content.split('\n');
 
-        // Set headers from first line
         const headers = lines[0].split(';');
         setTableHeaders(headers.slice(0, 13).map(h => h.trim()));
 
-        // Set first column data from remaining lines
-        const columnData = lines.slice(1).map(line => {
+        const columnData2 = lines.slice(1).map(line => {
           const values = line.split(';');
           return values[0] || '';
         });
-        setFirstColumnData(columnData);
+        const columnData1 = lines.slice(1).map(line => {
+          const values = line.split(';');
+          return values[1] || '';
+        });
+        setFirstColumnData(columnData1);
+        setSecondColumnData(columnData2);
       };
       reader.readAsText(file);
     }
   };
+//##############################################################################
+  const loadPARFile = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target.result;
+        const lines = content.split('\n');
 
+        const newTableData = Array(1500).fill().map(() => Array(11).fill(''));
+
+        lines.forEach(line => {
+          if (line.trim()) {
+            const values = line.split(',').map(v => v.trim());
+            const firstValue = values[0];
+
+            const rowIndex = secondColumnData.findIndex(value => value === firstValue);
+
+            if (rowIndex !== -1) {
+              for (let i = 0; i < 10; i++) {
+                newTableData[rowIndex][i] = values[i + 1] || '';
+              }
+            }
+          }
+        });
+
+        setTableData(newTableData);
+      };
+      reader.readAsText(file);
+    }
+  };
+//##############################################################################
+  const handleEdit = (rowIndex, colIndex, value) => {
+    const newTableData = tableData.map((row, i) => {
+      if (i === rowIndex) {
+        const newRow = [...row];
+        newRow[colIndex] = value;
+        return newRow;
+      }
+      return row;
+    });
+    setTableData(newTableData);
+  };
+//##############################################################################
+  const handleSave = () => {
+    let content = '';
+    for (let i = 0; i < 1500; i++) {
+      if (secondColumnData[i]) {
+        content += secondColumnData[i];
+        tableData[i].forEach(value => {
+          content += ',' + (value || '0');
+        });
+        content += '\n';
+      }
+    }
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'output_PAR.clp';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  };
+//##############################################################################
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.target.blur();
+    }
+  };
+//##############################################################################
+  const handleFocus = (e) => {
+    e.target.select();
+  };
+//##############################################################################
   const generateTableRows = () => {
     const rows = [];
     for (let i = 0; i < 1500; i++) {
-      rows.push(
-        <tr key={i}>
-          {Array.from({ length: 13 }).map((_, index) => (
-            <td key={index}>{index === 0 ? firstColumnData[i] : ''}</td>
-          ))}
-        </tr>
-      );
+      if (firstColumnData[i].toLowerCase().includes(filterText.toLowerCase())) {
+        rows.push(
+          <tr
+            key={i}
+            onMouseEnter={() => setHoveredRow(i)}
+            onMouseLeave={() => setHoveredRow(null)}
+            style={{
+              backgroundColor: hoveredRow === i ? '#313131' : 'transparent'
+            }}
+          >
+            <td>{firstColumnData[i]}</td>
+            <td>{secondColumnData[i]}</td>
+            {tableData[i].map((value, colIndex) => (
+              <td
+                key={colIndex}
+                onMouseEnter={() => colIndex < 11 ? setHoveredCol(colIndex) : null}
+                onMouseLeave={() => colIndex < 11 ? setHoveredCol(null) : null}
+                style={{
+                  backgroundColor:
+                    colIndex < 10 ? (
+                      hoveredRow === i && hoveredCol === colIndex ? '#313131' :
+                      hoveredRow === i ? '#313131' :
+                      (hoveredCol === colIndex && i <= hoveredRow) ? '#313131' :
+                      'transparent'
+                    ) : 'transparent'
+                }}
+              >
+                {colIndex < 10 ? (
+                  <input
+                    type="text"
+                    value={value}
+                    onChange={(e) => handleEdit(i, colIndex, e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    onFocus={handleFocus}
+                    style={{
+                      width: '100%',
+                      border: 'none',
+                      background: 'transparent',
+                      textAlign: 'center',
+                      color: 'inherit'
+                    }}
+                  />
+                ) : (
+                  <span style={{ textAlign: 'center', display: 'block' }}>
+                    {value}
+                  </span>
+                )}
+              </td>
+            ))}
+          </tr>
+        );
+      }
     }
     return rows;
   };
 //##############################################################################
-
-//##############################################################################
-
-
-
-
-
-
-
+  const handleReset = () => {
+    setFilterText('');
+  };
 //##############################################################################
 //##############################################################################
 //##############################################################################
-
     return (
       <div>
         <main className={styles.main} style={{ overflowX: 'auto' }}>
@@ -134,30 +254,7 @@ export default function EditPAR() {
           <label>Edit PAR</label>
         </div>
 {/*##########################################################################*/}
-        <div className={styles.inputContainer}
-          onClick={(e) => {
-              handleBlur(e);
-          }}>
-          <div>
-            <label>Load PAR File:
-              </label>
-          </div>
-          <div>
-            <input
-            type="file"
-            accept=".clp"
-            onChange={(e) => {
-              //loadPARFile(e);
-              handleBlur(e);
-            }}
-            style={{
-              width: '800px',
-              maxWidth: 'none',
-            }}
-            />
-          </div>
-        </div>
-        <div className={styles.inputContainer}
+      <div className={styles.inputContainer}
           onClick={(e) => {
               handleBlur(e);
           }}>
@@ -180,11 +277,48 @@ export default function EditPAR() {
             />
           </div>
         </div>
+        <div className={styles.inputContainer}
+          onClick={(e) => {
+              handleBlur(e);
+          }}>
+          <div>
+            <label>Load PAR File:
+              </label>
+          </div>
+          <div>
+            <input
+            type="file"
+            accept=".clp"
+            onChange={(e) => {
+              loadPARFile(e);
+              handleBlur(e);
+            }}
+            style={{
+              width: '800px',
+              maxWidth: 'none',
+            }}
+            />
+          </div>
+        </div>
+
+        <div className={styles.editPARfilter}>
+          <label>Filter PAR name:</label>
+          <input
+            type="text"
+            value={filterText}
+            onChange={(e) => setFilterText(e.target.value)}
+          />
+          <button onClick={handleReset} label="reset">
+            Reset
+          </button>
+
+          <button onClick={handleSave} label="save">
+            Save PAR File
+          </button>
+        </div>
 {/*##########################################################################*/}
-
-
         <div className={styles.tableContainer}>
-          <table className={styles.table}>
+          <table className={`${styles.table} ${styles.customTable}`}>
             <thead>
               <tr>
                 {tableHeaders.map((header, index) => (
@@ -197,22 +331,6 @@ export default function EditPAR() {
             </tbody>
           </table>
         </div>
-
-
-{/*##########################################################################*/}
-
-
-
-
-
-
-
-
-
-
-
-
-
 {/*##########################################################################*/}
       </main>
     </div>

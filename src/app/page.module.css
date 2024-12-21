@@ -230,7 +230,9 @@ a.secondary {
   justify-content: center;
   align-items: center;
   box-shadow: 0 155px 500px #166938;
+  white-space: nowrap;
 }
+
 .navigationButtons button{
   transition: background-color 0.8s ease;
 }
@@ -248,6 +250,7 @@ a.secondary {
   color: white;
   font-size: 14px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .navigationButton:hover,
@@ -269,6 +272,10 @@ a.secondary {
   align-items: center;
 }
 
+.inputContainer button{
+  transition: background-color 0.8s ease;
+}
+
 .inputContainer label {
   height: 40px;
   display: flex;
@@ -282,12 +289,12 @@ a.secondary {
   /*gap: 4px;*/
   justify-content: center;
   text-align: center;
-  width: 130px;
+  min-width: 130px;
 }
 
 .inputContainer input[type="file"] {
-  max-width: none;
-  width: 100%;
+  /*max-width: none;*/
+  min-width: 300px;
   white-space: nowrap;
   overflow: visible;
   padding: 8px 10px;
@@ -303,8 +310,8 @@ a.secondary {
 }
 
 .inputContainer input[type="number"] {
-  max-width: none;
-  width: 100%;
+  /*max-width: none;*/
+  min-width: 300px;
   white-space: nowrap;
   overflow: visible;
   padding: 8px 10px;
@@ -321,6 +328,23 @@ a.secondary {
 }
 
 .inputContainer select[type="dropList"] {
+  /*max-width: none;*/
+  min-width: 300px;
+  white-space: nowrap;
+  overflow: visible;
+  padding: 8px 10px;
+  border: 1px solid #166938;
+  border-radius: 10px;
+  height: 40px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: #092816;
+  font-size: 14px;
+  transition: background-color 0.8s ease, border-color 0.8s ease;
+  color: #ffffff;
+}
+
+/*.inputContainer input[type="text"] {
   max-width: none;
   width: 100%;
   white-space: nowrap;
@@ -334,9 +358,8 @@ a.secondary {
   background-color: #092816;
   font-size: 14px;
   transition: background-color 0.8s ease, border-color 0.8s ease;
-  
   color: #ffffff;
-}
+}*/
 
 .inputContainer input[type="file"]:hover{
   background-color: #166938;
@@ -367,11 +390,21 @@ a.secondary {
   border-color: #ffffff;
 }
 
+/*.inputContainer input[type="text"]:hover{
+  background-color: #166938;
+  border-color: #ffffff;
+}
+
+.inputContainer input[type="text"]:focus {
+  background-color: #092816;
+}*/
+
 /*
 .inputContainer select:focus {
   background-color: #092816;
 }
 */
+/*############################################################################*/
 /*############################################################################*/
 .tableContainer {
   display: flex;
@@ -413,6 +446,7 @@ a.secondary {
   font-weight: bold;
   border: 1px solid #818181;
   height: 40px;
+  white-space: nowrap;
 }
 
 .table td {
@@ -424,14 +458,31 @@ a.secondary {
 .table tr:hover {
   background-color: #313131;;
 }
+
+.customTable td:nth-child(1) {
+  background-color: #9e0000; /* Change this to your desired color */
+}
+
+.customTable tr:hover td:nth-child(1) {
+  background-color: #313131; /* Same color as row hover */
+}
+
+.customTable td:nth-child(13) {
+  background-color: #9e0000; /* Changed to match first column */
+}
+
+.customTable tr:hover td:nth-child(13) {
+  background-color: #313131; /* Same color as row hover */
+}
+
 /*############################################################################*/
-.sortDate {
+/*.sortDate {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   margin-top: 20px;
-}
+}*/
 /*############################################################################*/
 .pageNavigation {
   display: flex;
@@ -477,6 +528,7 @@ a.secondary {
   color: #ffffff;
   font-size: 30px;
   font-weight: bold;
+  white-space: nowrap;
 }
 /*############################################################################*/
 .dateFilters {
@@ -500,7 +552,7 @@ a.secondary {
   font-size: 14px;
   border-radius: 10px;
   padding-left: 4px;
-  width: 220px;
+  min-width: 220px;
   justify-content: flex-end;
   margin-bottom: -15px;
 }
@@ -540,7 +592,7 @@ a.secondary {
   transition: background-color 0.8s ease;
   border: 1px solid #ffffff;
   cursor: pointer;
-  width: 90px;
+  min-width: 90px;
   margin-bottom: -15px;
   justify-content: center;
   align-items: center;
@@ -556,7 +608,7 @@ a.secondary {
   border-radius: 10px;
   background-color: #166938;
   color: #ffffff;
-  width: 200px;
+  min-width: 200px;
   border: 1px solid #ffffff;
   outline: none;
   transition: background-color 0.8s ease;
@@ -569,7 +621,7 @@ a.secondary {
 }
 
 .dateFilters select::-webkit-scrollbar {
-  width: 20px;
+  min-width: 20px;
 }
 
 .dateFilters select::-webkit-scrollbar-track {
@@ -636,7 +688,7 @@ a.secondary {
   font-size: 14px;
   border-radius: 10px;
   border: 0px solid #ffffff;
-  width: 200px;
+  min-width: 200px;
   background-color: #166938;
 }
 
@@ -790,7 +842,7 @@ a.secondary {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 500px;
+  min-width: 500px;
   padding: 10px 20px;
   margin: 0px auto;
 }
@@ -812,42 +864,101 @@ a.secondary {
   background-color: #53ba45;
 }
 /*############################################################################*/
-.tableContainer {
+.editPARfilter {
   display: flex;
+  /*gap: 0px;*/
+  border-radius: 10px;
+  /*margin-left: 0px;*/
   justify-content: center;
   align-items: center;
-  width: 100%;
-  margin-top: 20px;
+  margin-bottom: -30px;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid #ffffff;
-}
-
-.table th, .table td {
-  padding: 8px;
-  text-align: left;
-  font-size: 14px;
-  border: 1px solid #818181;
-}
-
-.table th {
+.editPARfilter label{
+  height: 40px;
+  display: flex;
+  align-items: center;
   background-color: #166938;
   color: #ffffff;
-  padding: 4px 0px;
-  text-align: center;
   font-size: 14px;
-  font-weight: bold;
-  border: 1px solid #818181;
+  border-radius: 10px;
+  /*border: 1px solid #ffffff;*/
+  /* width: 100px;*/
+  /*gap: 4px;*/
+  justify-content: center;
+  text-align: center;
+  min-width: 130px;
+  white-space: nowrap;
+  transition: background-color 0.8s ease;
+}
+
+.editPARfilter input[type="text"]{
+  /*max-width: none;*/
+  /*width: 100%;*/
+  white-space: nowrap;
+  /*overflow: visible;*/
+  padding: 0px 10px;
+  border: 1px solid #166938;
+  border-radius: 10px;
   height: 40px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: #092816;
+  font-size: 14px;
+  min-width: 300px;
+  transition: background-color 0.8s ease, border-color 0.8s ease;
+  color: #ffffff;
 }
 
-.table tr:nth-child(even) {
-  background-color: #000000;
+.editPARfilter input[type="text"]:hover{
+  background-color: #166938;
+  border-color: #ffffff;
 }
 
-.table tr:hover {
-  background-color: #515151;
+.editPARfilter input[type="text"]:focus {
+  background-color: #092816;
 }
+
+.editPARfilter button[label="reset"] {
+  /*padding: 0px 50px;*/
+  height: 40px;
+  /*margin-top: 0px;*/
+  background-color: #166938;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  /*gap: 1px;*/
+  /*margin-bottom: 1px;*/
+  font-size: 14px;
+  /*font-weight: bold;*/
+  white-space: nowrap;
+  width: 75px;
+  margin-left: 10px;
+  transition: background-color 0.8s ease;
+}
+
+.editPARfilter button[label="save"] {
+  /*padding: 0px 50px;*/
+  height: 40px;
+  /*margin-top: 0px;*/
+  background-color: #166938;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  /*gap: 1px;*/
+  /*margin-bottom: 1px;*/
+  font-size: 14px;
+  /*font-weight: bold;*/
+  white-space: nowrap;
+  min-width: 150px;
+  margin-left: 265px;
+  transition: background-color 0.8s ease;
+}
+
+.editPARfilter button:hover {
+  background-color: #53ba45;
+}
+
+/*############################################################################*/
