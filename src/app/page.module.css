@@ -412,7 +412,9 @@ a.secondary {
   font-size: 14px;
   font-weight: bold;
   border: 1px solid #818181;
+  height: 40px;
 }
+
 .table td {
   padding: 10px;
   text-align: left;
@@ -811,57 +813,41 @@ a.secondary {
 }
 /*############################################################################*/
 .tableContainer {
-  margin: 20px;
-  width: 100%;
-  overflow-x: auto;
-}
-
-.dataTable {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-}
-
-.dataTable th,
-.dataTable td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-
-.dataTable th {
-  background-color: #f4f4f4;
-}
-
-.pagination {
-  margin-top: 20px;
   display: flex;
   justify-content: center;
-  gap: 10px;
   align-items: center;
-}
-
-.pagination button {
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.pagination button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.tableInput {
   width: 100%;
-  border: none;
-  padding: 2px;
-  background-color: #000000 !important;
-  color: #ffffff;
+  margin-top: 20px;
 }
 
-.tableInput:focus,
-.tableInput:hover {
-  background-color: #313131 !important;
-  outline: none;
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ffffff;
 }
-/*############################################################################*/
+
+.table th, .table td {
+  padding: 8px;
+  text-align: left;
+  font-size: 14px;
+  border: 1px solid #818181;
+}
+
+.table th {
+  background-color: #166938;
+  color: #ffffff;
+  padding: 4px 0px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #818181;
+  height: 40px;
+}
+
+.table tr:nth-child(even) {
+  background-color: #000000;
+}
+
+.table tr:hover {
+  background-color: #515151;
+}

@@ -1,5 +1,6 @@
 "use client";
 
+
 import React, { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import styles from '../page.module.css';
@@ -8,7 +9,7 @@ export default function CreateDemoFile() {
   const router = useRouter();
   const pathname = usePathname();
   const [lineCount, setLineCount] = useState('10000');
-  const [error, setError] = useState('');
+  //const [error, setError] = useState('');
   const [fileType, setFileType] = useState('type1');
 
   const getRandomNumber = (min = 1, max = 1000) => {
@@ -82,11 +83,11 @@ export default function CreateDemoFile() {
     const count = parseInt(lineCount, 10);
 
     if (isNaN(count) || count <= 0) {
-      setError('Please enter a valid positive number.');
+      //setError('Please enter a valid positive number.');
       return;
     }
 
-    setError('');
+    //setError('');
 
     const lines = [];
     for (let i = 0; i < count; i++) {
@@ -154,8 +155,8 @@ export default function CreateDemoFile() {
 {/*##########################################################################*/}
 <div className={styles.navigationButtons}>
         <button
-          className={`${styles.navigationButton} ${pathname === '/Activities' ? styles.active : ''}`}
-          onClick={() => router.push('/Activities')}
+          className={`${styles.navigationButton} ${pathname === '/' ? styles.active : ''}`}
+          onClick={() => router.push('/')}
         >
           Activities
         </button>

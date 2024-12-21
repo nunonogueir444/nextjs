@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import styles from '../page.module.css';
 
@@ -956,8 +956,8 @@ export default function Faults() {
 {/*##########################################################################*/}
         <div className={styles.navigationButtons}>
           <button
-            className={`${styles.navigationButton} ${pathname === '/Activities' ? styles.active : ''}`}
-            onClick={() => router.push('/Activities')}
+            className={`${styles.navigationButton} ${pathname === '/' ? styles.active : ''}`}
+            onClick={() => router.push('/')}
           >
             Activities
           </button>

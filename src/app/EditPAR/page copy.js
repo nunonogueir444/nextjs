@@ -4,65 +4,126 @@ import React, { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import styles from '../page.module.css';
 
-//##############################################################################
-//##############################################################################
-//##############################################################################
 
+
+
+//##############################################################################
+//##############################################################################
+//##############################################################################
 export default function EditPAR() {
   const router = useRouter();
   const pathname = usePathname();
-  const [tableHeaders, setTableHeaders] = useState(Array(13).fill(''));
-  const [firstColumnData, setFirstColumnData] = useState(Array(1500).fill(''));
+  const [filterText, setFilterText] = useState("");
+  const [column0Values, setColumn0Values] = useState({});
 
   const handleBlur = (event) => {
     event.target.blur();
   };
 
-  const loadDecodeFile = (event) => {
+  const handleFilterChange = (event) => {
+    setFilterText(event.target.value);
+  };
+
+  // Generate table data
+  const generateTableData = () => {
+    const data = [];
+    for (let i = 1; i <= 1500; i++) {
+      const row = {
+        id: i,
+        number: i,
+        ...Array(11).fill('').reduce((acc, _, index) => {
+          acc[`col${index + 3}`] = '';
+          return acc;
+        }, {})
+      };
+      data.push(row);
+    }
+    return data;
+  };
+
+
+  const [tableValues] = useState({});
+
+  const tableData = generateTableData();
+
+//##############################################################################
+  const loadPARFile = (event) => {
     const file = event.target.files[0];
-    if (file) {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const content = e.target.result;
+      const lines = content.split('\n');
+      const parsedData = lines.map(line => line.split(','));
+
+      updateTable(parsedData);
+    };
+
+    reader.readAsText(file);
+  };
+
+  const updateTable = (newData) => {
+    const table = document.getElementById('PARTableId');
+    const rows = Array.from(table.rows).slice(1);
+
+    newData.forEach(data => {
+      const match = rows.find(row => row.cells[1].innerText == data[0]);
+      if (match) {
+        for (let i = 2; i < Math.min(match.cells.length, 12); i++) {
+          match.cells[i].innerText = data[i - 1];
+        }
+      }
+    });
+  };
+//##############################################################################
+
+    const loadDecodeFile = (event) => {
+      const file = event.target.files[0];
       const reader = new FileReader();
+    
       reader.onload = (e) => {
         const content = e.target.result;
         const lines = content.split('\n');
-
-        // Set headers from first line
-        const headers = lines[0].split(';');
-        setTableHeaders(headers.slice(0, 13).map(h => h.trim()));
-
-        // Set first column data from remaining lines
-        const columnData = lines.slice(1).map(line => {
-          const values = line.split(';');
-          return values[0] || '';
-        });
-        setFirstColumnData(columnData);
+        const headers = lines[0].split(';'); // Assuming the first line contains the headers separated by ;
+        const column1Data = lines.slice(1).map(line => line.split(';')[0]); // Extract column 1 data
+    
+        updateTableHeaders(headers);
+        updateTableColumn1(column1Data);
       };
+    
       reader.readAsText(file);
-    }
-  };
+    };
 
-  const generateTableRows = () => {
-    const rows = [];
-    for (let i = 0; i < 1500; i++) {
-      rows.push(
-        <tr key={i}>
-          {Array.from({ length: 13 }).map((_, index) => (
-            <td key={index}>{index === 0 ? firstColumnData[i] : ''}</td>
-          ))}
-        </tr>
-      );
-    }
-    return rows;
-  };
-//##############################################################################
+    const updateTableHeaders = (headers) => {
+      const table = document.getElementById('PARTableId');
+      const headerRow = table.querySelector('thead tr');
+    
+      headers.forEach((header, index) => {
+        if (index < headerRow.cells.length) {
+          headerRow.cells[index].innerText = header;
+        }
+      });
+    };
+    
+    const updateTableColumn1 = (column1Data) => {
+      const table = document.getElementById('PARTableId');
+      const rows = Array.from(table.rows).slice(1);
+      const newValues = {};
+      
+      column1Data.forEach((data, index) => {
+        if (index < rows.length) {
+          rows[index].cells[0].innerText = data;
+          newValues[rows[index].cells[1].innerText] = data;
+        }
+      });
+      setColumn0Values(newValues);
+    };
 
-//##############################################################################
-
-
-
-
-
-
+  const filteredTableData = tableData.filter(row => {
+    if (!filterText) return true; // Show all rows when filter is empty
+    const col0Value = column0Values[row.number] || '';
+    return col0Value.toString().toLowerCase().includes(filterText.toLowerCase());
+  });
 
 //##############################################################################
 //##############################################################################
@@ -147,7 +208,7 @@ export default function EditPAR() {
             type="file"
             accept=".clp"
             onChange={(e) => {
-              //loadPARFile(e);
+              loadPARFile(e);
               handleBlur(e);
             }}
             style={{
@@ -180,28 +241,61 @@ export default function EditPAR() {
             />
           </div>
         </div>
-{/*##########################################################################*/}
-
-
-        <div className={styles.tableContainer}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                {tableHeaders.map((header, index) => (
-                  <th key={index}>{header}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {generateTableRows()}
-            </tbody>
-          </table>
+        
+        <div className={styles.inputContainer}
+          /*onClick={(e) => {
+              handleBlur(e);
+          }}*/>
+          <div>
+            <label>Filter by Column 1:
+              </label>
+          </div>
+          <div>
+            <input
+            type="text"
+            value={filterText}
+            onChange={(e) => {
+              handleFilterChange(e);
+              //handleBlur(e);
+            }}
+            style={{
+              width: '800px',
+              maxWidth: 'none',
+            }}
+            />
+          </div>
         </div>
-
-
 {/*##########################################################################*/}
 
 
+
+
+<table id="PARTableId" style={{ borderCollapse: 'collapse', margin: '20px 0' }}>
+  <thead>
+    <tr>
+      <th style={{ border: '1px solid #ddd', padding: '4px' }}>1</th>
+      <th style={{ border: '1px solid #ddd', padding: '4px' }}>2</th>
+      {Array(11).fill(0).map((_, index) => (
+        <th key={index} style={{ border: '1px solid #ddd', padding: '4px' }}>
+          {index + 3}
+        </th>
+      ))}
+    </tr>
+  </thead>
+  <tbody>
+    {filteredTableData.map((row) => (
+      <tr key={row.id}>
+        <td style={{ border: '1px solid #ddd', padding: '4px' }}></td>
+        <td style={{ border: '1px solid #ddd', padding: '4px' }}>{row.number}</td>
+        {Array(11).fill(0).map((_, index) => (
+          <td key={index} style={{ border: '1px solid #ddd', padding: '4px' }}>
+            {tableValues[`${row.id}-${index}`] || ''}
+          </td>
+        ))}
+      </tr>
+    ))}
+  </tbody>
+</table>
 
 
 
