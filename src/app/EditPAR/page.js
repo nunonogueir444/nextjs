@@ -136,8 +136,8 @@ export default function EditPAR() {
               backgroundColor: hoveredRow === i ? '#313131' : 'transparent'
             }}
           >
-            <td>{firstColumnData[i]}</td>
-            <td>{secondColumnData[i]}</td>
+            <td style={{ textAlign: 'left', paddingLeft: '10px' }}>{firstColumnData[i]}</td>
+            <td style={{ textAlign: 'left', paddingLeft: '10px' }}>{secondColumnData[i]}</td>
             {tableData[i].map((value, colIndex) => (
               <td
                 key={colIndex}
@@ -150,7 +150,8 @@ export default function EditPAR() {
                       hoveredRow === i ? '#313131' :
                       (hoveredCol === colIndex && i <= hoveredRow) ? '#313131' :
                       'transparent'
-                    ) : 'transparent'
+                    ) : 'transparent',
+                  textAlign: 'center'
                 }}
               >
                 {colIndex < 10 ? (
@@ -161,11 +162,13 @@ export default function EditPAR() {
                     onKeyPress={handleKeyPress}
                     onFocus={handleFocus}
                     style={{
-                      width: '100%',
+                      width: '50px',
                       border: 'none',
                       background: 'transparent',
                       textAlign: 'center',
-                      color: 'inherit'
+                      color: 'inherit',
+                      display: 'block',
+                      margin: '0 auto',
                     }}
                   />
                 ) : (
@@ -322,7 +325,7 @@ export default function EditPAR() {
             <thead>
               <tr>
                 {tableHeaders.map((header, index) => (
-                  <th key={index}>{header}</th>
+                  <th key={index} style={{ backgroundColor: '#166938' }}>{header}</th>
                 ))}
               </tr>
             </thead>

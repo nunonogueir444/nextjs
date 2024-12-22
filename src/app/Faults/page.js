@@ -1244,7 +1244,7 @@ export default function Faults() {
                 </table>
               </div>
 
-              <div className={styles.pageNavigation}>
+              {/*<div className={styles.pageNavigation}>
                 <button onClick={handleFirstPage} disabled={currentPage === 0}>
                   First
                 </button>
@@ -1258,7 +1258,7 @@ export default function Faults() {
                 <button onClick={handleLastPage} disabled={currentPage === pages.length - 1}>
                   Last
                 </button>
-              </div>
+              </div>*/}
               <br></br>
             </>
           )}

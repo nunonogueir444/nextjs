@@ -409,9 +409,76 @@ a.secondary {
 .tableContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100%;
+  align-items: flex-start;
+  width: max-content;         /* Changed from fit-content to max-content */
   margin-top: 20px;
+  max-height: calc(100vh - 230px);
+  overflow-y: auto;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  scrollbar-width: auto;
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;      /* Added for smooth scrolling */
+  scroll-snap-type: both mandatory; /* Added for cell snapping */
+  position: relative;            /* Added for sticky header context */
+  border: 1px solid #166938;    /* Added fixed border */
+  border-radius: 5px;           /* Optional: adds rounded corners */
+}
+
+.tableContainer::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #166938;
+  z-index: 12;                  /* Higher than header z-index */
+}
+
+.tableContainer::-webkit-scrollbar {
+  width: 20px;
+  height: 20px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  background: #092816;
+  border: 1px solid #166938;
+  border-radius: 5px;
+}
+
+.tableContainer::-webkit-scrollbar-corner {
+  background: #092816;
+  border: 1px solid #166938;
+  border-radius: 5px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background: #166938;
+  border-radius: 5px;
+  border: 1px solid #092816;
+}
+
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: #53ba45;
+}
+
+.table {
+  margin: 0;
+  width: max-content;         /* Changed from auto */
+  border-collapse: collapse;
+  border: 1px solid #ffffff;
+  table-layout: fixed;  /* Changed from auto to fixed */
+}
+
+.table thead {
+  position: sticky;             /* Make entire thead sticky */
+  top: 0;
+  z-index: 10;                  /* Increased z-index to ensure headers stay on top */
+  background-color: #092816;    /* Match your background color */
+  border-bottom: 2px solid #166938;  /* Added border below headers */
 }
 
 .table button {
@@ -431,36 +498,49 @@ a.secondary {
   background-color: #53ba45;
 }
 
-.table {
-  width: 1500px;
-  border-collapse: collapse;
-  border: 1px solid #ffffff;
+.table th,
+.table td {
+  /* ...existing properties... */
+  min-width: unset;    /* Remove minimum width constraint */
+  width: fit-content;  /* Added to fit content width */
+  max-width: max-content;  /* Added to prevent overflow */
+  padding: 8px 8px;  /* Added horizontal padding for better text spacing */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table td input {
+  width: 100%;        /* Make input fill the cell */
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .table th {
   background-color: #166938;
   color: #ffffff;
-  padding: 4px 0px;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
   border: 1px solid #818181;
   height: 40px;
   white-space: nowrap;
+  scroll-snap-align: start;    /* Added for cell snapping */
 }
 
 .table td {
-  padding: 10px;
   text-align: left;
   font-size: 14px;
   border: 1px solid #818181;
+  white-space: nowrap;        /* Added to prevent text wrapping */
+  scroll-snap-align: start;    /* Added for cell snapping */
 }
 .table tr:hover {
   background-color: #313131;;
 }
 
 .customTable td:nth-child(1) {
-  background-color: #9e0000; /* Change this to your desired color */
+  background-color: #092816;; /* Change this to your desired color */
 }
 
 .customTable tr:hover td:nth-child(1) {
@@ -473,6 +553,16 @@ a.secondary {
 
 .customTable tr:hover td:nth-child(13) {
   background-color: #313131; /* Same color as row hover */
+}
+
+.customTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 11;                  /* Higher than thead */
+  background-color: #166938 !important;
+  color: #ffffff;
+  border: 1px solid #818181;
+  box-shadow: 0 10px 0 #818181;  /* Added bottom border shadow */
 }
 
 /*############################################################################*/
@@ -608,7 +698,7 @@ a.secondary {
   border-radius: 10px;
   background-color: #166938;
   color: #ffffff;
-  min-width: 200px;
+  width: 200px;
   border: 1px solid #ffffff;
   outline: none;
   transition: background-color 0.8s ease;
